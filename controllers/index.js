@@ -9,7 +9,7 @@ class Controller {
 
           const register = await User.create(body);
 
-          res.status(200).json({
+          res.status(201).json({
             message: `Success create email ${register.email}`,
           });
         } catch (error) {
