@@ -1,0 +1,47 @@
+[
+  {
+    "id": "",
+    "name": "",
+    "address": "",
+    "image": "",
+    "cost": "",
+    "geocoding": "",
+    "CityId": ""
+  },
+  {
+    "id": "2",
+    "name": "Taman Mini Indonesia Indah",
+    "address": "East Jakarta City, Jakarta",
+    "image": "https://lh3.googleusercontent.com/p/AF1QipNAYN17x5UF5tbZFn76TJR04JSfWfwrml9S1r_H=s680-w680-h510",
+    "cost": 15000,
+    "geocoding": "-6.302440568003487, 106.89515657055256",
+    "CityId": 1
+  },
+  {
+    "id": "3",
+    "name": "Taman Impian Jaya Ancol",
+    "address": "Jl. Lodan Timur No.7, RW.10, Ancol, Kec. Pademangan, Kota Jkt Utara, Daerah Khusus Ibukota Jakarta 14430",
+    "image": "https://asset.kompas.com/crops/ClxctWi5u6XYEMHtJ13wfRPX5UQ=/69x0:1149x720/750x500/data/photo/2019/04/17/2507969107.jpeg",
+    "cost": 25000,
+    "geocoding": "-6.128732296182336, 106.83329569140305",
+    "CityId": 1
+  },
+  {
+    "id": "4",
+    "name": "National Monument",
+    "address": "Gambir, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta",
+    "image": "https://d2ile4x3f22snf.cloudfront.net/wp-content/uploads/sites/329/2018/10/29141024/monas8.jpg",
+    "cost": 15000,
+    "geocoding": "-6.175316204693681, 106.82716704183527",
+    "CityId": 1
+  },
+  {
+    "id": "5",
+    "name": "Pulau Tidung",
+    "address": "South Kepulauan Seribu, Kepulauan Seribu Regency, Jakarta",
+    "image": "https://3.bp.blogspot.com/-WsDnNGY7GvI/VvSPcW1nNHI/AAAAAAAAFRo/7Y6DRdL0Clw17YA3rADib_oGsBUY5ufog/s1600/Pulau%2BTidung%2B2.jpg",
+    "cost": 325000,
+    "geocoding": "-6.175316204693681, 106.82716704183527",
+    "CityId": 1
+  }
+]
