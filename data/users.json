@@ -1,0 +1,50 @@
+[
+    {
+        "fullName": "Bobby Rahdyan",
+        "phoneNumber": "08111945586",
+        "email": "bobby@gmail.com",
+        "password": "12345",
+        "isPremium": false,
+        "role": "Customer"
+    },
+    {
+        "fullName": "Abdullah Alam",
+        "phoneNumber": "081111111",
+        "email": "alam@gmail.com",
+        "password": "12345",
+        "isPremium": false,
+        "role": "Customer"
+    },
+    {
+        "fullName": "Nur Qomarudin",
+        "phoneNumber": "081122222",
+        "email": "qomar@gmail.com",
+        "password": "12345",
+        "isPremium": false,
+        "role": "Customer"
+    },
+    {
+        "fullName": "Joshua Nathanael",
+        "phoneNumber": "08113333",
+        "email": "joshua@gmail.com",
+        "password": "12345",
+        "isPremium": false,
+        "role": "Customer"
+    },
+    {
+        "fullName": "Ezar Setiawan",
+        "phoneNumber": "081144444",
+        "email": "ezar@gmail.com",
+        "password": "12345",
+        "isPremium": false,
+        "role": "Customer"
+    },
+    {
+        "fullName": "Setya Raka",
+        "phoneNumber": "08115555",
+        "email": "raka@gmail.com",
+        "password": "12345",
+        "isPremium": false,
+        "role": "Customer"
+    }
+]
