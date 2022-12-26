@@ -3,7 +3,7 @@
         "id": 1,
         "name" : "Ancol",
         "address": "Jl. Lodan Timur no. 7 North Jakarta, Jakarta 14430 Indonesia",
-        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/58/44/fd/ancol-dreamland.jpg?w=1200&h=-1&s=1",
+        "mainImg": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/58/44/fd/ancol-dreamland.jpg?w=1200&h=-1&s=1",
         "cost": "250000",
         "geocoding": "123213123",
         "CityId": 1
@@ -12,7 +12,7 @@
         "id": 2,
         "name" : "Waterbom PIK",
         "address": "Jl. Pantai Indah Kapuk Jl. Pantai Indah Barat No.1, RW.2, Kamal Muara, Kec. Penjaringan, Kota Jkt Utara, Daerah Khusus Ibukota Jakarta 14470",
-        "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/5d/70/b0/waterbom-jakarta.jpg?w=1200&h=1200&s=1",
+        "mainImg": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/5d/70/b0/waterbom-jakarta.jpg?w=1200&h=1200&s=1",
         "cost": "300000",
         "geocoding": "123433123",
         "CityId": 1
