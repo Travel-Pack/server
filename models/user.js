@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Favourite, {
+        foreignKey: "UserId"
+      })
     }
   }
   User.init({
@@ -52,6 +55,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         notEmpty: {
           msg: "Email is required",
+        },
+        async unique(value) {
+          const findUser = await User.findOne({ where: { email: value } });
+          if (findUser) throw new Error("Email already exist");
         },
       },
     },

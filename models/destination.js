@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
       });
+      Destination.hasMany(models.Review, {
+        foreignKey: "DestinationId",
+      })
+      Destination.hasMany(models.Favourite, {
+        foreignKey: "DestinationId",
+      })
       Destination.belongsTo(models.City, {
         foreignKey: "CityId",
       });
