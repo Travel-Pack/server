@@ -1,0 +1,32 @@
+[
+    {
+        "name": "DKI Jakarta",
+        "image": "https://img.okezone.com/content/2022/10/17/1/2688935/pemprov-dki-apresiasi-sumbangsih-kolaborator-untuk-kemajuan-kota-jakarta-sZAYqfuogX.jpg",
+        "geocoding": "5083867975799",
+        "ProvinceId": 11
+    },
+    {
+        "name": "Yogyakarta",
+        "image": "https://asset.kompas.com/crops/8GX0CBJ2-tDsMtpgq6TCN0WWPtI=/0x0:0x0/750x500/data/photo/2020/06/11/5ee208425be9b.jpg",
+        "geocoding": "5087379786581",
+        "ProvinceId": 14
+    },
+    {
+        "name": "Surabaya",
+        "image": "https://asset.kompas.com/crops/GAuUyrwhmqnVAt7HRQnTw1s7K6g=/0x7:740x500/750x500/data/photo/2022/01/21/61ea96a857637.jpg",
+        "geocoding": "5088312432845",
+        "ProvinceId": 15
+    },
+    {
+        "name": "Semarang",
+        "image": "https://storyblok-cdn.ef.com/f/60990/1200x700/646a20cad6/kota-semarang-hero.jpg",
+        "geocoding": "5087145576719",
+        "ProvinceId": 13
+    },
+    {
+        "name": "Bandung",
+        "image": "https://asset.kompas.com/crops/Hu0u13hQ0memWz55y6tWX0jiLgQ=/0x0:0x0/750x500/data/photo/2021/04/02/6066e4449725a.jpg",
+        "geocoding": "5083867975799",
+        "ProvinceId": 12
+    }
+]
