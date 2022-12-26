@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class City extends Model {
+  class Destination extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  City.init({
+  Destination.init({
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -26,15 +26,39 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    image: {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Image is required",
+          msg: "Address is required",
         },
         notEmpty: {
-          msg: "Image is required",
+          msg: "Address is required",
+        },
+      },
+    },
+    mainImg: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Main image is required",
+        },
+        notEmpty: {
+          msg: "Main image is required",
+        },
+      },
+    },
+    cost: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Cost is required",
+        },
+        notEmpty: {
+          msg: "Cost is required",
         },
       },
     },
@@ -50,21 +74,21 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    ProvinceId: {
+    CityId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Province is required",
+          msg: "City is required",
         },
         notEmpty: {
-          msg: "Province is required",
+          msg: "City is required",
         },
       },
     },
   }, {
     sequelize,
-    modelName: 'City',
+    modelName: 'Destination',
   });
-  return City;
+  return Destination;
 };
