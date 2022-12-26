@@ -10,22 +10,29 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       fullName: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       phoneNumber: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        unique: true,
       },
       password: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       isPremium: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       role: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: "Customer",
       },
       createdAt: {
         allowNull: false,
