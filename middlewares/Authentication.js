@@ -5,9 +5,10 @@ class Authentication {
     static async verify(req, res, next){
         try {
             let { access_token } = req.headers
-            if (!access_token) throw ({name: "InvalidToken"})
+            if (!access_token) throw ({name: "NoTokenFound"})
 
             let payload = verifyToken(access_token)
+            if (!payload) throw ({name: "InvalidToken"})
 
             let calledUser = await User.findByPk(payload.id)
             if (!calledUser) throw ({name: "InvalidToken"})

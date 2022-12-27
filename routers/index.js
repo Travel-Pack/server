@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Controller = require("../controllers");
 
 const provincesRouter = require("./provinces");
-const reviewRouter = require("./reviews");
+const reviewsRouter = require("./reviews");
 
 const Authentication = require("../middlewares/Authentication")
 
@@ -18,6 +18,6 @@ router.get("/users/:id", Controller.userById);
 // router.patch("/users/:id", Controller.);
 
 router.use(provincesRouter); // Provinces
-router.use(reviewRouter); // Reviews
+router.use(reviewsRouter); // Reviews
 
 module.exports = router;
