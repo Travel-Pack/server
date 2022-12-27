@@ -2,6 +2,8 @@ const router = require("express").Router();
 const Controller = require("../controllers");
 const destinationPath = require('./destinations');
 
+const userRouter = require("./users")
+const favouriteRouter = require("./favourites")
 const provincesRouter = require("./provinces");
 const reviewsRouter = require("./reviews");
 const publicsRouter = require("./public")
@@ -17,9 +19,10 @@ router.use(publicsRouter)
 router.use(Authentication.verify)
 
 // User
-router.get("/users/:id", Controller.userById);
-// router.put("/users/:id", Controller.);
-// router.patch("/users/:id", Controller.);
+router.use("/users", userRouter);
+
+// Favourites
+router.use("favourites", favouriteRouter);
 
 // Destinations
 router.use("/destinations", destinationPath);
