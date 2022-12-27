@@ -11,7 +11,11 @@ module.exports = {
       },
       DestinationId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Destinations",
+          key: "id",
+        },
       },
       cost: {
         allowNull: false,
@@ -31,6 +35,14 @@ module.exports = {
       },
       comment: {
         type: Sequelize.TEXT
+      },
+      UserId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id",
+        },
       },
       createdAt: {
         allowNull: false,
