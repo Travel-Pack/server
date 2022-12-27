@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       Review.belongsTo(models.Destination, {
         foreignKey: "DestinationId",
       })
+      Review.belongsTo(models.User, {
+        foreignKey: "UserId",
+      })
     }
   }
   Review.init({
@@ -73,7 +76,15 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    comment: DataTypes.TEXT
+    comment: DataTypes.TEXT,
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true,
+      },
+    },
   }, {
     sequelize,
     modelName: 'Review',
