@@ -41,6 +41,17 @@ class ReviewController {
             next (error)
         }
     }
+
+    static async getReviewByDestination(req, res, next){
+        try {
+            let { DestinationId } = req.params
+            let destinationReviews = await Review.findAll({where: { DestinationId }})
+
+            res.status(200).json(destinationReviews)
+        } catch (error) {
+            next (error)
+        }
+    }
 }
 
 module.exports = ReviewController
