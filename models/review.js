@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
     /**
@@ -13,70 +11,73 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Review.belongsTo(models.Destination, {
         foreignKey: "DestinationId",
-      })
+      });
     }
   }
-  Review.init({
-    DestinationId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: true,
-        notEmpty: true,
-      },
-    },
-    cost: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Cost is required",
-        },
-        notEmpty: {
-          msg: "Cost is required",
+  Review.init(
+    {
+      DestinationId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: true,
+          notEmpty: true,
         },
       },
-    },
-    fun: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Fun is required",
-        },
-        notEmpty: {
-          msg: "Fun is required",
-        },
-      },
-    },
-    internet: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Internet is required",
-        },
-        notEmpty: {
-          msg: "Internet is required",
+      cost: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Cost is required",
+          },
+          notEmpty: {
+            msg: "Cost is required",
+          },
         },
       },
-    },
-    safety: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Safety is required",
-        },
-        notEmpty: {
-          msg: "Safety is required",
+      fun: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Fun is required",
+          },
+          notEmpty: {
+            msg: "Fun is required",
+          },
         },
       },
+      internet: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Internet is required",
+          },
+          notEmpty: {
+            msg: "Internet is required",
+          },
+        },
+      },
+      safety: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Safety is required",
+          },
+          notEmpty: {
+            msg: "Safety is required",
+          },
+        },
+      },
+      comment: DataTypes.TEXT,
     },
-    comment: DataTypes.TEXT
-  }, {
-    sequelize,
-    modelName: 'Review',
-  });
+    {
+      sequelize,
+      modelName: "Review",
+    }
+  );
   return Review;
 };
