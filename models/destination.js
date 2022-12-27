@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       Destination.belongsTo(models.City, {
         foreignKey: "CityId",
       });
+      Destination.belongsTo(models.User, {
+        foreignKey: "UserId",
+      });
     }
   }
   Destination.init({
