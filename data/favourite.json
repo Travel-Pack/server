@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "DestinationId": 1,
+        "UserId": 1
+    },
+    {
+        "id": 2,
+        "DestinationId": 2,
+        "UserId": 2
+    },
+    {
+        "id": 3,
+        "DestinationId": 1,
+        "UserId": 3
+    },
+    {
+        "id": 4,
+        "DestinationId": 2,
+        "UserId": 4
+    },
+    {
+        "id": 5,
+        "DestinationId": 2,
+        "UserId": 5
+    }
+]

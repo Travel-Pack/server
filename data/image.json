@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "DestinationId": 2,
+        "imgUrl": "https://www.korinatour.co.id/wp-content/uploads/2018/04/hargakini-waterbom-pik.jpg"
+    },
+    {
+        "id": 2,
+        "DestinationId": 2,
+        "imgUrl": "http://www.hellomister.net/wp-content/uploads/2018/01/WaterbomJakarta-16.jpg"
+    }
+]
