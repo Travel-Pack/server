@@ -1,6 +1,8 @@
-const router = require("express").Router();
+const reviewRouter = require("express").Router();
+const ReviewController = require("../controllers/reviews")
 
-router.post("/reviews")
-router.delete("/reviews/:id")
+router.post("/reviews", ReviewController.postReview)
+router.put("/reviews/:id", ReviewController.putReview)
+router.delete("/reviews/:id", ReviewController.delReview)
 
 module.exports = router

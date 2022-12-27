@@ -1,6 +1,7 @@
-const router = require("express").Router();
+const provincesRouter = require("express").Router();
+const ProvinceController = require("../controllers/provinces")
 
-router.post("/province")
-router.put("/province")
+provincesRouter.post("/provinces", ProvinceController.postProvince)
+provincesRouter.put("/provinces/:id", ProvinceController.putProvince)
 
-module.exports = router
+module.exports = provincesRouter
