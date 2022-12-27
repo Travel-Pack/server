@@ -16,6 +16,8 @@ module.exports = {
           model: "Destinations",
           key: "id",
         },
+        onDelete: 'cascade',
+        onUpdate: 'cascade'
       },
       imgUrl: {
         allowNull: false,
