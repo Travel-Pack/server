@@ -22,7 +22,7 @@ router.use(Authentication.verify)
 router.use("/users", userRouter);
 
 // Favourites
-router.use("favourites", favouriteRouter);
+router.use("/favourites", favouriteRouter);
 
 // Destinations
 router.use("/destinations", destinationPath);
