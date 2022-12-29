@@ -40,7 +40,7 @@ class UserController {
 				},
 			});
 
-			res.status(200).json(data);
+			res.status(200).json({message: "User successfully updated"});
 		} catch (error) {
 			next(error);
 		}
@@ -55,8 +55,13 @@ class UserController {
                 throw({ name: 'User not found' });
             }
 
-			await User.update({ isPremium: true }, { where: { id } });
-			res.status(200).json({ id: +id, message: "User has been updated to premium" });
+			if (findUser.isPremium === true) {
+                await User.update({ isPremium: false }, { where: { id } });
+            } else {
+				await User.update({ isPremium: true }, { where: { id } });
+			}
+
+			res.status(200).json({ id: +id, message: "User status has been updated" });
 		} catch (error) {
 			next(error);
 		}
