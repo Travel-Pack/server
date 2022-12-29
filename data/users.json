@@ -21,7 +21,7 @@
         "email": "qomar@gmail.com",
         "password": "12345",
         "isPremium": false,
-        "role": "Customer"
+        "role": "Admin"
     },
     {
         "fullName": "Joshua Nathanael",
