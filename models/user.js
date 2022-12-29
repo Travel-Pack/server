@@ -62,10 +62,10 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: {
           msg: "Email is required",
         },
-        async unique(value) {
-          const findUser = await User.findOne({ where: { email: value } });
-          if (findUser) throw new Error("Email already exist");
-        },
+        // async unique(value) {
+        //   const findUser = await User.findOne({ where: { email: value } });
+        //   if (findUser) throw new Error("Email already exist");
+        // },
       },
     },
     password: {

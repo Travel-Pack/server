@@ -1,7 +1,7 @@
 const errorHandler = (err, req, res, next) => {
     let code = 500
     let msg = "Internal Server Error"
-
+    console.log(err, '<=== error');
     if (err.name == 'SequelizeValidationError'){
         code = 400
         msg = err.errors[0].message
@@ -35,12 +35,12 @@ const errorHandler = (err, req, res, next) => {
         code = 400
         msg = "Invalid Token/Authentication Failed"
     }
-    
+
     else if (err.name == "Unauthorized"){
         code = 403
         msg = "You are not authorized"
     }
-    
+
     console.log(err);
     res.status(code).json({msg})
 }
