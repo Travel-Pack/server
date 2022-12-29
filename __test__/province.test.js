@@ -7,32 +7,32 @@ let admin_access_token;
 let customer_access_token;
 
 beforeAll(async function () {
-  let userAdmin = await User.create({
-    "fullName": "User Admin",
-    "phoneNumber": "000123456789",
-    "email": "userAdmin@gmail.com",
-    "password": "admin",
-    "isPremium": false,
-    "role": "Admin"
-  })
+    let userAdmin = await User.create({
+      "fullName": "User Admin",
+      "phoneNumber": "000123456789",
+      "email": "userAdmin@gmail.com",
+      "password": "admin",
+      "isPremium": false,
+      "role": "Admin"
+    })
 
-  let userCustomer = await User.create({
-    "fullName": "User Customer",
-    "phoneNumber": "000123456789",
-    "email": "userCustomer@gmail.com",
-    "password": "customer",
-    "isPremium": false,
-    "role": "Customer"
-  })
+    let userCustomer = await User.create({
+        "fullName": "User Customer",
+        "phoneNumber": "000123456789",
+        "email": "userCustomer@gmail.com",
+        "password": "customer",
+        "isPremium": false,
+        "role": "Customer"
+    })
 
-  admin_access_token = createToken({ id : userAdmin.id })
-  customer_access_token = createToken({ id : userCustomer.id })
+    admin_access_token = createToken({ id : userAdmin.id })
+    customer_access_token = createToken({ id : userCustomer.id })
 
-  await sequelize.queryInterface.bulkInsert("Provinces", [
-      { "name":"Aceh", createdAt : new Date(), updatedAt: new Date() },
-      { "name":"Sumatera Utara", createdAt : new Date(), updatedAt: new Date() },
-      { "name":"Sumatera Barat", createdAt : new Date(), updatedAt: new Date()} ,
-  ], {})
+    await sequelize.queryInterface.bulkInsert("Provinces", [
+        { "name":"Aceh", createdAt : new Date(), updatedAt: new Date() },
+        { "name":"Sumatera Utara", createdAt : new Date(), updatedAt: new Date() },
+        { "name":"Sumatera Barat", createdAt : new Date(), updatedAt: new Date()} ,
+    ], {})
 })
   
 afterAll(async function () {
