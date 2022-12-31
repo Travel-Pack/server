@@ -46,7 +46,28 @@ class UserController {
 		}
 	}
 
-    static async updatePremiumStatus(req, res, next) {
+    static async activatePremiumStatus(req, res, next) {
+		try {
+			const { id } = req.params;
+			const findUser = await User.findByPk(+id);
+
+			if (!findUser) {
+                throw({ name: 'User not found' });
+            }
+
+			if (findUser.isPremium === false) {
+                await User.update({ isPremium: true }, { where: { id } });
+            } else {
+				throw({ name: `User status already premium` });
+			}
+
+			res.status(200).json({ id: +id, message: `${findUser.fullName} status has been updated to premium` });
+		} catch (error) {
+			next(error);
+		}
+	}
+
+	static async deactivatePremiumStatus(req, res, next) {
 		try {
 			const { id } = req.params;
 			const findUser = await User.findByPk(+id);
@@ -58,10 +79,10 @@ class UserController {
 			if (findUser.isPremium === true) {
                 await User.update({ isPremium: false }, { where: { id } });
             } else {
-				await User.update({ isPremium: true }, { where: { id } });
+				throw({ name: `User status already not premium` });
 			}
 
-			res.status(200).json({ id: +id, message: "User status has been updated" });
+			res.status(200).json({ id: +id, message: `${findUser.fullName} status no longer premium` });
 		} catch (error) {
 			next(error);
 		}
