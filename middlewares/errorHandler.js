@@ -11,6 +11,11 @@ const errorHandler = (err, req, res, next) => {
         msg = "This Email Already Registered"
     }
 
+    else if (err.name == "Destination already in your favourites"){
+        code = 400
+        msg = err.name
+    }
+
     else if (err.name == "UnknownId"){
         code = 404
         msg = "Data Not Found"
