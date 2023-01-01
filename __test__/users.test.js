@@ -158,18 +158,18 @@ describe('Login customer /login', () => {
         await request(app)
         .post('/register')
         .send({
-			fullName: "bobby10",
-			phoneNumber: '08111',
-			email: "bobby10@gmail.com",
-			password: hashPassword("12345"),
-			isPremium: false,
-			role: "Customer",
+          fullName: "bobby10",
+          phoneNumber: '08111',
+          email: "bobby10@gmail.com",
+          password: "12345",
+          isPremium: false,
+          role: "Customer",
         })
         const res = await request(app)
         .post('/login')
         .send({
           email: 'bobby10@gmail.com',
-          password: hashPassword("12345"),
+          password: "12345",
         })
 
       expect(res.status).toBe(200);
@@ -177,36 +177,44 @@ describe('Login customer /login', () => {
     })
     test('Password is false', async () => {
       await request(app)
-        .post('/pub/register')
+        .post('/register')
         .send({
-          email: 'bobby11@gmail.com',
-          password: '12345'
+          fullName: "bobby11",
+          phoneNumber: '08111',
+          email: "bobby11@gmail.com",
+          password: "12345",
+          isPremium: false,
+          role: "Customer",
         })
       const res = await request(app)
-        .post('/pub/login')
+        .post('/login')
         .send({
           email: 'bobby11@gmail.com',
-          password: '1234'
+          password: "1234"
         })
 
       expect(res.status).toBe(401);
-      expect(res.body.message.name).toBe('invalidLogin');
+      expect(res.body.msg).toBe('Invalid Email/Password');
     })
     test('Email is false', async () => {
         await request(app)
-          .post('/pub/register')
+          .post('/register')
           .send({
-            email: 'bobby12@gmail.com',
-            password: '12345'
+            fullName: "bobby12",
+            phoneNumber: '08111',
+            email: "bobby12@gmail.com",
+            password: "12345",
+            isPremium: false,
+            role: "Customer",
           })
         const res = await request(app)
-          .post('/pub/login')
+          .post('/login')
           .send({
             email: 'bobby123@gmail.com',
-            password: '12345'
+            password: "12345"
           })
 
         expect(res.status).toBe(401);
-        expect(res.body.message.name).toBe('invalidLogin');
+        expect(res.body.msg).toBe('Invalid Email/Password');
       })
 })

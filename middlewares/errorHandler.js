@@ -33,12 +33,12 @@ const errorHandler = (err, req, res, next) => {
 
     else if (err.name == "Email is required" || err.name == "Password is required"){
         code = 400
-        msg = "Username/Email and Password is Required"
+        msg = "Email and Password is Required"
     }
 
     else if (err.name == "Invalid email or password"){
-        code = 400
-        msg = "Invalid Username/Email/Password"
+        code = 401
+        msg = "Invalid Email/Password"
     }
 
     else if (err.name == "InvalidToken" || err.name == "JsonWebTokenError" || err.name == "NoTokenFound" || err.name == "InvalidUser"){
