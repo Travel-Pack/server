@@ -27,6 +27,12 @@ class UserController {
                 throw({ name: 'User not found' });
             }
 
+			if (!req.body.password) {
+				throw({ name: 'Password is required'})
+			} else if (req.body.password.length < 5) {
+				throw({ name: 'Minimum password length must be 5 letter'})
+			}
+
 			const updateUser = {
 				fullName: req.body.fullName,
 				phoneNumber: req.body.phoneNumber,
@@ -61,7 +67,7 @@ class UserController {
 				throw({ name: `User status already premium` });
 			}
 
-			res.status(200).json({ id: +id, message: `${findUser.fullName} status has been updated to premium` });
+			res.status(200).json({ message: `User status has been updated to premium` });
 		} catch (error) {
 			next(error);
 		}
@@ -82,7 +88,7 @@ class UserController {
 				throw({ name: `User status already not premium` });
 			}
 
-			res.status(200).json({ id: +id, message: `${findUser.fullName} status no longer premium` });
+			res.status(200).json({ message: `User status no longer premium` });
 		} catch (error) {
 			next(error);
 		}

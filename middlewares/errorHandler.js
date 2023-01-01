@@ -6,9 +6,15 @@ const errorHandler = (err, req, res, next) => {
         code = 400
         msg = err.errors[0].message
     }
+
     else if (err.name == "SequelizeUniqueConstraintError"){
         code = 400
         msg = "This Email Already Registered"
+    }
+
+    else if (err.name == "Minimum password length must be 5 letter"){
+        code = 400
+        msg = err.name
     }
 
     else if (err.name == "Destination already in your favourites"){
