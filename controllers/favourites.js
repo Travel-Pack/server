@@ -24,9 +24,11 @@ class FavouriteController {
           const UserId = req.user.id;
           const { id } = req.body;
 
-          const [findDestination, createdDestination] = await Destination.findOrCreate({
-            where: { id }
-          });
+          const findDestination = await Destination.findByPk(+id);
+
+          if (!findDestination) {
+            throw {name: "Destination does not exist"}
+          }
 
           const DestinationId = findDestination.id;
 

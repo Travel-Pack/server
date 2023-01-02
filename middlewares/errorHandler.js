@@ -22,6 +22,11 @@ const errorHandler = (err, req, res, next) => {
         msg = err.name
     }
 
+    else if (err.name == "Destination does not exist"){
+        code = 400
+        msg = err.name
+    }
+
     else if (err.name == "User status already premium" || err.name == "User status already not premium"){
         code = 400
         msg = err.name
