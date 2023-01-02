@@ -1,17 +1,28 @@
 const errorHandler = (err, req, res, next) => {
     let code = 500
     let msg = "Internal Server Error"
-    console.log(err, '<=== error');
+    // console.log(err, '<=== error');
     if (err.name == 'SequelizeValidationError'){
         code = 400
         msg = err.errors[0].message
     }
+
     else if (err.name == "SequelizeUniqueConstraintError"){
         code = 400
         msg = "This Email Already Registered"
     }
 
+    else if (err.name == "Minimum password length must be 5 letter"){
+        code = 400
+        msg = err.name
+    }
+
     else if (err.name == "Destination already in your favourites"){
+        code = 400
+        msg = err.name
+    }
+
+    else if (err.name == "Destination does not exist"){
         code = 400
         msg = err.name
     }
@@ -33,12 +44,12 @@ const errorHandler = (err, req, res, next) => {
 
     else if (err.name == "Email is required" || err.name == "Password is required"){
         code = 400
-        msg = "Username/Email and Password is Required"
+        msg = "Email and Password is Required"
     }
 
     else if (err.name == "Invalid email or password"){
-        code = 400
-        msg = "Invalid Username/Email/Password"
+        code = 401
+        msg = "Invalid Email/Password"
     }
 
     else if (err.name == "InvalidToken" || err.name == "JsonWebTokenError" || err.name == "NoTokenFound" || err.name == "InvalidUser"){
