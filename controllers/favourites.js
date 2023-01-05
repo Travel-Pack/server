@@ -22,12 +22,13 @@ class FavouriteController {
     static async addFavourites(req, res, next) {
         try {
           const UserId = req.user.id;
-          const { name, address, mainImg, cost, geocoding, CityId } = req.body;
+          const { id } = req.body;
 
-          const [findDestination, createdDestination] = await Destination.findOrCreate({
-            where: { name },
-            defaults: { name, address, mainImg, cost, geocoding, CityId },
-          });
+          const findDestination = await Destination.findByPk(+id);
+
+          if (!findDestination) {
+            throw {name: "Destination does not exist"}
+          }
 
           const DestinationId = findDestination.id;
 
@@ -37,7 +38,7 @@ class FavouriteController {
           });
 
           if (!createdFavourites) {
-            throw { name: "Already in your favourites" };
+            throw { name: "Destination already in your favourites" };
           }
 
           res.status(201).json({

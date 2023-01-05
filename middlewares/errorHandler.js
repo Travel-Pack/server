@@ -1,46 +1,67 @@
 const errorHandler = (err, req, res, next) => {
     let code = 500
     let msg = "Internal Server Error"
-
+    // console.log(err, '<=== error');
     if (err.name == 'SequelizeValidationError'){
         code = 400
         msg = err.errors[0].message
     }
-    if (err.name == "SequelizeUniqueConstraintError"){
+
+    else if (err.name == "SequelizeUniqueConstraintError"){
         code = 400
         msg = "This Email Already Registered"
     }
 
-    if (err.name == "UnknownId"){
+    else if (err.name == "Minimum password length must be 5 letter"){
+        code = 400
+        msg = err.name
+    }
+
+    else if (err.name == "Destination already in your favourites"){
+        code = 400
+        msg = err.name
+    }
+
+    else if (err.name == "Destination does not exist"){
+        code = 400
+        msg = err.name
+    }
+
+    else if (err.name == "User status already premium" || err.name == "User status already not premium"){
+        code = 400
+        msg = err.name
+    }
+
+    else if (err.name == "UnknownId"){
         code = 404
         msg = "Data Not Found"
     }
 
-    if (err.name == "User not found"){
+    else if (err.name == "User not found"){
         code = 404
         msg = "User Not Found"
     }
 
-    if (err.name == "Email is required" || err.name == "Password is required"){
+    else if (err.name == "Email is required" || err.name == "Password is required"){
         code = 400
-        msg = "Username/Email and Password is Required"
+        msg = "Email and Password is Required"
     }
 
-    if (err.name == "Invalid email or password"){
-        code = 400
-        msg = "Invalid Username/Email/Password"
+    else if (err.name == "Invalid email or password"){
+        code = 401
+        msg = "Invalid Email/Password"
     }
 
-    if (err.name == "InvalidToken" || err.name == "JsonWebTokenError" || err.name == "NoTokenFound" || err.name == "InvalidUser"){
+    else if (err.name == "InvalidToken" || err.name == "JsonWebTokenError" || err.name == "NoTokenFound" || err.name == "InvalidUser"){
         code = 400
         msg = "Invalid Token/Authentication Failed"
     }
-    
-    if (err.name == "Unauthorized"){
+
+    else if (err.name == "Unauthorized"){
         code = 403
         msg = "You are not authorized"
     }
-    
+
     console.log(err);
     res.status(code).json({msg})
 }

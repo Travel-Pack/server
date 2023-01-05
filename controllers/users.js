@@ -27,6 +27,12 @@ class UserController {
                 throw({ name: 'User not found' });
             }
 
+			if (!req.body.password) {
+				throw({ name: 'Password is required'})
+			} else if (req.body.password.length < 5) {
+				throw({ name: 'Minimum password length must be 5 letter'})
+			}
+
 			const updateUser = {
 				fullName: req.body.fullName,
 				phoneNumber: req.body.phoneNumber,
@@ -40,13 +46,13 @@ class UserController {
 				},
 			});
 
-			res.status(200).json(data);
+			res.status(200).json({message: "User successfully updated"});
 		} catch (error) {
 			next(error);
 		}
 	}
 
-    static async updatePremiumStatus(req, res, next) {
+    static async activatePremiumStatus(req, res, next) {
 		try {
 			const { id } = req.params;
 			const findUser = await User.findByPk(+id);
@@ -55,8 +61,34 @@ class UserController {
                 throw({ name: 'User not found' });
             }
 
-			await User.update({ isPremium: true }, { where: { id } });
-			res.status(200).json({ id: +id, message: "User has been updated to premium" });
+			if (findUser.isPremium === false) {
+                await User.update({ isPremium: true }, { where: { id } });
+            } else {
+				throw({ name: `User status already premium` });
+			}
+
+			res.status(200).json({ message: `User status has been updated to premium` });
+		} catch (error) {
+			next(error);
+		}
+	}
+
+	static async deactivatePremiumStatus(req, res, next) {
+		try {
+			const { id } = req.params;
+			const findUser = await User.findByPk(+id);
+
+			if (!findUser) {
+                throw({ name: 'User not found' });
+            }
+
+			if (findUser.isPremium === true) {
+                await User.update({ isPremium: false }, { where: { id } });
+            } else {
+				throw({ name: `User status already not premium` });
+			}
+
+			res.status(200).json({ message: `User status no longer premium` });
 		} catch (error) {
 			next(error);
 		}

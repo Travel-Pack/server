@@ -23,7 +23,7 @@ class ProvinceController{
             const oldName = updatedProvince.name
             await updatedProvince.update({name})
 
-            res.status(201).json({msg: `Province ${oldName} has updated to ${name}`})
+            res.status(200).json({msg: `Province ${oldName} has updated to ${name}`})
         } catch (error) {
             next (error)
         }
@@ -37,7 +37,7 @@ class ProvinceController{
             if (!calledProvince) throw({name: "UnknownId"})
 
             await calledProvince.destroy()
-            res.status(201).json({msg: `Review with id ${calledProvince.id} has been deleted`})
+            res.status(200).json({msg: `Review with id ${calledProvince.id} has been deleted`})
         } catch (error) {
             next (error)
         }
@@ -48,6 +48,7 @@ class ProvinceController{
             let allProvinces = await Province.findAll()
             res.status(200).json(allProvinces)
         } catch (error) {
+            console.log(error);
             next(error)
         }
     }
