@@ -68,7 +68,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     cost: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {

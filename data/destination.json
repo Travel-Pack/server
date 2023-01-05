@@ -4,7 +4,7 @@
     "name": "Ancol",
     "address": "Jl. Lodan Timur no. 7 North Jakarta, Jakarta 14430 Indonesia",
     "mainImg": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/58/44/fd/ancol-dreamland.jpg?w=1200&h=-1&s=1",
-    "cost": "250000",
+    "cost": 250000,
     "geocoding": "123213123",
     "CityId": 1,
     "UserId": 5
@@ -14,8 +14,38 @@
     "name": "Waterbom PIK",
     "address": "Jl. Pantai Indah Kapuk Jl. Pantai Indah Barat No.1, RW.2, Kamal Muara, Kec. Penjaringan, Kota Jkt Utara, Daerah Khusus Ibukota Jakarta 14470",
     "mainImg": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/5d/70/b0/waterbom-jakarta.jpg?w=1200&h=1200&s=1",
-    "cost": "300000",
+    "cost": 300000,
     "geocoding": "123433123",
+    "CityId": 1,
+    "UserId": 1
+  },
+  {
+    "id": 3,
+    "name": "National Monument",
+    "address": "Gambir, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta",
+    "mainImg": "https://d2ile4x3f22snf.cloudfront.net/wp-content/uploads/sites/329/2018/10/29141024/monas8.jpg",
+    "cost": 15000,
+    "geocoding": "-6.175316204693681, 106.82716704183527",
+    "CityId": 1,
+    "UserId": 5
+  },
+  {
+    "id": 4,
+    "name": "Pulau Semak Daun",
+    "address": "Pulau Semak Daun, Pulau Panggang, Kepulauan Seribu Utara, Kab. Administrasi Kepulauan Seribu, Daerah Khusus Ibukota Jakarta 14530",
+    "mainImg": "https://backpackerjakarta.com/wp-content/uploads/2016/09/Semak-Daun.jpg",
+    "cost": 150000,
+    "geocoding": "-5.729452692562088, 106.57151297828554",
+    "CityId": 1,
+    "UserId": 5
+  },
+  {
+    "id": 5,
+    "name": "Taman Mini Indonesia Indah",
+    "address": "East Jakarta City, Jakarta",
+    "mainImg": "https://lh3.googleusercontent.com/p/AF1QipNAYN17x5UF5tbZFn76TJR04JSfWfwrml9S1r_H=s680-w680-h510",
+    "cost": 15000,
+    "geocoding": "-6.302440568003487, 106.89515657055256",
     "CityId": 1,
     "UserId": 5
   }

@@ -23,7 +23,7 @@ module.exports = {
       },
       cost: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       geocoding: {
         allowNull: false,

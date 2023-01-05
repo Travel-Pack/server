@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Controller = require("../controllers");
 const destinationPath = require('./destinations');
+const travelStepPath = require('./travelSteps');
 
 const userRouter = require("./users")
 const favouriteRouter = require("./favourites")
@@ -26,6 +27,9 @@ router.use("favourites", favouriteRouter);
 
 // Destinations
 router.use("/destinations", destinationPath);
+
+// TravelSteps / My TravelSteps
+router.use("/travel-steps", travelStepPath)
 
 router.use(provincesRouter); // Provinces
 router.use(reviewsRouter); // Reviews
