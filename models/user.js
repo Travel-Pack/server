@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Review, {
         foreignKey: "UserId"
       })
+      User.hasMany(models.TravelStep, {
+        foreignKey: "UserId"
+      })
     }
   }
   User.init({

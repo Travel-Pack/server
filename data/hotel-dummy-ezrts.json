@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Hotel_1",
+    "image": "https://www.kayak.co.id/rimg/himg/ab/64/d9/expediav2-38713-6584af-750938.jpg?width=720&height=576&crop=true",
+    "geocoding": "123134312, 91823634234",
+    "isRecommended": true,
+    "price": 111111,
+    "CityId": 1
+  },
+  {
+    "id": 2,
+    "name": "Hotel_2",
+    "image": "https://www.kayak.co.id/rimg/himg/ab/64/d9/expediav2-38713-6584af-750938.jpg?width=720&height=576&crop=true",
+    "geocoding": "123134312, 91823634234",
+    "isRecommended": false,
+    "price": 222222,
+    "CityId": 1
+  },
+  {
+    "id": 3,
+    "name": "Hotel_3",
+    "image": "https://www.kayak.co.id/rimg/himg/ab/64/d9/expediav2-38713-6584af-750938.jpg?width=720&height=576&crop=true",
+    "geocoding": "123134312, 91823634234",
+    "isRecommended": true,
+    "price": 333333,
+    "CityId": 1
+  },
+  {
+    "id": 4,
+    "name": "Hotel_4",
+    "image": "https://www.kayak.co.id/rimg/himg/ab/64/d9/expediav2-38713-6584af-750938.jpg?width=720&height=576&crop=true",
+    "geocoding": "123134312, 91823634234",
+    "isRecommended": true,
+    "price": 444444,
+    "CityId": 1
+  },
+  {
+    "id": 5,
+    "name": "Hotel_5",
+    "image": "https://www.kayak.co.id/rimg/himg/ab/64/d9/expediav2-38713-6584af-750938.jpg?width=720&height=576&crop=true",
+    "geocoding": "123134312, 91823634234",
+    "isRecommended": false,
+    "price": 555555,
+    "CityId": 1
+  }
+]
