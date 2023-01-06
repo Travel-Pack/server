@@ -10,7 +10,7 @@ module.exports = {
         updatedAt: new Date(),
       };
     });
-    console.log(data);
+    // console.log(data);
     await queryInterface.bulkInsert("Reviews", data, {});
   },
 
@@ -22,5 +22,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete("Reviews", null, {});
   },
 };

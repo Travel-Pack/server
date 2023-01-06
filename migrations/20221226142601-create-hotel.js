@@ -2,26 +2,38 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Favourites', {
+    await queryInterface.createTable('Hotels', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      DestinationId: {
+      name: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Destinations",
-          key: "id"
-        }
+        type: Sequelize.STRING
       },
-      UserId: {
+      image: {
+        allowNull: false,
+        type: Sequelize.TEXT
+      },
+      geocoding: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      isRecommended: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN
+      },
+      price: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      CityId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: "Users",
+          model: "Cities",
           key: "id"
         }
       },
@@ -36,6 +48,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Favourites');
+    await queryInterface.dropTable('Hotels');
   }
 };
