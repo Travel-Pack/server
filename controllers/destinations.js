@@ -5,8 +5,9 @@ class DestinationController {
     const t = await sequelize.transaction()
     try {
       const { name, address, mainImg, cost, geocoding, CityId, UserId, imgUrl } = req.body
-      const newDestination = await Destination.create({ name, address, mainImg, cost, geocoding, CityId, UserId }, { transaction: t }) // , UserId
-      console.log(newDestination, "<<--- newDestination di controller");
+      const slug = name.toLowerCase().split(' ').join('-');
+
+      const newDestination = await Destination.create({ name, address, mainImg, cost, geocoding, CityId, UserId, slug }, { transaction: t })
       if (imgUrl) {
         const images = imgUrl.map(el => {
           return {
@@ -21,14 +22,29 @@ class DestinationController {
       res.status(201).json("Ok - Destination Added")
     } catch (error) {
       await t.rollback()
-      console.log(error);
-      // next(err)
+      next(error)
     }
   }
   static async readAllDestination(req, res, next) {
     try {
-      const { name, address, mainImg, cost, geocoding, CityId } = req.body
-      const destination = await Destination.findAll({
+      const destinations = await Destination.findAll({
+        include: [
+          { model: Review },
+          Image
+        ]
+      })
+
+      res.status(200).json(destinations)
+    } catch (error) {
+      next(error)
+    }
+  }
+  static async readOneDestination(req, res, next) {
+    try {
+      const { slug } = req.params
+
+      const destination = await Destination.findOne({
+        where: { slug: slug },
         include: [
           { model: Review },
           Image
@@ -37,8 +53,7 @@ class DestinationController {
 
       res.status(200).json(destination)
     } catch (error) {
-      console.log(error);
-      // next(error)
+      next(error)
     }
   }
 }

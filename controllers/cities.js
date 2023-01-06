@@ -12,10 +12,10 @@ class CityController {
 
   static async getCityById(req, res, next) {
     try {
-      const { id } = req.params;
+      const { slug } = req.params;
 
       const findCity = await City.findOne({
-        where: { id },
+        where: { slug },
         include: [Province],
       });
       if (!findCity) throw { name: "UnknownId" };
@@ -29,11 +29,12 @@ class CityController {
   static async addCity(req, res, next) {
     try {
       const { name, image, geocoding, ProvinceId } = req.body;
+      const slug = name.toLowerCase().split(' ').join('-');
 
       const findProvince = await Province.findByPk(ProvinceId);
       if (!findProvince) throw { name: "UnknownId" };
 
-      const newCity = await City.create({ name, image, geocoding, ProvinceId });
+      const newCity = await City.create({ name, image, geocoding, ProvinceId, slug });
       res.status(201).json({ msg: `Success add ${newCity} to cities` });
     } catch (error) {
       next(error);
@@ -42,10 +43,11 @@ class CityController {
 
   static async editCity(req, res, next) {
     try {
-      const { id } = req.params;
+      const { slug } = req.params;
       const { name, image, geocoding, ProvinceId } = req.body;
 
-      const findCity = await Citi.findByPk(id);
+      // const findCity = await Citi.findByPk(id);
+      const findCity = await Citi.findOne({ where: { slug }, });
       if (!findCity) throw { name: "UnknownId" };
 
       const findProvince = await Province.findByPk(ProvinceId);

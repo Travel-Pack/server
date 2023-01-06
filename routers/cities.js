@@ -3,7 +3,7 @@ const router = require("express").Router();
 
 router.get("/cities", CityController.getCities);
 router.post("/cities", CityController.addCity);
-router.get("/cities/:id", CityController.getCityById);
-router.put("/cities/:id", CityController.editCity);
+router.get("/cities/:slug", CityController.getCityById);
+router.put("/cities/:slug", CityController.editCity);
 
 module.exports = router;

@@ -2,7 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     /**
      * Add seed commands here.
      *
@@ -18,13 +18,14 @@ module.exports = {
         ...el,
         createdAt: new Date(),
         updatedAt: new Date(),
+        slug: el.name.toLocaleLowerCase().split(" ").join("-")
       };
     });
 
     await queryInterface.bulkInsert("Cities", data, {});
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *

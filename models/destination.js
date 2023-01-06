@@ -42,6 +42,18 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      slug: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Slug is required",
+          },
+          notEmpty: {
+            msg: "Slug is required",
+          },
+        },
+      },
       address: {
         type: DataTypes.STRING,
         allowNull: false,
