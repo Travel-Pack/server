@@ -67,9 +67,35 @@ class TravelStepController {
       }
       const sisaBudget = destination_budget
 
-      const hotels = await Hotel.findAll({ where: { CityId: CityId, price: { [Op.lte]: hotel_budget + sisaBudget } } })
+      const hotels = await Hotel.findAll({ where: { CityId: CityId, price: { [Op.lte]: hotel_budget + sisaBudget } }, limit: totalDestination })
 
       res.status(200).json({ message: "TravelStep Added", TravelStep: { destinations, hotels }, planId: newTravelStep.id })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  /*------ My Travel Steps (saved travelSteps) Section------ */
+  static async createMyTravelStep(req, res, next) {
+    try {
+      const { DestinationId, HotelId } = req.body
+      const { planId } = req.params
+
+      await TravelStep_Destination.create({ planId, DestinationId, HotelId })
+
+      res.status(201).json("Ok - TravelStep plan Added")
+    } catch (error) {
+      next(error)
+    }
+  }
+  static async readMyTravelSteps(req, res, next) {
+    try {
+      const myTravelSteps = await TravelStep_Destination.findAll({
+        include: [Hotel, Destination]
+        , order: [['createdAt', "DESC"]]
+      })
+
+      res.status(200).json({ myTravelSteps })
     } catch (error) {
       next(error)
     }
