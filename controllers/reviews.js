@@ -73,6 +73,7 @@ class ReviewController {
       let sumInternet = 0;
       let sumSafety = 0;
       let commentArr = [];
+
       destinationReviews.forEach((el) => {
         sumCost += el.cost;
         sumFun += el.fun;

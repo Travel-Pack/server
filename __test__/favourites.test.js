@@ -1,8 +1,8 @@
-const request = require("supertest");
-const app = require("../app.js");
-const { hashPassword } = require("../helpers/bcryptjs.js");
-const { sequelize } = require("../models");
-const { queryInterface } = sequelize;
+// const request = require("supertest");
+// const app = require("../app.js");
+// const { hashPassword } = require("../helpers/bcryptjs.js");
+// const { sequelize } = require("../models");
+// const { queryInterface } = sequelize;
 
 // beforeAll(async () => {
 //   await queryInterface.bulkInsert("Users", [
