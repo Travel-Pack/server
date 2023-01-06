@@ -5,7 +5,8 @@
         "fun": 4,
         "internet": 3,
         "safety": 3,
-        "comment": "The place is extraordinary, the hotels and villas are not expensive, recommended for holidays"
+        "comment": "The place is extraordinary, the hotels and villas are not expensive, recommended for holidays",
+        "UserId": 1
     },
     {
         "DestinationId": 2,
@@ -13,7 +14,8 @@
         "fun": 5,
         "internet": 3,
         "safety": 3,
-        "comment": "This place is very pleasant, but because lodging here is too expensive so it is not recommended for cheap travel places"
+        "comment": "This place is very pleasant, but because lodging here is too expensive so it is not recommended for cheap travel places",
+        "UserId": 2
     },
     {
         "DestinationId": 2,
@@ -21,6 +23,7 @@
         "fun": 3,
         "internet": 3,
         "safety": 3,
-        "comment": "This place too expensive, but so funny"
+        "comment": "This place too expensive, but so funny",
+        "UserId": 1
     }
 ]
