@@ -3,34 +3,6 @@ const { Op } = require("sequelize");
 
 class TravelStepController {
 
-  // static async createTravelStep(req, res, next) {
-  //   try {
-  //     const { budget, destinationPercentage } = req.body
-  //     const UserId = 5 // req.user.id
-
-  //     const newTravelStep = await Destination.create({ budget, destinationPercentage, UserId })
-
-  //     res.status(201).json("Ok - TravelStep Added")
-  //   } catch (error) {
-
-  //   }
-  // }
-  // static async readAllTravelStep(req, res, next) {
-  //   try {
-  //     const { name, address, mainImg, cost, geocoding, CityId } = req.body
-  //     const destination = await Destination.findAll({
-  //       include: [
-  //         { model: Review },
-  //         Image
-  //       ]
-  //     })
-
-  //     res.status(200).json(destination)
-  //   } catch (error) {
-  //     console.log(error);
-  //     // next(error)
-  //   }
-  // }
   static async createAndReadTravelStep(req, res, next) {
     try {
       const { budget, CityId, DestinationId, destinationPercentage, totalDestination } = req.body
@@ -91,8 +63,8 @@ class TravelStepController {
   static async readMyTravelSteps(req, res, next) {
     try {
       const myTravelSteps = await TravelStep_Destination.findAll({
-        include: [Hotel, Destination]
-        , order: [['createdAt', "DESC"]]
+        include: [Hotel, Destination],
+        order: [['createdAt', "DESC"]]
       })
 
       res.status(200).json({ myTravelSteps })
