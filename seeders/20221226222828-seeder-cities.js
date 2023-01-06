@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -11,18 +11,18 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-    */
+     */
     const data = require("../data/cities.json").map((el) => {
       delete el.id;
       return {
         ...el,
+        slug: el.name.toLocaleLowerCase().split(" ").join("-"),
         createdAt: new Date(),
         updatedAt: new Date(),
-        slug: el.name.toLocaleLowerCase().split(" ").join("-")
       };
     });
-
-    await queryInterface.bulkInsert("Cities", data, {});
+    console.log(data, ">>");
+    await queryInterface.bulkInsert("Cities", data);
   },
 
   async down(queryInterface, Sequelize) {
@@ -33,5 +33,5 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     await queryInterface.bulkDelete("Cities", null, {});
-  }
+  },
 };
