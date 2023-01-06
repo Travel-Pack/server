@@ -34,31 +34,42 @@ class TravelStepController {
   static async createAndReadTravelStep(req, res, next) {
     try {
       const { budget, CityId, DestinationId, destinationPercentage, totalDestination } = req.body
-      const UserId = 5
-      // const UserId = req.user.id
-      console.log("SEBELUM CREATE");
+      const UserId = req.user.id
+
       // auto Create TravelStep ketika tombol Generate di klik
       const newTravelStep = await TravelStep.create({ budget, destinationPercentage, UserId })
-      console.log("++ SESUDAH CREATE ++");
 
-      const destination_budget = (budget * (destinationPercentage / 100)) / totalDestination
-      const hotel_budget = budget - (budget * (destinationPercentage / 100))
+      let destination_budget = budget * (destinationPercentage / 100)
+      const hotel_budget = +budget - (destination_budget)
 
-      // langsung Genereta rekomendasi travel Step
-      let destination
+      // langsung Generate rekomendasi travel Step
+      let destinations = []
+      let DB_destinations
       if (DestinationId) {
-        --totalDestination
+        let tot = totalDestination - 1
+        DB_destinations = await Destination.findAll({ where: { CityId: CityId }, order: [['cost', "DESC"]] })
+        const found = DB_destinations.find((el, i) => el.id == DestinationId);
+        if (found) destinations.push(found)
+        for (let i = 0; i < tot; i++) {
+          if (DB_destinations[i].id != DestinationId && DB_destinations[i].cost <= destination_budget) {
+            destinations.push(DB_destinations[i])
+            destination_budget -= DB_destinations[i].cost
+            // console.log(DB_destinations[i].id, "<-1->", DestinationId, "with index: ", i, " totaldestination: ", totalDestination);
+          } else if (DB_destinations[i].id == DestinationId) {
+            destinations.push(DB_destinations[i + 1])
+            i++
+            tot += 1
+            // console.log(DB_destinations[i].id, "<-2->", DestinationId, "with index: ", i, " totaldestination: ", totalDestination);
+          }
+        }
+      } else {
+        destinations = await Destination.findAll({ where: { CityId: CityId }, order: [['cost', "DESC"]], limit: totalDestination })
       }
-      destination = await Destination.findAll({ where: { CityId: CityId, cost: { [Op.lte]: destination_budget, }, order: [['title', "DESC"]], limit: totalDestination } })
-      const found = destination.find(el => el.id == DestinationId);
-      // if (found) 
-      console.log(found, "<---- ini found");
-      // const hotel = await Hotel.findAll({ where: { CityId: CityId, price: { [Op.lte]: hotel_budget }, limit: totalDestination } })
+      const sisaBudget = destination_budget
 
+      const hotels = await Hotel.findAll({ where: { CityId: CityId, price: { [Op.lte]: hotel_budget + sisaBudget } } })
 
-
-      res.status(200).json({ message: "TravelStep Added", TravelStep: { destination }, planId: newTravelStep.id })
-      // res.status(200).json({ message: "TravelStep Added", TravelStep: { destination, hotel }, planId: newTravelStep.id })
+      res.status(200).json({ message: "TravelStep Added", TravelStep: { destinations, hotels }, planId: newTravelStep.id })
     } catch (error) {
       next(error)
     }
