@@ -4,17 +4,17 @@ const { createToken } = require("../helpers/jsonwebtoken");
 
 class Controller {
   static async register(req, res, next) {
-      try {
-        const { body } = req;
+    try {
+      const { body } = req;
 
-        const register = await User.create(body);
+      const register = await User.create(body);
 
-        res.status(201).json({
-          message: `Success create email ${register.email}`,
-        });
-      } catch (error) {
-        next(error);
-      }
+      res.status(201).json({
+        message: `Success create email ${register.email}`,
+      });
+    } catch (error) {
+      next(error);
+    }
   }
 
   static async login(req, res, next) {
