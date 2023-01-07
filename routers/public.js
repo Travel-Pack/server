@@ -1,8 +1,14 @@
-const publicsRouter = require("express").Router();
+const router = require("express").Router();
+const DestinationController = require("../controllers/destinations");
 const ProvinceController = require("../controllers/provinces")
 const ReviewController = require("../controllers/reviews")
 
-publicsRouter.get("/publics/provinces", ProvinceController.getProvinces)
-publicsRouter.get("/publics/reviews/:DestinationId", ReviewController.getReviewByDestination)
+/* -------- Provinces --------- */
+router.get("/provinces", ProvinceController.getProvinces)
+router.get("/reviews/:DestinationId", ReviewController.getReviewByDestination)
 
-module.exports = publicsRouter
+/* -------- Destinations --------- */
+router.get('/destinations', DestinationController.readAllDestination)
+router.get('/destinations/:slug', DestinationController.readOneDestination)
+
+module.exports = router

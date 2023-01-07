@@ -1,20 +1,20 @@
-# TravelPack User API Documentation
+# TravelPack Destinations API Documentation
 
 ## Endpoints
 
 List of available endpoints:
 
-- `POST /travel-steps`
-- `GET /travel-steps`
-- `GET /travel-steps/:slug`
+- `POST /destinations`
+- `GET /destinations`
+- `GET /destinations/:slug`
 
 &nbsp;
 
-## POST /travel-steps
+## POST /destinations
 
 Description:
 
-- Create new account as Admin
+- Adding new destinations as Admin
 
 Request:
 
@@ -30,12 +30,14 @@ Request:
 
   ```json
   {
-    "fullName": String,
-    "phoneNumber": String,
-    "email": String | required,
-    "password": Integer | required | Minimum 5 characters,
-    "isPremium": Boolean,
-    "role": String
+     "name": String,
+     "address": String,
+     "mainImg": String,
+     "description": String,
+     "cost": Integer,
+     "geocoding": String,
+     "CityId": Integer,
+     "imgUrl": String
   }
   ```
 
@@ -46,11 +48,7 @@ _201 - Created_
 - Body
 
   ```json
-  {
-    {
-      "email": "String"
-    }
-  }
+  "Ok - Destination Added"
   ```
 
 _400 - Bad Request_
@@ -60,9 +58,14 @@ _400 - Bad Request_
   ```json
   {
     "message": [
-      "Email is required",
-      "Password is required",
-      "Minimum password length must be 5 letter"
+      "Name is required",
+      "Address is required",
+      "Main image is required",
+      "Cost is required",
+      "Location is required",
+      "Description is required",
+      "City is required",
+      "UserId is required"
     ]
   }
   ```
