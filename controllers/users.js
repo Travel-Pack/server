@@ -93,6 +93,23 @@ class UserController {
 			next(error);
 		}
 	}
+
+	static async incrimentPointUser(req, res, next) {
+		try {
+			const { id } = req.params;
+			const findUser = await User.findByPk(+id);
+
+			if (!findUser) {
+                throw({ name: 'User not found' });
+            }
+
+            await User.update({ point: findUser.point += 1 }, { where: { id } });
+
+			res.status(200).json({ message: `User point has been updated by 1` });
+		} catch (error) {
+			next(error);
+		}
+	}
 }
 
 module.exports = UserController;
