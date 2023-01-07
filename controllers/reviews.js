@@ -1,4 +1,4 @@
-const { Review } = require("../models");
+const { Review, User } = require("../models");
 
 class ReviewController {
   static async postReview(req, res, next) {
@@ -14,6 +14,15 @@ class ReviewController {
         comment,
         UserId,
       });
+
+      const findUser = await User.findByPk(UserId);
+
+			if (!findUser) {
+        throw({ name: 'User not found' });
+      }
+
+      await User.update({ point: findUser.point += 1 }, { where: { UserId } });
+
       res
         .status(201)
         .json({ msg: `New Review with id ${newReview.id} has been created` });
