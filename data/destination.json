@@ -6,6 +6,7 @@
     "mainImg": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/58/44/fd/ancol-dreamland.jpg?w=1200&h=-1&s=1",
     "cost": 250000,
     "geocoding": "123213123",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 1,
     "UserId": 1
   },
@@ -16,6 +17,7 @@
     "mainImg": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/5d/70/b0/waterbom-jakarta.jpg?w=1200&h=1200&s=1",
     "cost": 300000,
     "geocoding": "123433123",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 1,
     "UserId": 1
   },
@@ -26,6 +28,7 @@
     "mainImg": "https://lh3.googleusercontent.com/p/AF1QipNAYN17x5UF5tbZFn76TJR04JSfWfwrml9S1r_H=s680-w680-h510",
     "cost": 15000,
     "geocoding": "-6.302440568003487, 106.89515657055256",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 1,
     "UserId": 2
   },
@@ -36,6 +39,7 @@
     "mainImg": "https://asset.kompas.com/crops/ClxctWi5u6XYEMHtJ13wfRPX5UQ=/69x0:1149x720/750x500/data/photo/2019/04/17/2507969107.jpeg",
     "cost": 25000,
     "geocoding": "-6.128732296182336, 106.83329569140305",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 1,
     "UserId": 2
   },
@@ -46,6 +50,7 @@
     "mainImg": "https://d2ile4x3f22snf.cloudfront.net/wp-content/uploads/sites/329/2018/10/29141024/monas8.jpg",
     "cost": 15000,
     "geocoding": "-6.175316204693681, 106.82716704183527",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 1,
     "UserId": 3
   },
@@ -56,6 +61,7 @@
     "mainImg": "https://backpackerjakarta.com/wp-content/uploads/2016/09/Semak-Daun.jpg",
     "cost": 150000,
     "geocoding": "-5.729452692562088, 106.57151297828554",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 1,
     "UserId": 3
   },
@@ -66,6 +72,7 @@
     "mainImg": "https://www.wisatago.com/wp-content/uploads/2017/12/Bunker-Kaliadem.jpg",
     "cost": 15000,
     "geocoding": "-7.582675189169728, 110.44762795391033",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 2,
     "UserId": 4
   },
@@ -76,6 +83,7 @@
     "mainImg": "https://garasijogja.com/wp-content/uploads/2018/04/@achmad_dk.jpg",
     "cost": 15000,
     "geocoding": "-7.846948583620819, 110.54686962692725",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 2,
     "UserId": 4
   },
@@ -86,6 +94,7 @@
     "mainImg": "https://asset.kompas.com/crops/PREP49IjcIsLm5BEFNlETeDO8PE=/0x118:1430x1071/750x500/data/photo/2022/03/07/6225c0669e6d2.jpg",
     "cost": 50000,
     "geocoding": "-7.607703644149317, 110.20385858644774",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 2,
     "UserId": 5
   },
@@ -96,6 +105,7 @@
     "mainImg": "https://1.bp.blogspot.com/-roCP2BozgGc/XStJY6Rh7FI/AAAAAAAAMjE/z7bVOxmoWu4y-O-odi24zmX-SITxq87YQCLcBGAs/s1600/Wisata%2Bjogja%2Bhutan%2Bpinus%2Bpengger%2Bbantul.jpg",
     "cost": 5000,
     "geocoding": "-7.870959655900496, 110.45952512692745",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 2,
     "UserId": 5
   },
@@ -106,6 +116,7 @@
     "mainImg": "https://3.bp.blogspot.com/-WsDnNGY7GvI/VvSPcW1nNHI/AAAAAAAAFRo/7Y6DRdL0Clw17YA3rADib_oGsBUY5ufog/s1600/Pulau%2BTidung%2B2.jpg",
     "cost": 10000,
     "geocoding": "-7.702705210096349, 110.44916394226941",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 2,
     "UserId": 6
   },
@@ -116,6 +127,7 @@
     "mainImg": "https://assets.promediateknologi.com/crop/0x0:0x0/x/photo/2022/02/25/1658474457.jpg",
     "cost": 15000,
     "geocoding": "-7.261706410257518, 112.74315998274346",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 3,
     "UserId": 6
   },
@@ -126,6 +138,7 @@
     "mainImg": "https://www.pegipegi.com/travel/wp-content/uploads/2017/10/alamat-taman-sakura-keputih-surabaya.jpg",
     "cost": 13000,
     "geocoding": "-7.29398869645369, 112.8016808827438",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 3,
     "UserId": 1
   },
@@ -136,6 +149,7 @@
     "mainImg": "https://www.surabayarollcake.com/wp-content/uploads/2019/01/Klenteng-Sanggar-Agung-Surabaya.jpg",
     "cost": 10000,
     "geocoding": "-7.247488948002271, 112.80180008459418",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 3,
     "UserId": 2
   },
@@ -146,6 +160,7 @@
     "mainImg": "https://www.pakuwonjati.com/upload/2020/05/5eb035d16732c-pkw-mall-com-08fj-gallery0.jpg",
     "cost": 0,
     "geocoding": "-7.250777204884361, 112.66208039993745",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 3,
     "UserId": 3
   },
@@ -156,6 +171,7 @@
     "mainImg": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/9f/62/87/most-visit-in-town.jpg?w=1200&h=-1&s=1",
     "cost": 15000,
     "geocoding": "-7.26550489357184, 112.75026228274366",
+    "description": "this is destination DESCRIPTIONS SECTION!",
     "CityId": 3,
     "UserId": 4
   }
