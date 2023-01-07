@@ -3,7 +3,8 @@ const Controller = require("../controllers");
 const destinationPath = require("./destinations");
 
 const userRouter = require("./users");
-const favouriteRouter = require("./favourites");
+// const favouriteRouter = require("./favourites");
+const travelStepRouter = require('./travelSteps');
 const provincesRouter = require("./provinces");
 const reviewsRouter = require("./reviews");
 const publicsRouter = require("./public");
@@ -25,7 +26,7 @@ router.use("/users", userRouter);
 // router.use("/favourites", favouriteRouter);
 
 // TravelSteps
-router.use("/travel-steps", favouriteRouter);
+router.use("/travel-steps", travelStepRouter);
 
 // Destinations
 router.use("/destinations", destinationPath);
