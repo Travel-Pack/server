@@ -47,6 +47,16 @@ beforeAll(async () => {
       updatedAt: new Date(),
     },
     {
+      fullName: "bobby666",
+      phoneNumber: "08111",
+      email: "bobby666@gmail.com",
+      password: hashPassword("12345"),
+      isPremium: false,
+      role: "Customer",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
       fullName: "bobby25",
       phoneNumber: "08111",
       email: "bobby25@gmail.com",
@@ -522,6 +532,22 @@ describe("PATCH Admin - Update User Status To Premium", () => {
       expect(res.body).toHaveProperty("msg", "You are not authorized");
     });
   });
+
+  describe("Failed to change user premium status because id not found", () => {
+    it("should return object with message", async () => {
+      const body = { email: "bobby25@gmail.com", password: "12345" };
+      let res = await request(app).post("/login").send(body);
+      access_token = res.body.access_token;
+
+      res = await request(app)
+        .patch("/users/activatePremium/100")
+        .set("access_token", access_token);
+
+      expect(res.status).toBe(404);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg", "User Not Found");
+    });
+  });
 });
 
 describe("PATCH Admin - Update User Status From Premium To Not", () => {
@@ -576,6 +602,75 @@ describe("PATCH Admin - Update User Status From Premium To Not", () => {
       expect(res.status).toBe(403);
       expect(res.body).toBeInstanceOf(Object);
       expect(res.body).toHaveProperty("msg", "You are not authorized");
+    });
+  });
+
+  describe("Failed to change user premium status because id not found", () => {
+    it("should return object with message", async () => {
+      const body = { email: "bobby25@gmail.com", password: "12345" };
+      let res = await request(app).post("/login").send(body);
+      access_token = res.body.access_token;
+
+      res = await request(app)
+        .patch("/users/deactivatePremium/100")
+        .set("access_token", access_token);
+
+      expect(res.status).toBe(404);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg", "User Not Found");
+    });
+  });
+});
+
+describe("PATCH Admin - Incrementing User Point By 1", () => {
+  describe("Success change user point value from Admin", () => {
+    it("should return object with message", async () => {
+      const body = { email: "bobby25@gmail.com", password: "12345" };
+      let res = await request(app).post("/login").send(body);
+      access_token = res.body.access_token;
+
+      res = await request(app)
+        .patch("/users/incrimentPoint/1")
+        .set("access_token", access_token);
+
+      expect(res.status).toBe(200);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty(
+        "message",
+        "User point has been incrimented by 1"
+      );
+    });
+  });
+
+  describe("Failed to incrementing user point value because not from Admin", () => {
+    it("should return object with message", async () => {
+      const body = { email: "bobby666@gmail.com", password: "12345" };
+      let res = await request(app).post("/login").send(body);
+      access_token = res.body.access_token;
+
+      res = await request(app)
+        .patch("/users/incrimentPoint/1")
+        .set("access_token", access_token);
+
+      expect(res.status).toBe(403);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg", "You are not authorized");
+    });
+  });
+
+  describe("Failed to incrimenting user point value because id not found", () => {
+    it("should return object with message", async () => {
+      const body = { email: "bobby25@gmail.com", password: "12345" };
+      let res = await request(app).post("/login").send(body);
+      access_token = res.body.access_token;
+
+      res = await request(app)
+        .patch("/users/incrimentPoint/100")
+        .set("access_token", access_token);
+
+      expect(res.status).toBe(404);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg", "User Not Found");
     });
   });
 });
