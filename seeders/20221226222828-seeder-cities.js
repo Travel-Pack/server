@@ -21,7 +21,7 @@ module.exports = {
         updatedAt: new Date(),
       };
     });
-    console.log(data, ">>");
+    // console.log(data, ">>");
     await queryInterface.bulkInsert("Cities", data);
   },
 

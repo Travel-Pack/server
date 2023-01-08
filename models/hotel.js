@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       Hotel.hasMany(models.TravelStep, {
         foreignKey: "HotelId",
       })
+      Hotel.hasMany(models.Review, {
+        foreignKey: "HotelId",
+      })
+      Hotel.hasMany(models.Image, {
+        foreignKey: "HotelId",
+      })
     }
   }
   Hotel.init({
