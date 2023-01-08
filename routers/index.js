@@ -22,9 +22,6 @@ router.use(Authentication.verify);
 // User
 router.use("/users", userRouter);
 
-// Favourites
-// router.use("/favourites", favouriteRouter);
-
 // TravelSteps
 router.use("/travel-steps", travelStepRouter);
 

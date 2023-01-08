@@ -107,5 +107,13 @@ module.exports = (sequelize, DataTypes) => {
     user.password = hashPassword(user.password);
   });
 
+  User.beforeUpdate((user) => {
+    user.password = hashPassword(user.password);
+  });
+
+  // User.afterUpdate((user) => {
+  //   user.password = hashPassword(user.password);
+  // });
+
   return User;
 };
