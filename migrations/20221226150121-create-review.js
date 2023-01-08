@@ -17,6 +17,14 @@ module.exports = {
           key: "id",
         },
       },
+      HotelId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Hotels",
+          key: "id",
+        },
+      },
       cost: {
         allowNull: false,
         type: Sequelize.INTEGER

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Controller = require("../controllers");
 const destinationPath = require("./destinations");
+const hotelPath = require("./hotels");
 
 const userRouter = require("./users");
 // const favouriteRouter = require("./favourites");
@@ -30,6 +31,9 @@ router.use("/travel-steps", travelStepRouter);
 
 // Destinations
 router.use("/destinations", destinationPath);
+
+// Hotels
+router.use("/hotels", hotelPath);
 
 router.use(provincesRouter); // Provinces
 router.use(reviewsRouter); // Reviews

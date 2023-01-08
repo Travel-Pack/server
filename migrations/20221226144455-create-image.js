@@ -19,6 +19,16 @@ module.exports = {
         onDelete: 'cascade',
         onUpdate: 'cascade'
       },
+      HotelId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Hotels",
+          key: "id",
+        },
+        onDelete: 'cascade',
+        onUpdate: 'cascade'
+      },
       imgUrl: {
         allowNull: false,
         type: Sequelize.STRING

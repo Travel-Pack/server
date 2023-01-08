@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       Review.belongsTo(models.Destination, {
         foreignKey: "DestinationId",
       })
+      Review.belongsTo(models.Hotel, {
+        foreignKey: "HotelId"
+      })
       Review.belongsTo(models.User, {
         foreignKey: "UserId",
       })
@@ -22,6 +25,16 @@ module.exports = (sequelize, DataTypes) => {
   Review.init({
     DestinationId: {
       type: DataTypes.INTEGER,
+      defaultValue: 1,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true,
+      },
+    },
+    HotelId: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1,
       allowNull: false,
       validate: {
         notNull: true,
