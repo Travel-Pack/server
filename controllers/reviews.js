@@ -107,6 +107,45 @@ class ReviewController {
       next(error);
     }
   }
+  static async getReviews(req, res, next) {
+    try {
+      let destinationReviews = await Review.findAll({
+        include: [User]
+      });
+      let reviews = await Review.findAll({
+        include: [User]
+      })
+      let sumCost = 0;
+      let sumFun = 0;
+      let sumInternet = 0;
+      let sumSafety = 0;
+      let commentArr = [];
+
+      destinationReviews.forEach((el) => {
+        sumCost += el.cost;
+        sumFun += el.fun;
+        sumInternet += el.internet;
+        sumSafety += el.safety;
+      });
+
+      let averageReviews = {
+        avgCost: (sumCost /= destinationReviews.length).toFixed(1),
+        avgFun: (sumFun /= destinationReviews.length).toFixed(1),
+        avgInternet: (sumInternet /= destinationReviews.length).toFixed(1),
+        avgSafety: (sumSafety /= destinationReviews.length).toFixed(1),
+      };
+      let reviewByUser = reviews.map(el => {
+        return {
+          comment: el.comment,
+          user: el.User.fullName
+        }
+      })
+
+      res.status(200).json({ averageReviews, reviewByUser });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = ReviewController;
