@@ -32,11 +32,41 @@
   {
     "DestinationId": 1,
     "HotelId": 2,
-    "cost": 5,
+    "cost": 4,
     "fun": 3,
     "internet": 3,
     "safety": 3,
-    "comment": "This hotel is too expensive, but so funny to lived here..",
+    "comment": "[1] -- This hotel is too expensive, but so funny to lived here..",
+    "UserId": 1
+  },
+  {
+    "DestinationId": 1,
+    "HotelId": 2,
+    "cost": 4,
+    "fun": 3,
+    "internet": 3,
+    "safety": 3,
+    "comment": "[2] -- This hotel is too expensive, but so funny to lived here..",
+    "UserId": 1
+  },
+  {
+    "DestinationId": 1,
+    "HotelId": 2,
+    "cost": 5,
+    "fun": 4,
+    "internet": 3,
+    "safety": 3,
+    "comment": "[3] -- This hotel is too expensive, but so funny to lived here..",
+    "UserId": 1
+  },
+  {
+    "DestinationId": 1,
+    "HotelId": 2,
+    "cost": 5,
+    "fun": 4,
+    "internet": 3,
+    "safety": 4,
+    "comment": "[4] -- This hotel is too expensive, but so funny to lived here..",
     "UserId": 1
   }
 ]
