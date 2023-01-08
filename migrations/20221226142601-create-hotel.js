@@ -13,7 +13,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      slug: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       image: {
+        allowNull: false,
+        type: Sequelize.TEXT
+      },
+      address: {
         allowNull: false,
         type: Sequelize.TEXT
       },

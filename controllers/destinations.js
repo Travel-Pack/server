@@ -12,17 +12,9 @@ class DestinationController {
   static async createDestination(req, res, next) {
     const t = await sequelize.transaction();
     try {
-      const {
-        name,
-        address,
-        mainImg,
-        cost,
-        geocoding,
-        CityId,
-        UserId,
-        imgUrl,
-      } = req.body;
-      const slug = name.toLowerCase().split(" ").join("-");
+      const { name, address, mainImg, cost, geocoding, CityId, imgUrl } = req.body
+      const UserId = req.user.id
+      const slug = name.toLowerCase().split(' ').join('-');
 
       const newDestination = await Destination.create(
         { name, address, mainImg, cost, geocoding, CityId, UserId, slug },

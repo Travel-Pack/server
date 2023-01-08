@@ -32,6 +32,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      description: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       CityId: {
         allowNull: false,
         type: Sequelize.INTEGER,

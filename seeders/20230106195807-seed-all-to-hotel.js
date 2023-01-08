@@ -6,6 +6,7 @@ module.exports = {
     const data = require("../data/hotel.json").map((el) => {
       return {
         ...el,
+        slug: el.name.toLocaleLowerCase().split(' ').join('-'),
         createdAt: new Date(),
         updatedAt: new Date(),
       };

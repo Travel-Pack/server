@@ -15,7 +15,7 @@ const Authentication = require("../middlewares/Authentication");
 router.post("/register", Controller.register);
 router.post("/login", Controller.login);
 
-router.use(publicsRouter);
+router.use("/publics", publicsRouter);
 router.use(cityRouter);
 router.use(Authentication.verify);
 
