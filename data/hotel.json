@@ -5,6 +5,7 @@
         "image": "http://pix10.agoda.net/hotelImages/625695/-1/6f065fee7e3eee456d78bd4d38bc653e.jpg?ce=0&s=768x1024",
         "geocoding": "-7.269665,112.741219",
         "isRecommended": true,
+        "address": "Jl. Basuki Rahmat No.94 96, Embong Kaliasin, Kec. Genteng, Kota SBY, Jawa Timur 60271",
         "price": 400000,
         "CityId": 3
     },
@@ -13,6 +14,7 @@
         "image": "https://media-cdn.tripadvisor.com/media/photo-s/0c/98/b0/be/swiss-belinn-tunjungan.jpg",
         "geocoding": "-7.262066,112.740918",
         "isRecommended": false,
+        "address": "Jl. Tunjungan No.101, Embong Kaliasin, Kec. Genteng, Kota SBY, Jawa Timur 60271",
         "price": 450000,
         "CityId": 3
     },
@@ -21,6 +23,7 @@
         "image": "https://jenishotel.info/wp-content/uploads/2019/09/livinn-hostel.jpg",
         "geocoding": "-7.263283,112.751178",
         "isRecommended": true,
+        "address": "Jl. Gubeng Pojok No.5, Ketabang, Kec. Genteng, Kota SBY, Jawa Timur 60272",
         "price": 88000,
         "CityId": 3
     }
