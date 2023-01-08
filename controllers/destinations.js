@@ -99,6 +99,7 @@ class DestinationController {
           },
         ],
       });
+      if (!destination) throw { name: 'Destination Not Found' }
       const destinationReviews = await Review.findAll({
         where: { DestinationId: destination.id },
       });

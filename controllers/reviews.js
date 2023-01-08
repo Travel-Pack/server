@@ -79,8 +79,11 @@ class ReviewController {
     try {
       const { DestinationId } = req.params;
       let destinationReviews = await Review.findAll({
+        include: [User],
         where: { DestinationId },
       });
+      console.log(destinationReviews, "<<<<<< BUKAN ERROR");
+      if (destinationReviews.length == 0) throw { name: 'Destination Not Found' }
       let sumCost = 0;
       let sumFun = 0;
       let sumInternet = 0;
@@ -92,7 +95,10 @@ class ReviewController {
         sumFun += el.fun;
         sumInternet += el.internet;
         sumSafety += el.safety;
-        commentArr.push(el.comment);
+        commentArr.push({
+          user: el.User.fullName,
+          comment: el.comment
+        });
       });
 
       let averageReviews = {
@@ -100,6 +106,45 @@ class ReviewController {
         avgFun: (sumFun /= destinationReviews.length),
         avgInternet: (sumInternet /= destinationReviews.length),
         avgSafety: (sumSafety /= destinationReviews.length),
+      };
+
+      res.status(200).json({ averageReviews, commentArr });
+    } catch (error) {
+      console.log(error, "<<<<<<<<<<<<<<<<<<<<<<");
+      next(error);
+    }
+  }
+  static async getReviewByHotel(req, res, next) {
+    try {
+      const { HotelId } = req.params;
+      let hotels = await Review.findAll({
+        include: [User],
+        where: { HotelId },
+      });
+
+      if (!hotels.length == 0) throw { name: 'Hotel Not Found' }
+      let sumCost = 0;
+      let sumFun = 0;
+      let sumInternet = 0;
+      let sumSafety = 0;
+      let commentArr = [];
+
+      hotels.forEach((el) => {
+        sumCost += el.cost;
+        sumFun += el.fun;
+        sumInternet += el.internet;
+        sumSafety += el.safety;
+        commentArr.push({
+          user: el.User.fullName,
+          comment: el.comment
+        });
+      });
+
+      let averageReviews = {
+        avgCost: (sumCost /= hotels.length),
+        avgFun: (sumFun /= hotels.length),
+        avgInternet: (sumInternet /= hotels.length),
+        avgSafety: (sumSafety /= hotels.length),
       };
 
       res.status(200).json({ averageReviews, commentArr });
@@ -119,7 +164,6 @@ class ReviewController {
       let sumFun = 0;
       let sumInternet = 0;
       let sumSafety = 0;
-      let commentArr = [];
 
       destinationReviews.forEach((el) => {
         sumCost += el.cost;
