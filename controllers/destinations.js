@@ -12,9 +12,10 @@ class DestinationController {
   static async createDestination(req, res, next) {
     const t = await sequelize.transaction();
     try {
-      const { name, address, mainImg, cost, geocoding, CityId, imgUrl } = req.body
-      const UserId = req.user.id
-      const slug = name.toLowerCase().split(' ').join('-');
+      const { name, address, mainImg, cost, geocoding, CityId, imgUrl } =
+        req.body;
+      const UserId = req.user.id;
+      const slug = name.toLowerCase().split(" ").join("-");
 
       const newDestination = await Destination.create(
         { name, address, mainImg, cost, geocoding, CityId, UserId, slug },
@@ -41,7 +42,7 @@ class DestinationController {
     try {
       const { orderBy, searchByCity, filterCost, searchByDest } = req.query;
       const options = {};
-      options.include = [{ model: Review }, Image, City];
+      options.include = [{ model: Review }, Image];
 
       if (orderBy) {
         if (orderBy === "name") {
@@ -54,19 +55,31 @@ class DestinationController {
           options.order = [["cost", "asc"]];
         }
       }
-      // if (searchByCity) {
-      //   options.where = { City.name: { [Op.iLike]: `%${searchByCity}%` } };
-      // }
-
-      // if (searchByDest) {
-      //   options.where = { City.name: { [Op.iLike]: `%${searchByDest}%` } };
-      // }
 
       if (filterCost) {
         options.where = { cost: { [Op.lte]: filterCost } };
       }
-      const destinations = await Destination.findAll(options);
-      res.status(200).json(destinations);
+
+      let findCity;
+      let destinations;
+      if (searchByCity) {
+        findCity = await City.findOne({
+          where: { name: { [Op.iLike]: `%${searchByCity}%` } },
+        });
+        if (!findCity) {
+          throw { name: "City does not exist" };
+        }
+        options.where = { CityId: findCity.id };
+        destinations = await Destination.findAll(options);
+        res.status(200).json({ destinations, city: findCity });
+      } else if (searchByDest) {
+        options.where = { name: { [Op.iLike]: `%${searchByDest}%` } };
+        destinations = await Destination.findAll(options);
+        res.status(200).json(destinations);
+      } else {
+        destinations = await Destination.findAll(options);
+        res.status(200).json(destinations);
+      }
     } catch (error) {
       next(error);
     }
@@ -77,10 +90,45 @@ class DestinationController {
 
       const destination = await Destination.findOne({
         where: { slug: slug },
-        include: [{ model: Review }, Image],
+        include: [
+          { model: Review },
+          Image,
+          {
+            model: User,
+            attributes: ["fullName"],
+          },
+        ],
+      });
+      const destinationReviews = await Review.findAll({
+        where: { DestinationId: destination.id },
+      });
+      if (!destinationReviews) {
+        throw { name: "notMatchReview" };
+      }
+      let sumCost = 0;
+      let sumFun = 0;
+      let sumInternet = 0;
+      let sumSafety = 0;
+      let commentArr = [];
+
+      destinationReviews.forEach((el) => {
+        sumCost += el.cost;
+        sumFun += el.fun;
+        sumInternet += el.internet;
+        sumSafety += el.safety;
+        commentArr.push(el.comment);
       });
 
-      res.status(200).json(destination);
+      let averageReviews = {
+        averageCost: (sumCost /= destinationReviews.length),
+        averageFun: (sumFun /= destinationReviews.length),
+        averageInternet: (sumInternet /= destinationReviews.length),
+        averageSafety: (sumSafety /= destinationReviews.length),
+      };
+
+      res
+        .status(200)
+        .json({ destination, reviews: averageReviews, comment: commentArr });
     } catch (error) {
       next(error);
     }
