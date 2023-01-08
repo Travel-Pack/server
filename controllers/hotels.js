@@ -9,34 +9,7 @@ const {
 } = require("../models");
 
 class HotelController {
-  // static async createDestination(req, res, next) {
-  //   const t = await sequelize.transaction();
-  //   try {
-  //     const { name, address, mainImg, cost, geocoding, CityId, imgUrl } = req.body
-  //     const UserId = req.user.id
-  //     const slug = name.toLowerCase().split(' ').join('-');
 
-  //     const newDestination = await Destination.create(
-  //       { name, address, mainImg, cost, geocoding, CityId, UserId, slug },
-  //       { transaction: t }
-  //     );
-  //     if (imgUrl) {
-  //       const images = imgUrl.map((el) => {
-  //         return {
-  //           DestinationId: newDestination.id,
-  //           imgUrl: el,
-  //         };
-  //       });
-  //       await Image.bulkCreate(images, { transaction: t });
-  //     }
-
-  //     await t.commit();
-  //     res.status(201).json("Ok - Destination Added");
-  //   } catch (error) {
-  //     await t.rollback();
-  //     next(error);
-  //   }
-  // }
   static async readAllHotels(req, res, next) {
     try {
       const hotels = await Hotel.findAll({
@@ -56,7 +29,7 @@ class HotelController {
 
   static async readOneHotel(req, res, next) {
     try {
-      const hotel = await Hotel.findOne({
+      let hotel = await Hotel.findOne({
         where: { slug: req.params.slug },
         include: [
           Review,
@@ -70,31 +43,30 @@ class HotelController {
       let avg_safety = 0
       let hotelDetail
 
-      if (hotel.Reviews) {
+      if (hotel.Reviews.length == 0) {
         hotelDetail = {
-          ...hotel,
+          ...hotel.dataValues,
           avg_cost: avg_cost,
           avg_fun: avg_fun,
           avg_internet: avg_internet,
           avg_safety: avg_safety
         }
-      } else {
+      } else if (hotel.Reviews.length > 0) {
         hotel.Reviews.forEach(el => {
-          console.log(el, "<<<<<");
-          // avg_cost += el.Review.cost
-          // avg_fun += el.Review.fun
-          // avg_internet += el.Review.internet
-          // avg_safety += el.Review.safety
+          avg_cost += el.cost
+          avg_fun += el.fun
+          avg_internet += el.internet
+          avg_safety += el.safety
         });
-        // hotelDetail = {
-        //   ...hotel,
-        //   avg_cost: avg_cost / hotel.Reviews.length,
-        //   avg_fun: avg_fun / hotel.Reviews.length,
-        //   avg_internet: avg_internet / hotel.Reviews.length,
-        //   avg_safety: avg_safety / hotel.Reviews.length
-        // }
+        hotelDetail = {
+          ...hotel.dataValues,
+          avg_cost: (avg_cost / hotel.Reviews.length).toFixed(1),
+          avg_fun: (avg_fun / hotel.Reviews.length).toFixed(1),
+          avg_internet: (avg_internet / hotel.Reviews.length).toFixed(1),
+          avg_safety: (avg_safety / hotel.Reviews.length).toFixed(1)
+        }
       }
-      // console.log(hotelDetail, "<<<<<<- hotelDetail");
+
       res.status(200).json(hotelDetail);
     } catch (error) {
       next(error);
