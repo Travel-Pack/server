@@ -1,17 +1,13 @@
 const { User } = require("../models");
 const { hashPassword } = require('../helpers/bcryptjs');
+const nodemailer = require("nodemailer");
 
 class UserController {
     static async userById(req, res, next) {
         try {
-            const { id } = req.params;
-            const userById = await User.findByPk(+id);
+            const userById = await User.findByPk(req.user.id);
 
-            if (!userById) {
-                throw({ name: 'User not found' });
-            } else {
-                res.status(200).json({ userById });
-            }
+            res.status(200).json({ userById });
         } catch (error) {
             next(error);
         }
@@ -19,14 +15,6 @@ class UserController {
 
     static async updateUser(req, res, next) {
 		try {
-			const { id } = req.params;
-
-			const findUser = await User.findByPk(+id);
-
-			if (!findUser) {
-                throw({ name: 'User not found' });
-            }
-
 			if (!req.body.password) {
 				throw({ name: 'Password is required'})
 			} else if (req.body.password.length < 5) {
@@ -42,7 +30,7 @@ class UserController {
 
 			const data = await User.update(updateUser, {
 				where: {
-					id
+					id: req.user.id
 				},
 			});
 
@@ -54,18 +42,49 @@ class UserController {
 
     static async activatePremiumStatus(req, res, next) {
 		try {
-			const { id } = req.params;
-			const findUser = await User.findByPk(+id);
-
-			if (!findUser) {
-                throw({ name: 'User not found' });
-            }
+			const findUser = await User.findByPk(req.user.id);
 
 			if (findUser.isPremium === false) {
-                await User.update({ isPremium: true }, { where: { id } });
+                await User.update({ isPremium: true }, { where: { id: req.user.id } });
             } else {
 				throw({ name: `User status already premium` });
 			}
+
+			const transporter = nodemailer.createTransport({
+				service: 'gmail',
+				host: 'smtp.gmail.com',
+				port: 486,
+				auth: {
+				  user: 'bobby.notokoesoemo@gmail.com',
+				  pass: process.env.NODEMAILER_PASS,
+				},
+			  });
+
+			const mailOptions = {
+				from: "bobby.notokoesoemo@gmail.com",
+				to: findUser.email,
+				// to: "bobby.notokoesoemo@gmail.com",
+				subject: "Premium status notification",
+				text: `Dear ${findUser.fullName},
+
+				We are pleased to inform you that you have been upgraded to a premium user!
+
+				As a premium user, you will have access to a range of exclusive benefits and features that are not available to standard users. These include:
+
+				Priority customer support
+				Advanced customization options
+				And more!
+				We hope you will enjoy your upgraded experience. If you have any questions or need assistance, please don't hesitate to reach out to our customer support team.
+
+				Sincerely,
+				TravelPack`,
+			};
+
+			transporter.sendMail(mailOptions, (err) => {
+				if (err) {
+				  return res.status(500).json({ message: "error sending mail" });
+				}
+			});
 
 			res.status(200).json({ message: `User status has been updated to premium` });
 		} catch (error) {
@@ -75,18 +94,46 @@ class UserController {
 
 	static async deactivatePremiumStatus(req, res, next) {
 		try {
-			const { id } = req.params;
-			const findUser = await User.findByPk(+id);
-
-			if (!findUser) {
-                throw({ name: 'User not found' });
-            }
+			const findUser = await User.findByPk(req.user.id);
 
 			if (findUser.isPremium === true) {
-                await User.update({ isPremium: false }, { where: { id } });
+                await User.update({ isPremium: false }, { where: { id: req.user.id } });
             } else {
 				throw({ name: `User status already not premium` });
 			}
+
+			const transporter = nodemailer.createTransport({
+				service: 'gmail',
+				host: 'smtp.gmail.com',
+				port: 486,
+				auth: {
+				  user: 'bobby.notokoesoemo@gmail.com',
+				  pass: process.env.NODEMAILER_PASS,
+				},
+			  });
+
+			const mailOptions = {
+				from: "bobby.notokoesoemo@gmail.com",
+				to: findUser.email,
+				// to: "bobby.notokoesoemo@gmail.com",
+				subject: "Downgrade notification",
+				text: `Dear ${findUser.fullName},
+
+				We are sorry to inform you that you have been downgraded from premium user!
+
+				As a standard user, you will still have access to a range of benefits and features that we provided.
+
+				We hope you will still enjoy your experience. If you have any questions or need assistance, please don't hesitate to reach out to our customer support team.
+
+				Sincerely,
+				TravelPack`,
+			};
+
+			transporter.sendMail(mailOptions, (err) => {
+				if (err) {
+				  return res.status(500).json({ message: "error sending mail" });
+				}
+			});
 
 			res.status(200).json({ message: `User status no longer premium` });
 		} catch (error) {
@@ -96,14 +143,9 @@ class UserController {
 
 	static async incrimentPointUser(req, res, next) {
 		try {
-			const { id } = req.params;
-			const findUser = await User.findByPk(+id);
+			const findUser = await User.findByPk(req.user.id);
 
-			if (!findUser) {
-                throw({ name: 'User not found' });
-            }
-
-            await User.update({ point: findUser.point += 1 }, { where: { id } });
+            await User.update({ point: findUser.point += 1 }, { where: { id: req.user.id } });
 
 			res.status(200).json({ message: `User point has been incrimented by 1` });
 		} catch (error) {
