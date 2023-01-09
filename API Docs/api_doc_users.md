@@ -6,6 +6,11 @@ List of available endpoints:
 
 - `POST /register`
 - `POST /login`
+- `GET /users/:id`
+- `PUT /users/:id`
+- `PATCH /users/activatePremium/:id`
+- `PATCH /users/deactivatePremium/:id`
+- `PATCH /users/incrimentPoint/:id`
 
 &nbsp;
 
@@ -116,5 +121,212 @@ _401 - Unauthorized_
       "message": "Invalid email or password"
     }
     ```
+
+&nbsp;
+
+## Authentication
+
+Request :
+- Header :
+    - acces_token : "your secret access token"
+
+Response :
+- 500 Internal Server Error
+```json
+{
+    "message": {
+        "name": "JsonWebTokenError",
+        "message": "Invalid Token/Authentication Failed"
+    }
+}
+```
+
+&nbsp;
+
+## GET /users/:id
+
+Request :
+
+- Header :
+    - acces_token : "your secret access token"
+
+Response :
+- 200 OK
+```json
+[
+    {
+        "id": "number",
+        "fullName": "string",
+        "phoneNumber": "string",
+        "email": "string",
+        "password": "string",
+        "isPremium": "boolean",
+        "role": "string",
+        "point": "integer",
+        "createdAt": "date",
+        "updatedAt": "date"
+    }
+]
+```
+- 404 Not Found
+```json
+{
+    "code": 404,
+    "message": "User not found"
+}
+```
+
+&nbsp;
+
+## PUT /users/:id
+
+Request :
+
+- Header :
+    - acces_token : "your secret access token"
+
+- Body :
+
+```json
+{
+  "newfullName": "string",
+  "newPhoneNumber": "string",
+  "newEmail": "string",
+  "newPassword": "string",
+}
+```
+
+Response :
+- 200 OK
+```json
+[
+    {
+        "message": "User successfully updated"
+    }
+]
+```
+- 404 Not Found
+```json
+{
+    "code": 404,
+    "message": "User not found"
+}
+```
+
+&nbsp;
+
+## PATCH /users/activatePremium/:id
+
+Request :
+
+- Header :
+    - acces_token : "your secret access token"
+
+- Body :
+
+```json
+{
+  "newIsPremium": "boolean"
+}
+```
+
+Response :
+- 200 OK
+```json
+[
+    {
+        "message": "User status has been updated to premium"
+    }
+]
+```
+- 404 Not Found
+```json
+{
+    "code": 404,
+    "message": "User not found"
+}
+```
+- 400 Bad Request
+```json
+{
+    "code": 400,
+    "message": "User status already premium"
+}
+```
+
+&nbsp;
+
+## PATCH /users/deactivatePremium/:id
+
+Request :
+
+- Header :
+    - acces_token : "your secret access token"
+
+- Body :
+
+```json
+{
+  "newIsPremium": "boolean"
+}
+```
+
+Response :
+- 200 OK
+```json
+[
+    {
+        "message": "User status no longer premium"
+    }
+]
+```
+- 404 Not Found
+```json
+{
+    "code": 404,
+    "message": "User not found"
+}
+```
+- 400 Bad Request
+```json
+{
+    "code": 400,
+    "message": "User status already not premium"
+}
+```
+
+&nbsp;
+
+## PATCH /incrimentPoint/:id
+
+Request :
+
+- Header :
+    - acces_token : "your secret access token"
+
+- Body :
+
+```json
+{
+  "newPoint": "integer"
+}
+```
+
+Response :
+- 200 OK
+```json
+[
+    {
+        "message": "User point has been incrimented by 1"
+    }
+]
+```
+- 404 Not Found
+```json
+{
+    "code": 404,
+    "message": "User not found"
+}
+```
 
 &nbsp;

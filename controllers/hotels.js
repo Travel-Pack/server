@@ -37,6 +37,8 @@ class HotelController {
         ]
       })
 
+      if (!hotel) throw { name: 'Hotel Not Found' }
+
       let avg_cost = 0
       let avg_fun = 0
       let avg_internet = 0

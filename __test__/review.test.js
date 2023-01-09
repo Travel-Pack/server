@@ -6,6 +6,7 @@ const { User, Review, sequelize } = require("../models");
 
 let admin_access_token;
 let customer_access_token;
+let customer_access_token_2;
 
 beforeAll(async function () {
   let userAdmin = await User.create({
@@ -26,8 +27,18 @@ beforeAll(async function () {
     role: "Customer",
   });
 
+  let userCustomer2 = await User.create({
+    fullName: "User Customer",
+    phoneNumber: "000123456789",
+    email: "userCustomer2@gmail.com",
+    password: "customer",
+    isPremium: false,
+    role: "Customer",
+  });
+
   admin_access_token = createToken({ id: userAdmin.id });
   customer_access_token = createToken({ id: userCustomer.id });
+  customer_access_token_2 = createToken({ id: userCustomer2.id });
 
   await sequelize.queryInterface.bulkInsert(
     "Users",
@@ -71,6 +82,18 @@ beforeAll(async function () {
     "Destinations",
     require("../data/destination.json").map((el) => {
       delete el.id;
+      return {
+        ...el,
+        slug: el.name.toLocaleLowerCase().split(" ").join("-"),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+    })
+  );
+
+  await sequelize.queryInterface.bulkInsert(
+    "Hotels",
+    require("../data/hotel.json").map((el) => {
       return {
         ...el,
         slug: el.name.toLocaleLowerCase().split(" ").join("-"),
@@ -129,53 +152,133 @@ describe("Reviews", () => {
     test("200, success get reviews", async () => {
       const res = await request(app)
         .get("/reviews/1")
-        .set({ access_token: customer_access_token })
-        .send({ name: "Get Reviews Id" });
-      console.log(res.status);
+        .set({ access_token: customer_access_token });
       expect(res.status).toBe(200);
-      //   expect(res.body).toBeInstanceOf(Array);
-      //   expect(res.body[0]).toHaveProperty("id", expect.any(Number));
-      // expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
-      console.log(res.body);
+      expect(res.body).toBeInstanceOf(Object);
+    });
+  });
+  describe("GET /reviews", () => {
+    test("400, failed get reviews", async () => {
+      const res = await request(app).get("/reviews/1");
+      expect(res.status).toBe(400);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("POST /reviews", () => {
+    test("201, success create reviews", async () => {
+      const res = await request(app)
+        .post("/reviews")
+        .set({ access_token: customer_access_token })
+        .send({
+          DestinationId: 1,
+          HotelId: 1,
+          cost: 3,
+          fun: 4,
+          internet: 3,
+          safety: 3,
+          comment:
+            "The place is extraordinary, the hotels and villas are not expensive, recommended for holidays",
+          UserId: 1,
+        });
+
+      expect(res.status).toBe(201);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("POST /reviews", () => {
+    test("400, failed create reviews", async () => {
+      const res = await request(app)
+        .post("/reviews")
+        .set({ access_token: customer_access_token });
+      expect(res.status).toBe(400);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("PUT /reviews/:id", () => {
+    test("201, success put reviews", async () => {
+      const res = await request(app)
+        .put("/reviews/1")
+        .set({ access_token: admin_access_token })
+        .send({
+          DestinationId: 1,
+          HotelId: 1,
+          cost: 3,
+          fun: 4,
+          internet: 3,
+          safety: 3,
+          comment:
+            "The place is extraordinary, the hotels and villas are not expensive, recommended for holidays",
+          UserId: 1,
+        });
+      expect(res.status).toBe(201);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("PUT /reviews/:id", () => {
+    test("403, failed not admin put reviews", async () => {
+      const res = await request(app)
+        .put("/reviews/1")
+        .set({ access_token: customer_access_token })
+        .send({
+          DestinationId: 1,
+          HotelId: 1,
+          cost: 3,
+          fun: 4,
+          internet: 3,
+          safety: 3,
+          comment:
+            "The place is extraordinary, the hotels and villas are not expensive, recommended for holidays",
+          UserId: 1,
+        });
+      expect(res.status).toBe(403);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("PUT /reviews/:id", () => {
+    test("404, put reviews not found", async () => {
+      const res = await request(app)
+        .put("/reviews/99")
+        .set({ access_token: admin_access_token })
+        .send({
+          DestinationId: 1,
+          HotelId: 1,
+          cost: 3,
+          fun: 4,
+          internet: 3,
+          safety: 3,
+          comment:
+            "The place is extraordinary, the hotels and villas are not expensive, recommended for holidays",
+          UserId: 1,
+        });
+      expect(res.status).toBe(404);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("DEL /reviews/:id", () => {
+    test("200, success delete reviews", async () => {
+      const res = await request(app)
+        .delete("/reviews/1")
+        .set({ access_token: admin_access_token });
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("DEL /reviews/:id", () => {
+    test("403, failed delete reviews not authorized", async () => {
+      const res = await request(app)
+        .delete("/reviews/2")
+        .set({ access_token: customer_access_token_2 });
+      expect(res.status).toBe(403);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("DEL /reviews/:id", () => {
+    test("404, reviews not found", async () => {
+      const res = await request(app)
+        .delete("/reviews/99")
+        .set({ access_token: admin_access_token });
+      expect(res.status).toBe(404);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
     });
   });
 });
-
-// describe("Provinces Public", () => {
-//   describe("DEL /reviews", () => {
-//     test("200, success get provinces", async () => {
-//       const res = await request(app).del("/reviews/1").send({});
-//       console.log(res.status);
-//       expect(res.status).toBe(200);
-//   expect(res.body).toBeInstanceOf(Array);
-//   expect(res.body[0]).toHaveProperty("id", expect.any(Number));
-//   expect(res.body[0]).toHaveProperty("DestinationId", expect.any(String));
-//     });
-//   });
-// });
-
-// describe("Provinces Public", () => {
-//   describe("GET /reviews", () => {
-//     test("200, success get provinces", async () => {
-//       const res = await request(app).get("/reviews/1").send({});
-//       console.log(res.status);
-//       expect(res.status).toBe(200);
-//   expect(res.body).toBeInstanceOf(Array);
-//   expect(res.body[0]).toHaveProperty("id", expect.any(Number));
-//   expect(res.body[0]).toHaveProperty("DestinationId", expect.any(String));
-//     });
-//   });
-// });
-
-// describe("POST /provinces", () => {
-//   test("403, FAILED create provinces caused authorization", async () => {
-//     const res = await request(app)
-//       .post("/provinces")
-//       .set({ access_token: customer_access_token })
-//       .send({ name: "Customer Test Province" });
-
-//     expect(res.status).toBe(403);
-//     expect(res.body).toBeInstanceOf(Object);
-//     expect(res.body).toHaveProperty("msg", expect.any(String));
-//   });
-// });

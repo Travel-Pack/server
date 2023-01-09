@@ -14,15 +14,19 @@ class ReviewController {
         comment,
         UserId,
       });
-
+      console.log(newReview, ">>>");
       const findUser = await User.findByPk(UserId);
 
-			if (!findUser) {
-        throw({ name: 'User not found' });
+      if (!findUser) {
+        throw { name: "User not found" };
       }
 
-      await User.update({ point: findUser.point += 1 }, { where: { UserId } });
-
+      await User.increment({ point: 1 }, { where: { id: UserId } });
+      // await User.update(
+      //   { point: (findUser.point += 1) },
+      //   { where: { UserId } }
+      // );
+      console.log(findUser, "<<< USER");
       res
         .status(201)
         .json({ msg: `New Review with id ${newReview.id} has been created` });
@@ -64,7 +68,7 @@ class ReviewController {
 
       await calledReview.destroy();
       res
-        .status(201)
+        .status(200)
         .json({ msg: `Review with id ${calledReview.id} has been deleted` });
     } catch (error) {
       next(error);
@@ -75,8 +79,11 @@ class ReviewController {
     try {
       const { DestinationId } = req.params;
       let destinationReviews = await Review.findAll({
+        include: [User],
         where: { DestinationId },
       });
+      console.log(destinationReviews, "<<<<<< BUKAN ERROR");
+      if (destinationReviews.length == 0) throw { name: 'Destination Not Found' }
       let sumCost = 0;
       let sumFun = 0;
       let sumInternet = 0;
@@ -88,7 +95,10 @@ class ReviewController {
         sumFun += el.fun;
         sumInternet += el.internet;
         sumSafety += el.safety;
-        commentArr.push(el.comment);
+        commentArr.push({
+          user: el.User.fullName,
+          comment: el.comment
+        });
       });
 
       let averageReviews = {
@@ -99,6 +109,83 @@ class ReviewController {
       };
 
       res.status(200).json({ averageReviews, commentArr });
+    } catch (error) {
+      console.log(error, "<<<<<<<<<<<<<<<<<<<<<<");
+      next(error);
+    }
+  }
+  static async getReviewByHotel(req, res, next) {
+    try {
+      const { HotelId } = req.params;
+      let hotels = await Review.findAll({
+        include: [User],
+        where: { HotelId },
+      });
+
+      if (!hotels.length == 0) throw { name: 'Hotel Not Found' }
+      let sumCost = 0;
+      let sumFun = 0;
+      let sumInternet = 0;
+      let sumSafety = 0;
+      let commentArr = [];
+
+      hotels.forEach((el) => {
+        sumCost += el.cost;
+        sumFun += el.fun;
+        sumInternet += el.internet;
+        sumSafety += el.safety;
+        commentArr.push({
+          user: el.User.fullName,
+          comment: el.comment
+        });
+      });
+
+      let averageReviews = {
+        avgCost: (sumCost /= hotels.length),
+        avgFun: (sumFun /= hotels.length),
+        avgInternet: (sumInternet /= hotels.length),
+        avgSafety: (sumSafety /= hotels.length),
+      };
+
+      res.status(200).json({ averageReviews, commentArr });
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async getReviews(req, res, next) {
+    try {
+      let destinationReviews = await Review.findAll({
+        include: [User]
+      });
+      let reviews = await Review.findAll({
+        include: [User]
+      })
+      let sumCost = 0;
+      let sumFun = 0;
+      let sumInternet = 0;
+      let sumSafety = 0;
+
+      destinationReviews.forEach((el) => {
+        sumCost += el.cost;
+        sumFun += el.fun;
+        sumInternet += el.internet;
+        sumSafety += el.safety;
+      });
+
+      let averageReviews = {
+        avgCost: (sumCost /= destinationReviews.length).toFixed(1),
+        avgFun: (sumFun /= destinationReviews.length).toFixed(1),
+        avgInternet: (sumInternet /= destinationReviews.length).toFixed(1),
+        avgSafety: (sumSafety /= destinationReviews.length).toFixed(1),
+      };
+      let reviewByUser = reviews.map(el => {
+        return {
+          comment: el.comment,
+          user: el.User.fullName
+        }
+      })
+
+      res.status(200).json({ averageReviews, reviewByUser });
     } catch (error) {
       next(error);
     }

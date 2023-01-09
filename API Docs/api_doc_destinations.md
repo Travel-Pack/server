@@ -4,6 +4,8 @@
 
 List of available endpoints:
 
+`ADMIN`
+
 - `POST /destinations`
 - `GET /destinations`
 - `GET /destinations/:slug`
@@ -72,11 +74,11 @@ _400 - Bad Request_
 
 &nbsp;
 
-## POST /login
+## GET /destinations
 
 Description:
 
-- Login account using email and password as an Admin
+- Read ALL Destinations data from database
 
 Request:
 
@@ -88,36 +90,229 @@ Request:
   }
   ```
 
+#### Response
+
+_200 - Ok_
+
+- Body
+
+  ```json
+  [
+    {
+      "id": Integer,
+      "name": String,
+      "slug": String,
+      "address": String,
+      "mainImg": String,
+      "cost": Integer,
+      "geocoding": String,
+      "description": String,
+      "CityId": Integer,
+      "UserId": Integer,
+      "createdAt": Date,
+      "updatedAt": Date,
+      "Reviews": Array,
+      "Images": Array
+    },
+    ...
+  ]
+  ```
+
+_400 - Bad Request_
+
 - Body
 
   ```json
   {
-    "email": String | required,
-    "password": String | required
+    "msg": "Invalid Token/Authentication Failed"
+  }
+  ```
+
+&nbsp;
+
+## GET /destinations/:slug
+
+Description:
+
+- Read ONE Destinations data from database
+
+Request:
+
+- headers:
+
+  ```json
+  {
+    "access_token": "string"
+  }
+  ```
+
+- params:
+
+  ```json
+  {
+    "slug": "string"
   }
   ```
 
 #### Response
 
-_201 - Created_
+_200 - Ok_
 
 - Body
 
   ```json
   {
-    {
-      "access_token": "String"
+    "destination": {
+      "id": Integer,
+      "name": String,
+      "slug": String,
+      "address": String,
+      "mainImg": String,
+      "cost": Integer,
+      "geocoding": String,
+      "description": String,
+      "CityId": Integer,
+      "UserId": Integer,
+      "createdAt": Date,
+      "updatedAt": Date,
+      "Reviews": Array,
+      "Images": Array
+    },
+    "User": {
+      "fullName": String
     }
+    "reviews": {
+      "averageCost": Float,
+      "averageFun": Float,
+      "averageInternet": Float,
+      "averageSafety": Float
+    },
+    "comment": Array
+    ...
   }
   ```
 
-_401 - Unauthorized_
+_400 - Bad Request_
 
 - Body
 
   ```json
   {
-    "message": "Invalid email or password"
+    "msg": "Invalid Token/Authentication Failed"
+  }
+  ```
+
+  _404 - Not Found_
+
+- Body
+
+  ```json
+  {
+    "msg": "Destination Not Found"
+  }
+  ```
+
+&nbsp;
+
+`Public User`
+
+## GET /publics/destinations
+
+Description:
+
+- Read ALL Destinations data from database
+
+#### Response
+
+_200 - Ok_
+
+- Body
+
+  ```json
+  [
+    {
+      "id": Integer,
+      "name": String,
+      "slug": String,
+      "address": String,
+      "mainImg": String,
+      "cost": Integer,
+      "geocoding": String,
+      "description": String,
+      "CityId": Integer,
+      "UserId": Integer,
+      "createdAt": Date,
+      "updatedAt": Date,
+      "Reviews": Array,
+      "Images": Array
+    },
+    ...
+  ]
+  ```
+
+&nbsp;
+
+## GET /publics/destinations/:slug
+
+Description:
+
+- Read ONE Destinations data from database
+
+Request:
+
+- params:
+
+  ```json
+  {
+    "slug": "string"
+  }
+  ```
+
+#### Response
+
+_200 - Ok_
+
+- Body
+
+  ```json
+  {
+    "destination": {
+      "id": Integer,
+      "name": String,
+      "slug": String,
+      "address": String,
+      "mainImg": String,
+      "cost": Integer,
+      "geocoding": String,
+      "description": String,
+      "CityId": Integer,
+      "UserId": Integer,
+      "createdAt": Date,
+      "updatedAt": Date,
+      "Reviews": Array,
+      "Images": Array
+    },
+    "User": {
+      "fullName": String
+    }
+    "reviews": {
+      "averageCost": Float,
+      "averageFun": Float,
+      "averageInternet": Float,
+      "averageSafety": Float
+    },
+    "comment": Array
+    ...
+  }
+  ```
+
+  _404 - Not Found_
+
+- Body
+
+  ```json
+  {
+    "msg": "Destination Not Found"
   }
   ```
 

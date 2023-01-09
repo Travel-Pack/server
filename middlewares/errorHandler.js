@@ -67,6 +67,8 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "notMatchReview") {
     code = 404;
     msg = "Sorry, not found review for this destination";
+  } else if (err.name === 'Destination Not Found' || 'Hotel Not Found') {
+    [code, msg] = [404, err.name]
   }
 
   console.log(err);

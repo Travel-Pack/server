@@ -14,6 +14,10 @@ reviewsRouter.delete(
   ReviewController.delReview
 );
 reviewsRouter.get(
+  "/reviews",
+  ReviewController.getReviews
+);
+reviewsRouter.get(
   "/reviews/:DestinationId",
   ReviewController.getReviewByDestination
 );
