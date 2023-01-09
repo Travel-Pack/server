@@ -91,7 +91,18 @@ describe("Provinces for Admin", () => {
       expect(res.body).toHaveProperty("msg", expect.any(String));
     });
   });
+  describe("POST /provinces", () => {
+    test("400, FAILED create provinces cause validation failed", async () => {
+      const res = await request(app)
+        .post("/provinces")
+        .set({ access_token: admin_access_token });
+      // .send({ name: "Admin Test Province" });
 
+      expect(res.status).toBe(201);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
   describe("PUT /provinces", () => {
     test("403, FAILED update provinces caused authorization", async () => {
       const res = await request(app)
@@ -116,7 +127,18 @@ describe("Provinces for Admin", () => {
       expect(res.body).toHaveProperty("msg", expect.any(String));
     });
   });
+  describe("PUT /provinces", () => {
+    test("404, FAILED update provinces cause not found", async () => {
+      const res = await request(app)
+        .put("/provinces/99")
+        .set({ access_token: admin_access_token })
+        .send({ name: "Update Admin Test Province" });
 
+      expect(res.status).toBe(404);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
   describe("DELETE /provinces", () => {
     test("403, FAILED delete provinces caused authorization", async () => {
       const res = await request(app)
@@ -135,6 +157,17 @@ describe("Provinces for Admin", () => {
         .set({ access_token: admin_access_token });
 
       expect(res.status).toBe(200);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("DELETE /provinces", () => {
+    test("404, FAILED delete provinces cause not found", async () => {
+      const res = await request(app)
+        .delete("/provinces/99")
+        .set({ access_token: admin_access_token });
+
+      expect(res.status).toBe(404);
       expect(res.body).toBeInstanceOf(Object);
       expect(res.body).toHaveProperty("msg", expect.any(String));
     });
