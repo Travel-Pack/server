@@ -14,12 +14,14 @@ module.exports = (sequelize, DataTypes) => {
       Topic.hasMany(models.Message, {
         foreignKey: "TopicId"
       })
+      Topic.belongsTo(models.User, {foreignKey: "UserId"})
     }
   }
   Topic.init({
     title: DataTypes.STRING,
     slug: DataTypes.STRING,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Topic',
