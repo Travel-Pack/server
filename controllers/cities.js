@@ -29,6 +29,7 @@ class CityController {
         order: [["price", "asc"]],
         limit: 1,
       });
+      console.log(showDestination);
       res.status(200).json({
         city: findCity,
         destination: showDestination,

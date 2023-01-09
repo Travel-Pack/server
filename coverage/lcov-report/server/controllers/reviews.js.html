@@ -1,68 +1,64 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>Code coverage report for server/controllers/reviews.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
     <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style type='text/css'>
-        .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
-        }
+    <style type="text/css">
+      .coverage-summary .sorter {
+        background-image: url(../../sort-arrow-sprite.png);
+      }
     </style>
-</head>
-    
-<body>
-<div class='wrapper'>
-    <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">server/controllers</a> reviews.js</h1>
-        <div class='clearfix'>
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">98.82% </span>
-                <span class="quiet">Statements</span>
-                <span class='fraction'>84/85</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>8/8</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>10/10</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">98.78% </span>
-                <span class="quiet">Lines</span>
-                <span class='fraction'>81/82</span>
-            </div>
-        
-            
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="pad1">
+        <h1>
+          <a href="../../index.html">All files</a> /
+          <a href="index.html">server/controllers</a> reviews.js
+        </h1>
+        <div class="clearfix">
+          <div class="fl pad1y space-right2">
+            <span class="strong">98.82% </span>
+            <span class="quiet">Statements</span>
+            <span class="fraction">84/85</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">100% </span>
+            <span class="quiet">Branches</span>
+            <span class="fraction">8/8</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">100% </span>
+            <span class="quiet">Functions</span>
+            <span class="fraction">10/10</span>
+          </div>
+
+          <div class="fl pad1y space-right2">
+            <span class="strong">98.78% </span>
+            <span class="quiet">Lines</span>
+            <span class="fraction">81/82</span>
+          </div>
         </div>
         <p class="quiet">
-            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+          Press <em>n</em> or <em>j</em> to go to the next uncovered block,
+          <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
         <template id="filterTemplate">
-            <div class="quiet">
-                Filter:
-                <input oninput="onInput()" type="search" id="fileSearch">
-            </div>
+          <div class="quiet">
+            Filter:
+            <input oninput="onInput()" type="search" id="fileSearch" />
+          </div>
         </template>
-    </div>
-    <div class='status-line high'></div>
-    <pre><table class="coverage">
+      </div>
+      <div class="status-line low"></div>
+      <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
 <a name='L3'></a><a href='#L3'>3</a>
@@ -512,120 +508,76 @@ class ReviewController {
         .status(200)
         .json({ msg: `Review with id ${calledReview.id} has been deleted` });
     } catch (error) {
-      next(error);
+<span class="cstat-no" title="statement not covered" >      next(error);</span>
     }
   }
-&nbsp;
-  static async getReviewByDestination(req, res, next) {
-    try {
-      const { DestinationId } = req.params;
-      let destinationReviews = await Review.findAll({
-        include: [User],
-        where: { DestinationId },
-      });
-      console.log(destinationReviews, "&lt;&lt;&lt;&lt;&lt;&lt; BUKAN ERROR");
-      if (destinationReviews.length == 0)
-        throw { name: "Destination Not Found" };
-      let sumCost = 0;
-      let sumFun = 0;
-      let sumInternet = 0;
-      let sumSafety = 0;
-      let commentArr = [];
-&nbsp;
-      destinationReviews.forEach((el) =&gt; {
-        sumCost += el.cost;
-        sumFun += el.fun;
-        sumInternet += el.internet;
-        sumSafety += el.safety;
-        commentArr.push({
-          user: el.User.fullName,
-          comment: el.comment,
-        });
-      });
-&nbsp;
-      let averageReviews = {
-        avgCost: (sumCost /= destinationReviews.length),
-        avgFun: (sumFun /= destinationReviews.length),
-        avgInternet: (sumInternet /= destinationReviews.length),
-        avgSafety: (sumSafety /= destinationReviews.length),
-      };
-&nbsp;
-      res.status(200).json({ averageReviews, commentArr });
-    } catch (error) {
-      next(error);
-    }
-  }
-  static async getReviewByHotel(req, res, next) {
-    try {
-      const { HotelId } = req.params;
-      let hotels = await Review.findAll({
+<span class="fstat-no" title="function not covered" >  st</span>atic async getReviewByHotel(req, res, next) {
+<span class="cstat-no" title="statement not covered" >    try {</span>
+      const { HotelId } = <span class="cstat-no" title="statement not covered" >req.params;</span>
+      let hotels = <span class="cstat-no" title="statement not covered" >await Review.findAll({</span>
         include: [User],
         where: { HotelId },
       });
-      if (hotels.length == 0) throw { name: "Hotel Not Found" };
-      let sumCost = 0;
-      let sumFun = 0;
-      let sumInternet = 0;
-      let sumSafety = 0;
-      let commentArr = [];
 &nbsp;
-      hotels.forEach((el) =&gt; {
-        sumCost += el.cost;
-        sumFun += el.fun;
-        sumInternet += el.internet;
-        sumSafety += el.safety;
-        commentArr.push({
+<span class="cstat-no" title="statement not covered" >      if (!hotels.length == 0) <span class="cstat-no" title="statement not covered" >throw { name: 'Hotel Not Found' }</span></span>
+      let sumCost = <span class="cstat-no" title="statement not covered" >0;</span>
+      let sumFun = <span class="cstat-no" title="statement not covered" >0;</span>
+      let sumInternet = <span class="cstat-no" title="statement not covered" >0;</span>
+      let sumSafety = <span class="cstat-no" title="statement not covered" >0;</span>
+      let commentArr = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      hotels.forEach(<span class="fstat-no" title="function not covered" >(e</span>l) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        sumCost += el.cost;</span>
+<span class="cstat-no" title="statement not covered" >        sumFun += el.fun;</span>
+<span class="cstat-no" title="statement not covered" >        sumInternet += el.internet;</span>
+<span class="cstat-no" title="statement not covered" >        sumSafety += el.safety;</span>
+<span class="cstat-no" title="statement not covered" >        commentArr.push({</span>
           user: el.User.fullName,
-          comment: el.comment,
+          comment: el.comment
         });
       });
 &nbsp;
-      let averageReviews = {
+      let averageReviews = <span class="cstat-no" title="statement not covered" >{</span>
         avgCost: (sumCost /= hotels.length),
         avgFun: (sumFun /= hotels.length),
         avgInternet: (sumInternet /= hotels.length),
         avgSafety: (sumSafety /= hotels.length),
       };
 &nbsp;
-      res.status(200).json({ averageReviews, commentArr });
-    } catch (error) {
-      next(error);
-    }
-  }
-  static async getReviews(req, res, next) {
-    try {
-      let destinationReviews = await Review.findAll({
-        include: [User],
+<span class="fstat-no" title="function not covered" >  st</span>atic async getReviewByDestination(req, res, next) {
+<span class="cstat-no" title="statement not covered" >    try {</span>
+      const { DestinationId } = <span class="cstat-no" title="statement not covered" >req.params;</span>
+      let destinationReviews = <span class="cstat-no" title="statement not covered" >await Review.findAll({</span>
+        where: { DestinationId },
       });
-      let reviews = await Review.findAll({
-        include: [User],
-      });
-      let sumCost = 0;
-      let sumFun = 0;
-      let sumInternet = 0;
-      let sumSafety = 0;
+      let sumCost = <span class="cstat-no" title="statement not covered" >0;</span>
+      let sumFun = <span class="cstat-no" title="statement not covered" >0;</span>
+      let sumInternet = <span class="cstat-no" title="statement not covered" >0;</span>
+      let sumSafety = <span class="cstat-no" title="statement not covered" >0;</span>
+      let commentArr = <span class="cstat-no" title="statement not covered" >[];</span>
 &nbsp;
-      destinationReviews.forEach((el) =&gt; {
-        sumCost += el.cost;
-        sumFun += el.fun;
-        sumInternet += el.internet;
-        sumSafety += el.safety;
+<span class="cstat-no" title="statement not covered" >      destinationReviews.forEach(<span class="fstat-no" title="function not covered" >(e</span>l) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        sumCost += el.cost;</span>
+<span class="cstat-no" title="statement not covered" >        sumFun += el.fun;</span>
+<span class="cstat-no" title="statement not covered" >        sumInternet += el.internet;</span>
+<span class="cstat-no" title="statement not covered" >        sumSafety += el.safety;</span>
+<span class="cstat-no" title="statement not covered" >        commentArr.push(el.comment);</span>
       });
 &nbsp;
-      let averageReviews = {
-        avgCost: (sumCost /= destinationReviews.length).toFixed(1),
-        avgFun: (sumFun /= destinationReviews.length).toFixed(1),
-        avgInternet: (sumInternet /= destinationReviews.length).toFixed(1),
-        avgSafety: (sumSafety /= destinationReviews.length).toFixed(1),
+      let averageReviews = <span class="cstat-no" title="statement not covered" >{</span>
+        avgCost: (sumCost /= destinationReviews.length),
+        avgFun: (sumFun /= destinationReviews.length),
+        avgInternet: (sumInternet /= destinationReviews.length),
+        avgSafety: (sumSafety /= destinationReviews.length),
       };
-      let reviewByUser = reviews.map((el) =&gt; {
-        return {
+      let reviewByUser = <span class="cstat-no" title="statement not covered" >reviews.map(<span class="fstat-no" title="function not covered" >el</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        return {</span>
           comment: el.comment,
-          user: el.User.fullName,
-        };
-      });
+          user: el.User.fullName
+        }
+      })
 &nbsp;
-      res.status(200).json({ averageReviews, reviewByUser });
+<span class="cstat-no" title="statement not covered" >      res.status(200).json({ averageReviews, commentArr });</span>
     } catch (error) {
 <span class="cstat-no" title="statement not covered" >      next(error);</span>
     }
@@ -635,21 +587,27 @@ class ReviewController {
 module.exports = ReviewController;
 &nbsp;</pre></td></tr></table></pre>
 
-                <div class='push'></div><!-- for sticky footer -->
-            </div><!-- /wrapper -->
-            <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage generated by
-                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-01-09T17:00:22.876Z
-            </div>
-        <script src="../../prettify.js"></script>
-        <script>
-            window.onload = function () {
-                prettyPrint();
-            };
-        </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
-    </body>
+      <div class="push"></div>
+      <!-- for sticky footer -->
+    </div>
+    <!-- /wrapper -->
+    <div class="footer quiet pad2 space-top1 center small">
+      Code coverage generated by
+      <a
+        href="https://istanbul.js.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >istanbul</a
+      >
+      at 2023-01-07T22:45:08.819Z
+    </div>
+    <script src="../../prettify.js"></script>
+    <script>
+      window.onload = function () {
+        prettyPrint();
+      };
+    </script>
+    <script src="../../sorter.js"></script>
+    <script src="../../block-navigation.js"></script>
+  </body>
 </html>
-    
