@@ -180,7 +180,6 @@ describe("Reviews", () => {
             "The place is extraordinary, the hotels and villas are not expensive, recommended for holidays",
           UserId: 1,
         });
-
       expect(res.status).toBe(201);
       expect(res.body).toHaveProperty("msg", expect.any(String));
     });
@@ -279,6 +278,51 @@ describe("Reviews", () => {
         .set({ access_token: admin_access_token });
       expect(res.status).toBe(404);
       expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("GET /reviews/hotels/:HotelId", () => {
+    test("200, success get reviews by hotel", async () => {
+      const res = await request(app)
+        .get("/reviews/hotels/1")
+        .set({ access_token: customer_access_token });
+      expect(res.status).toBe(200);
+      expect(res.body).toBeInstanceOf(Object);
+    });
+  });
+  describe("GET /reviews/:HotelId", () => {
+    test("404, failed get reviews by hotel", async () => {
+      const res = await request(app)
+        .get("/reviews/hotels/99")
+        .set({ access_token: customer_access_token });
+      expect(res.status).toBe(404);
+      expect(res.body).toBeInstanceOf(Object);
+    });
+  });
+  describe("GET /reviews/:DestinationId", () => {
+    test("200, success get reviews by hotel", async () => {
+      const res = await request(app)
+        .get("/reviews/1")
+        .set({ access_token: customer_access_token });
+      expect(res.status).toBe(200);
+      expect(res.body).toBeInstanceOf(Object);
+    });
+  });
+  describe("GET /reviews/:DestinationId", () => {
+    test("404, failed get reviews by destination", async () => {
+      const res = await request(app)
+        .get("/reviews/99")
+        .set({ access_token: customer_access_token });
+      expect(res.status).toBe(404);
+      expect(res.body).toBeInstanceOf(Object);
+    });
+  });
+  describe("GET /reviews", () => {
+    test("200, success get reviews", async () => {
+      const res = await request(app)
+        .get("/reviews")
+        .set({ access_token: customer_access_token });
+      expect(res.status).toBe(200);
+      expect(res.body).toBeInstanceOf(Object);
     });
   });
 });

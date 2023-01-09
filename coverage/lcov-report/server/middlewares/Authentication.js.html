@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.64% </span>
+                <span class="strong">88.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/17</span>
+                <span class='fraction'>15/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.42% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -88,52 +88,52 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">56x</span>
+<span class="cline-any cline-yes">56x</span>
+<span class="cline-any cline-yes">56x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">54x</span>
+<span class="cline-any cline-yes">54x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">54x</span>
+<span class="cline-any cline-yes">54x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">54x</span>
+<span class="cline-any cline-yes">54x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">54x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const { verifyToken } = require("../helpers/jsonwebtoken")
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span></td><td class="text"><pre class="prettyprint lang-js">const { verifyToken } = require("../helpers/jsonwebtoken")
 const { User } = require("../models")
 &nbsp;
 class Authentication {
-<span class="fstat-no" title="function not covered" >    st</span>atic async verify(req, res, next){
-<span class="cstat-no" title="statement not covered" >        try {</span>
-            let { access_token } = <span class="cstat-no" title="statement not covered" >req.headers</span>
-<span class="cstat-no" title="statement not covered" >            if (!access_token) <span class="cstat-no" title="statement not covered" >throw ({name: "NoTokenFound"})</span></span>
+    static async verify(req, res, next){
+        try {
+            let { access_token } = req.headers
+            if (!access_token) throw ({name: "NoTokenFound"})
 &nbsp;
-            let payload = <span class="cstat-no" title="statement not covered" >verifyToken(access_token)</span>
-<span class="cstat-no" title="statement not covered" >            if (!payload) <span class="cstat-no" title="statement not covered" >throw ({name: "InvalidToken"})</span></span>
+            let payload = verifyToken(access_token)
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!payload) <span class="cstat-no" title="statement not covered" >throw ({name: "InvalidToken"})</span>
 &nbsp;
-            let calledUser = <span class="cstat-no" title="statement not covered" >await User.findByPk(payload.id)</span>
-<span class="cstat-no" title="statement not covered" >            if (!calledUser) <span class="cstat-no" title="statement not covered" >throw ({name: "InvalidToken"})</span></span>
+            let calledUser = await User.findByPk(payload.id)
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!calledUser) <span class="cstat-no" title="statement not covered" >throw ({name: "InvalidToken"})</span>
 &nbsp;
-            let { id, fullname, isPremium, role } = <span class="cstat-no" title="statement not covered" >calledUser</span>
-<span class="cstat-no" title="statement not covered" >            req.user = { id, fullname, isPremium, role }</span>
+            let { id, fullname, isPremium, role } = calledUser
+            req.user = { id, fullname, isPremium, role }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            next ()</span>
+            next ()
         } catch (error) {
-<span class="cstat-no" title="statement not covered" >            next (error)</span>
+            next (error)
         }
     }
 }
@@ -145,7 +145,7 @@ module.exports = Authentication</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-01-07T22:45:08.819Z
+                at 2023-01-09T09:13:25.250Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

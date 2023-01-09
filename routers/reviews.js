@@ -13,13 +13,14 @@ reviewsRouter.delete(
   Authorization.reviewClearance,
   ReviewController.delReview
 );
-reviewsRouter.get(
-  "/reviews",
-  ReviewController.getReviews
-);
+reviewsRouter.get("/reviews", ReviewController.getReviews);
 reviewsRouter.get(
   "/reviews/:DestinationId",
   ReviewController.getReviewByDestination
+);
+reviewsRouter.get(
+  "/reviews/hotels/:HotelId",
+  ReviewController.getReviewByHotel
 );
 
 module.exports = reviewsRouter;

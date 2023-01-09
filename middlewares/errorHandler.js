@@ -63,12 +63,15 @@ const errorHandler = (err, req, res, next) => {
       "Number of destination must be equal or higher than selected destinations";
   } else if (err.name === "City does not exist") {
     code = 404;
-    msg = err.name;
+    msg = "Sorry, not found city";
   } else if (err.name === "notMatchReview") {
     code = 404;
     msg = "Sorry, not found review for this destination";
-  } else if (err.name === 'Destination Not Found' || 'Hotel Not Found') {
-    [code, msg] = [404, err.name]
+  } else if (err.name === "Destination Not Found" || "Hotel Not Found") {
+    [code, msg] = [404, err.name];
+  } else if (err.name == "notMatchProvince") {
+    code = 404;
+    msg = "Sorry, you don't get any matched province.";
   }
 
   console.log(err);

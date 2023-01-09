@@ -17,6 +17,7 @@ class CityController {
         where: { slug },
         include: [Province],
       });
+      if (!findCity) throw { name: "City does not exist" };
       const showDestination = await Destination.findAll({
         where: { CityId: findCity.id },
         order: [["cost", "asc"]],
@@ -27,7 +28,6 @@ class CityController {
         order: [["price", "asc"]],
         limit: 1,
       });
-      if (!findCity) throw { name: "UnknownId" };
       res.status(200).json({
         city: findCity,
         destination: showDestination,
@@ -63,16 +63,15 @@ class CityController {
     try {
       const { slug } = req.params;
       const { name, image, geocoding, ProvinceId } = req.body;
-
-      // const findCity = await Citi.findByPk(id);
       const findCity = await City.findOne({ where: { slug } });
-      if (!findCity) throw { name: "UnknownId" };
-
+      if (!findCity) throw { name: "City does not exist" };
       const findProvince = await Province.findByPk(ProvinceId);
-      if (!findProvince) throw { name: "UnknownId" };
-
-      await City.update({ name, image, geocoding, ProvinceId });
-      res.status(200).json({ msg: `City ${findCity} has been updated` });
+      if (!findProvince) throw { name: "notMatchProvince" };
+      await City.update(
+        { name, slug, image, geocoding, ProvinceId },
+        { where: { slug } }
+      );
+      res.status(200).json({ msg: `City ${findCity.name} has been updated` });
     } catch (error) {
       next(error);
     }

@@ -5,7 +5,7 @@ const hotelPath = require("./hotels");
 
 const userRouter = require("./users");
 // const favouriteRouter = require("./favourites");
-const travelStepRouter = require('./travelSteps');
+const travelStepRouter = require("./travelSteps");
 const provincesRouter = require("./provinces");
 const reviewsRouter = require("./reviews");
 const publicsRouter = require("./public");
@@ -17,7 +17,6 @@ router.post("/register", Controller.register);
 router.post("/login", Controller.login);
 
 router.use("/publics", publicsRouter);
-router.use(cityRouter);
 router.use(Authentication.verify);
 
 // User
@@ -34,5 +33,5 @@ router.use("/hotels", hotelPath);
 
 router.use(provincesRouter); // Provinces
 router.use(reviewsRouter); // Reviews
-
+router.use(cityRouter); // City
 module.exports = router;
