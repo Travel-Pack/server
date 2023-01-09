@@ -6,11 +6,11 @@ List of available endpoints:
 
 - `POST /register`
 - `POST /login`
-- `GET /users/:id`
-- `PUT /users/:id`
-- `PATCH /users/activatePremium/:id`
-- `PATCH /users/deactivatePremium/:id`
-- `PATCH /users/incrimentPoint/:id`
+- `GET /users`
+- `PUT /users`
+- `PATCH /users/activatePremium`
+- `PATCH /users/deactivatePremium`
+- `PATCH /users/incrimentPoint`
 
 &nbsp;
 
@@ -143,7 +143,7 @@ Response :
 
 &nbsp;
 
-## GET /users/:id
+## GET /users
 
 Request :
 
@@ -178,7 +178,7 @@ Response :
 
 &nbsp;
 
-## PUT /users/:id
+## PUT /users
 
 Request :
 
@@ -215,7 +215,7 @@ Response :
 
 &nbsp;
 
-## PATCH /users/activatePremium/:id
+## PATCH /users/activatePremium
 
 Request :
 
@@ -256,7 +256,7 @@ Response :
 
 &nbsp;
 
-## PATCH /users/deactivatePremium/:id
+## PATCH /users/deactivatePremium
 
 Request :
 
@@ -297,7 +297,7 @@ Response :
 
 &nbsp;
 
-## PATCH /incrimentPoint/:id
+## PATCH /incrimentPoint
 
 Request :
 

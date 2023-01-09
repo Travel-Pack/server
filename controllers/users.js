@@ -8,7 +8,9 @@ class UserController {
             const userById = await User.findByPk(req.user.id);
 
             res.status(200).json({ userById });
-        } catch (error) {}
+        } catch (error) {
+            next(error);
+        }
     }
 
     static async updateUser(req, res, next) {
@@ -146,7 +148,9 @@ class UserController {
             await User.update({ point: findUser.point += 1 }, { where: { id: req.user.id } });
 
 			res.status(200).json({ message: `User point has been incrimented by 1` });
-		} catch (error) {}
+		} catch (error) {
+			next(error);
+		}
 	}
 }
 
