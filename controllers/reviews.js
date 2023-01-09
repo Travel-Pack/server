@@ -3,7 +3,8 @@ const { Review, User } = require("../models");
 class ReviewController {
   static async postReview(req, res, next) {
     try {
-      let { DestinationId, cost, fun, internet, safety, comment } = req.body;
+      let { DestinationId, cost, fun, internet, safety, comment, HotelId } =
+        req.body;
       let UserId = req.user.id;
       let newReview = await Review.create({
         DestinationId,
@@ -13,13 +14,10 @@ class ReviewController {
         safety,
         comment,
         UserId,
+        HotelId,
       });
       console.log(newReview, ">>>");
       const findUser = await User.findByPk(UserId);
-
-      // if (!findUser) {
-      //   throw { name: "User not found" };
-      // }
 
       await User.increment({ point: 1 }, { where: { id: UserId } });
       console.log(findUser, "<<< USER");

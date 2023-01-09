@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { City, Province, Destination, Hotel } = require("../models");
 
 class CityController {
@@ -19,12 +20,12 @@ class CityController {
       });
       if (!findCity) throw { name: "City does not exist" };
       const showDestination = await Destination.findAll({
-        where: { CityId: findCity.id },
+        where: { CityId: findCity.id, id: { [Op.ne]: 1 } },
         order: [["cost", "asc"]],
         limit: 1,
       });
       const showHotel = await Hotel.findAll({
-        where: { CityId: findCity.id },
+        where: { CityId: findCity.id, id: { [Op.ne]: 1 } },
         order: [["price", "asc"]],
         limit: 1,
       });
