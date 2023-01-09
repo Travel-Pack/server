@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../app.js");
 const { hashPassword } = require("../helpers/bcryptjs.js");
-const { sequelize } = require("../models");
+const { sequelize, TravelStep } = require("../models");
 const { queryInterface } = sequelize;
 let access_token;
 
@@ -213,6 +213,7 @@ beforeAll(async () => {
         mainImg: "https://assets.promediateknologi.com/crop/0x0:0x0/x/photo/2022/02/25/1658474457.jpg",
         cost: 15000,
         geocoding: "-7.261706410257518, 112.74315998274346",
+        description: "Wisata Air Taman Prestasi",
         CityId: 3,
         UserId: 1,
         createdAt: new Date(),
@@ -225,6 +226,7 @@ beforeAll(async () => {
         mainImg: "https://www.pegipegi.com/travel/wp-content/uploads/2017/10/alamat-taman-sakura-keputih-surabaya.jpg",
         cost: 13000,
         geocoding: "-7.29398869645369, 112.8016808827438",
+        description: "Hutan Bambu",
         CityId: 3,
         UserId: 1,
         createdAt: new Date(),
@@ -237,6 +239,7 @@ beforeAll(async () => {
         mainImg: "https://www.surabayarollcake.com/wp-content/uploads/2019/01/Klenteng-Sanggar-Agung-Surabaya.jpg",
         cost: 10000,
         geocoding: "-7.247488948002271, 112.80180008459418",
+        description: "Sanggar Agung Temple",
         CityId: 3,
         UserId: 1,
         createdAt: new Date(),
@@ -249,6 +252,7 @@ beforeAll(async () => {
         mainImg: "https://www.pakuwonjati.com/upload/2020/05/5eb035d16732c-pkw-mall-com-08fj-gallery0.jpg",
         cost: 1000,
         geocoding: "-7.250777204884361, 112.66208039993745",
+        description: "Food Junction Grand Pakuwon",
         CityId: 3,
         UserId: 1,
         createdAt: new Date(),
@@ -261,6 +265,7 @@ beforeAll(async () => {
         mainImg: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/9f/62/87/most-visit-in-town.jpg?w=1200&h=-1&s=1",
         cost: 15000,
         geocoding: "-7.26550489357184, 112.75026228274366",
+        description: "Surabaya Submarine Monument",
         CityId: 3,
         UserId: 1,
         createdAt: new Date(),
@@ -274,7 +279,8 @@ beforeAll(async () => {
     [
       {
         name: "Swiss-Belinn Tunjungan, Surabaya",
-        // slug: "Swiss-Belinn Tunjungan, Surabaya",
+        slug: "Swiss-Belinn Tunjungan, Surabaya",
+        address: "Swiss-Belinn Tunjungan, Surabaya",
         image: "https://media-cdn.tripadvisor.com/media/photo-s/0c/98/b0/be/swiss-belinn-tunjungan.jpg",
         geocoding: "-7.262066,112.740918 (type: ROOFTOP)",
         isRecommended: false,
@@ -285,7 +291,8 @@ beforeAll(async () => {
       },
       {
         name: "Livinn Hostel Surabaya",
-        // slug: "Livinn Hostel Surabaya",
+        slug: "Livinn Hostel Surabaya",
+        address: "Livinn Hostel Surabaya",
         image: "https://jenishotel.info/wp-content/uploads/2019/09/livinn-hostel.jpg",
         geocoding: " -7.263283,112.751178 (type: ROOFTOP)",
         isRecommended: true,
@@ -455,5 +462,118 @@ describe("Generate Travel Steps", () => {
       expect(res.body).toHaveProperty("msg");
       expect(res.body.msg).toBe("Number of destination must be equal or higher than selected destinations");
     });
+    test("404, No combination have selected destination", async () => {
+      const res = await request(app).post("/travel-steps/generates").set({
+        access_token
+      })
+        .send({
+          "budgetDestination": 2000000,
+          "budgetHotel": 100000,
+          "CityId": 3,
+          "DestinationIds": [10],
+          "numberOfDestination": 1
+        });
+      expect(res.status).toBe(404);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg");
+      expect(res.body.msg).toBe("Sorry, you don't get any matched destination. Maybe try to increase your destination budget or lower your number of destination?");
+    });
+  });
+});
+
+describe("Save Travel Steps", () => {
+  describe("POST /travel-steps", () => {
+    test("201, success save Travel Steps", async () => {
+      const res = await request(app).post("/travel-steps").set({
+        access_token
+      })
+        .send({
+          HotelId: 2,
+          name: "example",
+          DestinationIds: [
+            {
+              id: 3
+            },
+            {
+              id: 4
+            }
+          ]
+        });
+      expect(res.status).toBe(201);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg");
+      expect(res.body.msg).toBe("Successfully add travel step");
+    });
+    test("400, Travel step data empty", async () => {
+      const res = await request(app).post("/travel-steps").set({
+        access_token
+      })
+      expect(res.status).toBe(400);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg");
+      expect(res.body.msg).toBe("Travel step data cannot be empty");
+    });
+    test("401, User not login", async () => {
+      const res = await request(app).post("/travel-steps").send({
+        HotelId: 2,
+        name: "example",
+        DestinationIds: [
+          {
+            id: 3
+          },
+          {
+            id: 4
+          }
+        ]
+      });
+      expect(res.status).toBe(401);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg");
+      expect(res.body.msg).toBe("Invalid Token/Authentication Failed");
+    });
+  });
+});
+
+describe("Get Travel Steps by user", () => {
+  describe("GET /travel-steps", () => {
+    test("200, success save Travel Steps", async () => {
+      const res = await request(app).get("/travel-steps").set({
+        access_token
+      })
+      expect(res.status).toBe(200);
+      expect(res.body).toBeInstanceOf(Array);
+      expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
+      expect(res.body[0]).toHaveProperty("HotelId", expect.any(Number));
+      expect(res.body[0]).toHaveProperty("name", expect.any(String));
+      expect(res.body[0]).toHaveProperty("Favourites");
+      expect(res.body[0].Favourites).toBeInstanceOf(Array);
+      expect(res.body[0].Favourites[0]).toHaveProperty("DestinationId", expect.any(Number));
+      expect(res.body[0].Favourites[0]).toHaveProperty("UseTravelStepId", expect.any(Number));
+      expect(res.body[0].Favourites[0]).toHaveProperty("Destination");
+      expect(res.body[0].Favourites[0].Destination).toBeInstanceOf(Object);
+      expect(res.body[0].Favourites[0].Destination).toHaveProperty("id", expect.any(Number));
+      expect(res.body[0].Favourites[0].Destination).toHaveProperty("name", expect.any(String));
+      expect(res.body[0].Favourites[0].Destination).toHaveProperty("slug", expect.any(String));
+      expect(res.body[0].Favourites[0].Destination).toHaveProperty("address", expect.any(String));
+      expect(res.body[0].Favourites[0].Destination).toHaveProperty("mainImg", expect.any(String));
+      expect(res.body[0].Favourites[0].Destination).toHaveProperty("cost", expect.any(Number));
+      expect(res.body[0].Favourites[0].Destination).toHaveProperty("geocoding", expect.any(String));
+      expect(res.body[0].Favourites[0].Destination).toHaveProperty("description", expect.any(String));
+      expect(res.body[0].Favourites[0].Destination).toHaveProperty("CityId", expect.any(Number));
+      expect(res.body[0].Favourites[0].Destination).toHaveProperty("UserId", expect.any(Number));
+    });
+    test('500, Internal Server Error', async () => {
+      jest.spyOn(TravelStep, 'findAll').mockRejectedValue('Error')
+      return request(app)
+        .get('/travel-steps').set({access_token})
+        .then((res) => {
+          expect(res.status).toBe(500)
+          expect(res.body).toHaveProperty("msg");
+          expect(res.body.msg).toBe("Internal Server Error");
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    })
   });
 });

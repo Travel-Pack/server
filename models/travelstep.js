@@ -10,12 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      TravelStep.hasMany(models.Favourite, {
+        foreignKey: 'UseTravelStepId'
+      });
     }
   }
   TravelStep.init({
     UserId: DataTypes.INTEGER,
-    HotelId: DataTypes.INTEGER
+    HotelId: DataTypes.INTEGER,
+    name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'TravelStep',

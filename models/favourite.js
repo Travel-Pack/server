@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "DestinationId",
       });
       Favourite.belongsTo(models.TravelStep, {
-        foreignKey: "TravelStepId",
+        foreignKey: "UseTravelStepId",
       });
     }
   }
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: { msg: "DestinationId is required" },
       },
     },
-    TravelStepId: {
+    UseTravelStepId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {

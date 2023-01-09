@@ -44,7 +44,7 @@ const errorHandler = (err, req, res, next) => {
     err.name == "NoTokenFound" ||
     err.name == "InvalidUser"
   ) {
-    code = 400;
+    code = 401;
     msg = "Invalid Token/Authentication Failed";
   } else if (err.name == "Unauthorized") {
     code = 403;
@@ -67,8 +67,11 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "notMatchReview") {
     code = 404;
     msg = "Sorry, not found review for this destination";
-  } else if (err.name === 'Destination Not Found' || 'Hotel Not Found') {
+  } else if (err.name === 'Destination Not Found' || err.name === 'Hotel Not Found') {
     [code, msg] = [404, err.name]
+  } else if (err.name === "travelDataStepEmpty") {
+    code = 400;
+    msg = "Travel step data cannot be empty";
   }
 
   console.log(err);

@@ -4,9 +4,127 @@
 
 List of available endpoints:
 
+- `POST /travel-steps`
+- `GET /travel-steps`
 - `POST /travel-steps/generates`
 
 &nbsp;
+
+## POST /travel-steps
+
+Description:
+
+- Save travel step
+
+Request:
+
+- headers:
+
+    ```json
+    {
+      "access_token": String
+    }
+    ```
+
+- Body
+
+    ```json
+    {
+      "HotelId": 3,
+      "name": "contoh2",
+      "DestinationIds": [
+        {
+          "id": 13
+        },
+        {
+          "id": 14
+        }
+      ]
+    }
+    ```
+
+#### Response
+
+_200 - OK_
+
+- Body
+
+    ```json
+    {
+      "msg": "Successfully add travel step"
+    }
+    ```
+
+_400 - Bad Request_
+
+- Body
+
+    ```json
+    {
+      "msg": "Travel step data cannot be empty"
+    }
+    ```
+
+## GET /travel-steps
+
+Description:
+
+- Get travel step by user id
+
+Request:
+
+- headers:
+
+    ```json
+    {
+      "access_token": String
+    }
+    ```
+
+#### Response
+
+_200 - OK_
+
+- Body
+
+    ```json
+    [
+      {
+        "id": 2,
+        "UserId": 1,
+        "HotelId": 3,
+        "name": "contoh2",
+        "createdAt": "2023-01-09T15:59:15.449Z",
+        "updatedAt": "2023-01-09T15:59:15.449Z",
+        "Favourites": [
+          {
+            "id": 3,
+            "DestinationId": 13,
+            "UseTravelStepId": 2,
+            "createdAt": "2023-01-09T15:59:15.456Z",
+            "updatedAt": "2023-01-09T15:59:15.456Z",
+            "UserId": null,
+            "Destination": {
+              "id": 13,
+              "name": "Hutan Bambu",
+              "slug": "hutan-bambu",
+              "address": "Jl. Raya Marina Asri, Keputih, Kec. Sukolilo, Kota Surabaya, Jawa Timur 60111",
+              "mainImg": "https://www.pegipegi.com/travel/wp-content/uploads/2017/10/alamat-taman-sakura-keputih-surabaya.jpg",
+              "cost": 13000,
+              "geocoding": "-7.29398869645369, 112.8016808827438",
+              "description": "this is destination DESCRIPTIONS SECTION!",
+              "CityId": 3,
+              "UserId": 1,
+              "createdAt": "2023-01-09T15:58:02.016Z",
+              "updatedAt": "2023-01-09T15:58:02.016Z"
+            }
+          },
+          ...
+        ]
+      },
+      ...
+    ]
+    ```
 
 ## POST /travel-steps/generates
 
@@ -113,56 +231,19 @@ _404 - Not Found_
       "msg": "Sorry, you don't get any matched hotel. Maybe try to increase your hotel budget?"
     }
     ```
+### Global Error
+_Response (401 - Unauthorized)_
 
-&nbsp;
+  ```json
+  {
+    "msg": "Invalid Token/Authentication Failed"
+  }
+  ```
 
-## POST /login
+_Response (500 - Internal Server Error)_
 
-Description:
-
-- Login account using email and password as an Admin
-
-Request:
-
-- headers:
-
-    ```json
-    {
-      "access_token": "string"
-    }
-    ```
-
-- Body
-
-    ```json
-    {
-      "email": String | required,
-      "password": String | required
-    }
-    ```
-
-#### Response
-
-_201 - Created_
-
-- Body
-
-    ```json
-    {
-      {
-        "access_token": "String"
-      }
-    }
-    ```
-
-_401 - Unauthorized_
-
-- Body
-
-    ```json
-    {
-      "message": "Invalid email or password"
-    }
-    ```
-
-&nbsp;
+  ```json
+  {
+    "msg": "Internal server error"
+  }
+  ```
