@@ -44,7 +44,7 @@ const errorHandler = (err, req, res, next) => {
     err.name == "NoTokenFound" ||
     err.name == "InvalidUser"
   ) {
-    code = 400;
+    code = 401;
     msg = "Invalid Token/Authentication Failed";
   } else if (err.name == "Unauthorized") {
     code = 403;
