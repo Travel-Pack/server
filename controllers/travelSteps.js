@@ -6,6 +6,9 @@ class TravelStepsController {
     const t = await sequelize.transaction();
     try {
       const {HotelId, name, DestinationIds} = req.body;
+      if(!HotelId || !name || !DestinationIds.length){
+        throw({name: "travelDataStepEmpty"})
+      }
       const travelStep = await TravelStep.create(
         {
           UserId: req.user.id,
@@ -22,7 +25,7 @@ class TravelStepsController {
       });
       await Favourite.bulkCreate(favourites, { transaction: t });
       await t.commit();
-      res.status(201).json(travelStep);
+      res.status(201).json({msg: "Successfully add travel step"});
     } catch (error) {
       await t.rollback();
       next(error)
