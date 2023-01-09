@@ -1,4 +1,6 @@
 const errorHandler = (err, req, res, next) => {
+  console.log(err, "err handling");
+
   let code = 500;
   let msg = "Internal Server Error";
   // console.log(err, '<=== error');
@@ -79,7 +81,7 @@ const errorHandler = (err, req, res, next) => {
 
   }
 
-  console.log(err);
+  // console.log(err);
   res.status(code).json({ msg });
 };
 

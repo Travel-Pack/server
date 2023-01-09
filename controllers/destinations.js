@@ -9,35 +9,35 @@ const {
 } = require("../models");
 
 class DestinationController {
-  static async createDestination(req, res, next) {
-    const t = await sequelize.transaction();
-    try {
-      const { name, address, mainImg, cost, geocoding, CityId, imgUrl } =
-        req.body;
-      const UserId = req.user.id;
-      const slug = name.toLowerCase().split(" ").join("-");
+  // static async createDestination(req, res, next) {
+  //   const t = await sequelize.transaction();
+  //   try {
+  //     const { name, address, mainImg, cost, geocoding, CityId, imgUrl } =
+  //       req.body;
+  //     const UserId = req.user.id;
+  //     const slug = name.toLowerCase().split(" ").join("-");
 
-      const newDestination = await Destination.create(
-        { name, address, mainImg, cost, geocoding, CityId, UserId, slug },
-        { transaction: t }
-      );
-      if (imgUrl) {
-        const images = imgUrl.map((el) => {
-          return {
-            DestinationId: newDestination.id,
-            imgUrl: el,
-          };
-        });
-        await Image.bulkCreate(images, { transaction: t });
-      }
+  //     const newDestination = await Destination.create(
+  //       { name, address, mainImg, cost, geocoding, CityId, UserId, slug },
+  //       { transaction: t }
+  //     );
+  //     if (imgUrl) {
+  //       const images = imgUrl.map((el) => {
+  //         return {
+  //           DestinationId: newDestination.id,
+  //           imgUrl: el,
+  //         };
+  //       });
+  //       await Image.bulkCreate(images, { transaction: t });
+  //     }
 
-      await t.commit();
-      res.status(201).json("Ok - Destination Added");
-    } catch (error) {
-      await t.rollback();
-      next(error);
-    }
-  }
+  //     await t.commit();
+  //     res.status(201).json("Ok - Destination Added");
+  //   } catch (error) {
+  //     await t.rollback();
+  //     next(error);
+  //   }
+  // }
   static async readAllDestination(req, res, next) {
     try {
       const { orderBy, searchByCity, filterCost, searchByDest } = req.query;

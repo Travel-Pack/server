@@ -4,11 +4,149 @@
 
 List of available endpoints:
 
+`Public User`
+
+- `GET /publics/destinations`
+- `GET /publics/destinations/best`
+- `GET /publics/destinations/:slug`
+
 `ADMIN`
 
-- `POST /destinations`
+<!-- - `POST /destinations` -->
+
 - `GET /destinations`
 - `GET /destinations/:slug`
+
+## GET /publics/destinations
+
+Description:
+
+- Read ALL Destinations data from database
+
+#### Response
+
+_200 - Ok_
+
+- Body
+
+  ```json
+  [
+    {
+      "id": Integer,
+      "name": String,
+      "slug": String,
+      "address": String,
+      "mainImg": String,
+      "cost": Integer,
+      "geocoding": String,
+      "description": String,
+      "CityId": Integer,
+      "UserId": Integer,
+      "createdAt": Date,
+      "updatedAt": Date,
+      "Reviews": Array,
+      "Images": Array
+    },
+    ...
+  ]
+  ```
+
+&nbsp;
+
+## GET /publics/destinations/best
+
+Description:
+
+- Read ALL BEST Destinations data from database
+
+#### Response
+
+_200 - Ok_
+
+- Body
+
+  ```json
+  [
+    {
+      "id": Integer,
+      "name": String,
+      "slug": String,
+      "cost": Integer,
+      "mainImg": String,
+      "cityName": String,
+      "avg_review": Float
+    },
+    ...,
+  ]
+  ```
+
+&nbsp;
+
+## GET /publics/destinations/:slug
+
+Description:
+
+- Read ONE Destinations data from database
+
+Request:
+
+- params:
+
+  ```json
+  {
+    "slug": "string"
+  }
+  ```
+
+#### Response
+
+_200 - Ok_
+
+- Body
+
+  ```json
+  {
+    "destination": {
+      "id": Integer,
+      "name": String,
+      "slug": String,
+      "address": String,
+      "mainImg": String,
+      "cost": Integer,
+      "geocoding": String,
+      "description": String,
+      "CityId": Integer,
+      "UserId": Integer,
+      "createdAt": Date,
+      "updatedAt": Date,
+      "Reviews": Array,
+      "Images": Array
+    },
+    "User": {
+      "fullName": String
+    }
+    "reviews": {
+      "averageCost": Float,
+      "averageFun": Float,
+      "averageInternet": Float,
+      "averageSafety": Float
+    },
+    "comment": Array
+    ...
+  }
+  ```
+
+  _404 - Not Found_
+
+- Body
+
+  ```json
+  {
+    "msg": "Destination Not Found"
+  }
+  ```
+
+&nbsp;
 
 &nbsp;
 
@@ -199,110 +337,6 @@ _400 - Bad Request_
   ```json
   {
     "msg": "Invalid Token/Authentication Failed"
-  }
-  ```
-
-  _404 - Not Found_
-
-- Body
-
-  ```json
-  {
-    "msg": "Destination Not Found"
-  }
-  ```
-
-&nbsp;
-
-`Public User`
-
-## GET /publics/destinations
-
-Description:
-
-- Read ALL Destinations data from database
-
-#### Response
-
-_200 - Ok_
-
-- Body
-
-  ```json
-  [
-    {
-      "id": Integer,
-      "name": String,
-      "slug": String,
-      "address": String,
-      "mainImg": String,
-      "cost": Integer,
-      "geocoding": String,
-      "description": String,
-      "CityId": Integer,
-      "UserId": Integer,
-      "createdAt": Date,
-      "updatedAt": Date,
-      "Reviews": Array,
-      "Images": Array
-    },
-    ...
-  ]
-  ```
-
-&nbsp;
-
-## GET /publics/destinations/:slug
-
-Description:
-
-- Read ONE Destinations data from database
-
-Request:
-
-- params:
-
-  ```json
-  {
-    "slug": "string"
-  }
-  ```
-
-#### Response
-
-_200 - Ok_
-
-- Body
-
-  ```json
-  {
-    "destination": {
-      "id": Integer,
-      "name": String,
-      "slug": String,
-      "address": String,
-      "mainImg": String,
-      "cost": Integer,
-      "geocoding": String,
-      "description": String,
-      "CityId": Integer,
-      "UserId": Integer,
-      "createdAt": Date,
-      "updatedAt": Date,
-      "Reviews": Array,
-      "Images": Array
-    },
-    "User": {
-      "fullName": String
-    }
-    "reviews": {
-      "averageCost": Float,
-      "averageFun": Float,
-      "averageInternet": Float,
-      "averageSafety": Float
-    },
-    "comment": Array
-    ...
   }
   ```
 
