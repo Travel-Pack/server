@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "test": "jest --runInBand --forceExit",
-    "reset": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all"
+    "reset": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "test": "npx sequelize db:drop --env test && npx sequelize db:create --env test && npx sequelize db:migrate --env test && jest --runInBand --forceExit",
+    "testAll": "npx sequelize db:drop --env test && npx sequelize db:create --env test && npx sequelize db:migrate --env test && jest --runInBand --collect-coverage --forceExit"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
+    "midtrans-client": "^1.3.1",
     "pg": "^8.8.0",
     "sequelize": "^6.28.0"
   },
