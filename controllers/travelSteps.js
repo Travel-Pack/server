@@ -3,17 +3,43 @@ const { Op } = require("sequelize");
 
 class TravelStepsController {
   static async createTravelStep(req, res, next) {
+    const t = await sequelize.transaction();
     try {
-      const { UserId, HotelId } = req.body
-
+      const {HotelId, name, DestinationIds} = req.body;
+      const travelStep = await TravelStep.create(
+        {
+          UserId: req.user.id,
+          HotelId,
+          name
+        },
+        { transaction: t }
+      )
+      const favourites = DestinationIds.map((el) => {
+        return {
+          DestinationId: el.id,
+          UseTravelStepId: travelStep.id
+        };
+      });
+      await Favourite.bulkCreate(favourites, { transaction: t });
+      await t.commit();
+      res.status(201).json(travelStep);
     } catch (error) {
+      await t.rollback();
       next(error)
     }
   }
   static async readAllTravelStep(req, res, next) {
     try {
-      const UserId = req.user.id
-
+      const travelSteps = await TravelStep.findAll({
+        where: {
+          UserId: req.user.id
+        },
+        include: {
+          model: Favourite,
+          include: Destination
+        }
+      })
+      res.status(200).json(travelSteps);
     } catch (error) {
       next(error)
     }
