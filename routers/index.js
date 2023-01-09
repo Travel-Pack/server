@@ -4,12 +4,12 @@ const destinationPath = require("./destinations");
 const hotelPath = require("./hotels");
 
 const userRouter = require("./users");
-// const favouriteRouter = require("./favourites");
 const travelStepRouter = require('./travelSteps');
 const provincesRouter = require("./provinces");
 const reviewsRouter = require("./reviews");
 const publicsRouter = require("./public");
 const cityRouter = require("./cities");
+const midtransRouter = require("./midtrans");
 const Authentication = require("../middlewares/Authentication");
 
 // Register & Login
@@ -34,5 +34,8 @@ router.use("/hotels", hotelPath);
 
 router.use(provincesRouter); // Provinces
 router.use(reviewsRouter); // Reviews
+
+// Midtrans
+router.use("/midtrans", midtransRouter);
 
 module.exports = router;

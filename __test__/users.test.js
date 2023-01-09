@@ -3,6 +3,8 @@ const app = require("../app.js");
 const { hashPassword } = require("../helpers/bcryptjs.js");
 const { sequelize } = require("../models");
 const { queryInterface } = sequelize;
+let access_token
+
 
 beforeAll(async () => {
   await queryInterface.bulkInsert("Users", [
@@ -243,9 +245,43 @@ describe("Login customer /login", () => {
     expect(res.status).toBe(401);
     expect(res.body.msg).toBe("Invalid Email/Password");
   });
+  test("Email is undefined", async () => {
+    await request(app).post("/register").send({
+      fullName: "bobby13",
+      phoneNumber: "08111",
+      email: "bobby13@gmail.com",
+      password: "12345",
+      isPremium: false,
+      role: "Customer",
+    });
+    const res = await request(app).post("/login").send({
+      email: "",
+      password: "12345",
+    });
+
+    expect(res.status).toBe(400);
+    expect(res.body.msg).toBe("Email and Password is Required");
+  });
+  test("Password is undefined", async () => {
+    await request(app).post("/register").send({
+      fullName: "bobby14",
+      phoneNumber: "08111",
+      email: "bobby14@gmail.com",
+      password: "12345",
+      isPremium: false,
+      role: "Customer",
+    });
+    const res = await request(app).post("/login").send({
+      email: "bobby14@gmail.com",
+      password: "",
+    });
+
+    expect(res.status).toBe(400);
+    expect(res.body.msg).toBe("Email and Password is Required");
+  });
 });
 
-describe("GET User By Id - For Admin Account", () => {
+describe("GET User By Id", () => {
   describe("Success fetch user details", () => {
     it("should return object of that user detail", async () => {
       const body = { email: "bobby25@gmail.com", password: "12345" };
@@ -253,7 +289,7 @@ describe("GET User By Id - For Admin Account", () => {
       access_token = res.body.access_token;
 
       res = await request(app)
-        .get("/users/1")
+        .get("/users")
         .set("access_token", access_token);
 
       expect(res.status).toBe(200);
@@ -275,50 +311,14 @@ describe("GET User By Id - For Admin Account", () => {
       expect(res.body.userById).toHaveProperty("updatedAt", expect.any(String));
     });
   });
-
-  describe("Failed fetch user details", () => {
-    it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
-      res = await request(app)
-        .get("/users/100")
-        .set("access_token", access_token);
-
-      expect(res.status).toBe(404);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body).toHaveProperty("msg", "User Not Found");
-    });
-  });
-
-  describe("Failed fetch user details - not an admin", () => {
-    it("should return object with message", async () => {
-      const body = { email: "bobby2@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
-      res = await request(app)
-        .get("/users/1")
-        .set("access_token", access_token);
-
-      expect(res.status).toBe(403);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body).toHaveProperty("msg", "You are not authorized");
-    });
-  });
 });
 
-describe("PUT Admin - Update User", () => {
-  describe("Success change user data from Admin", () => {
+describe("PUT Update User", () => {
+  describe("Success change user data", () => {
     it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
       let passwordChange = { password: "123456" };
       res = await request(app)
-        .put("/users/1")
+        .put("/users")
         .send(passwordChange)
         .set("access_token", access_token);
 
@@ -328,15 +328,11 @@ describe("PUT Admin - Update User", () => {
     });
   });
 
-  describe("Failed change user password from Admin", () => {
+  describe("Failed change user password", () => {
     it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
       let passwordChange = { password: "" };
       res = await request(app)
-        .put("/users/1")
+        .put("/users")
         .send(passwordChange)
         .set("access_token", access_token);
 
@@ -346,15 +342,11 @@ describe("PUT Admin - Update User", () => {
     });
   });
 
-  describe("Failed change user password because less than 5 word from Admin", () => {
+  describe("Failed change user password because less than 5 word", () => {
     it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
       let passwordChange = { password: "1234" };
       res = await request(app)
-        .put("/users/1")
+        .put("/users")
         .send(passwordChange)
         .set("access_token", access_token);
 
@@ -367,12 +359,8 @@ describe("PUT Admin - Update User", () => {
     });
   });
 
-  describe("Failed change user full name from Admin", () => {
+  describe("Failed change user full name", () => {
     it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
       let nameChange = {
         fullName: "",
         phoneNumber: "08111945586",
@@ -380,7 +368,7 @@ describe("PUT Admin - Update User", () => {
         password: "12345",
       };
       res = await request(app)
-        .put("/users/1")
+        .put("/users")
         .send(nameChange)
         .set("access_token", access_token);
 
@@ -390,12 +378,8 @@ describe("PUT Admin - Update User", () => {
     });
   });
 
-  describe("Failed change user phone number from Admin", () => {
+  describe("Failed change user phone number", () => {
     it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
       let numberChange = {
         fullName: "Bobby",
         phoneNumber: "",
@@ -403,7 +387,7 @@ describe("PUT Admin - Update User", () => {
         password: "12345",
       };
       res = await request(app)
-        .put("/users/1")
+        .put("/users")
         .send(numberChange)
         .set("access_token", access_token);
 
@@ -413,12 +397,8 @@ describe("PUT Admin - Update User", () => {
     });
   });
 
-  describe("Failed change user email from Admin", () => {
+  describe("Failed change user email", () => {
     it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
       let emailChange = {
         fullName: "Bobby",
         phoneNumber: "08111",
@@ -426,7 +406,7 @@ describe("PUT Admin - Update User", () => {
         password: "12345",
       };
       res = await request(app)
-        .put("/users/1")
+        .put("/users")
         .send(emailChange)
         .set("access_token", access_token);
 
@@ -436,20 +416,16 @@ describe("PUT Admin - Update User", () => {
     });
   });
 
-  describe("Failed change user email because duplication from Admin", () => {
+  describe("Failed change user email because duplication", () => {
     it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
       let emailChange = {
         fullName: "Bobby",
         phoneNumber: "08111",
-        email: "bobby25@gmail.com",
+        email: "bobby22@gmail.com",
         password: "12345",
       };
       res = await request(app)
-        .put("/users/1")
+        .put("/users")
         .send(emailChange)
         .set("access_token", access_token);
 
@@ -458,35 +434,13 @@ describe("PUT Admin - Update User", () => {
       expect(res.body).toHaveProperty("msg", "This Email Already Registered");
     });
   });
-
-  describe("Failed change user data because not from Admin", () => {
-    it("should return object with message", async () => {
-      const body = { email: "bobby222@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
-      let passwordChange = { password: "" };
-      res = await request(app)
-        .put("/users/1")
-        .send(passwordChange)
-        .set("access_token", access_token);
-
-      expect(res.status).toBe(403);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body).toHaveProperty("msg", "You are not authorized");
-    });
-  });
 });
 
-describe("PATCH Admin - Update User Status To Premium", () => {
-  describe("Success change user premium status from Admin", () => {
+describe("PATCH - Update User Status To Premium", () => {
+  describe("Success change user premium status", () => {
     it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
       res = await request(app)
-        .patch("/users/activatePremium/1")
+        .patch("/users/activatePremium")
         .set("access_token", access_token);
 
       expect(res.status).toBe(200);
@@ -498,17 +452,13 @@ describe("PATCH Admin - Update User Status To Premium", () => {
     });
   });
 
-  describe("Failed change user premium status because already premium from Admin", () => {
+  describe("Failed change user premium status because already premium", () => {
     it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
       res = await request(app)
-        .patch("/users/activatePremium/1")
+        .patch("/users/activatePremium")
         .set("access_token", access_token);
       res = await request(app)
-        .patch("/users/activatePremium/1")
+        .patch("/users/activatePremium")
         .set("access_token", access_token);
 
       expect(res.status).toBe(400);
@@ -516,49 +466,13 @@ describe("PATCH Admin - Update User Status To Premium", () => {
       expect(res.body).toHaveProperty("msg", "User status already premium");
     });
   });
-
-  describe("Failed change user premium status because not from Admin", () => {
-    it("should return object with message", async () => {
-      const body = { email: "bobby22@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
-      res = await request(app)
-        .patch("/users/activatePremium/1")
-        .set("access_token", access_token);
-
-      expect(res.status).toBe(403);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body).toHaveProperty("msg", "You are not authorized");
-    });
-  });
-
-  describe("Failed to change user premium status because id not found", () => {
-    it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
-      res = await request(app)
-        .patch("/users/activatePremium/100")
-        .set("access_token", access_token);
-
-      expect(res.status).toBe(404);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body).toHaveProperty("msg", "User Not Found");
-    });
-  });
 });
 
-describe("PATCH Admin - Update User Status From Premium To Not", () => {
-  describe("Success change user premium status from Admin", () => {
+describe("PATCH - Update User Status From Premium To Not", () => {
+  describe("Success change user premium status", () => {
     it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
       res = await request(app)
-        .patch("/users/deactivatePremium/1")
+        .patch("/users/deactivatePremium")
         .set("access_token", access_token);
 
       expect(res.status).toBe(200);
@@ -570,17 +484,13 @@ describe("PATCH Admin - Update User Status From Premium To Not", () => {
     });
   });
 
-  describe("Failed change user premium status because already not premium from Admin", () => {
+  describe("Failed change user premium status because already not premium", () => {
     it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
       res = await request(app)
-        .patch("/users/deactivatePremium/1")
+        .patch("/users/deactivatePremium")
         .set("access_token", access_token);
       res = await request(app)
-        .patch("/users/deactivatePremium/1")
+        .patch("/users/deactivatePremium")
         .set("access_token", access_token);
 
       expect(res.status).toBe(400);
@@ -588,49 +498,13 @@ describe("PATCH Admin - Update User Status From Premium To Not", () => {
       expect(res.body).toHaveProperty("msg", "User status already not premium");
     });
   });
-
-  describe("Failed change user premium status because not from Admin", () => {
-    it("should return object with message", async () => {
-      const body = { email: "bobby2222@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
-      res = await request(app)
-        .patch("/users/deactivatePremium/1")
-        .set("access_token", access_token);
-
-      expect(res.status).toBe(403);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body).toHaveProperty("msg", "You are not authorized");
-    });
-  });
-
-  describe("Failed to change user premium status because id not found", () => {
-    it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
-      res = await request(app)
-        .patch("/users/deactivatePremium/100")
-        .set("access_token", access_token);
-
-      expect(res.status).toBe(404);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body).toHaveProperty("msg", "User Not Found");
-    });
-  });
 });
 
-describe("PATCH Admin - Incrementing User Point By 1", () => {
-  describe("Success change user point value from Admin", () => {
+describe("PATCH - Incrementing User Point By 1", () => {
+  describe("Success change user point value", () => {
     it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
       res = await request(app)
-        .patch("/users/incrimentPoint/1")
+        .patch("/users/incrimentPoint")
         .set("access_token", access_token);
 
       expect(res.status).toBe(200);
@@ -639,38 +513,6 @@ describe("PATCH Admin - Incrementing User Point By 1", () => {
         "message",
         "User point has been incrimented by 1"
       );
-    });
-  });
-
-  describe("Failed to incrementing user point value because not from Admin", () => {
-    it("should return object with message", async () => {
-      const body = { email: "bobby666@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
-      res = await request(app)
-        .patch("/users/incrimentPoint/1")
-        .set("access_token", access_token);
-
-      expect(res.status).toBe(403);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body).toHaveProperty("msg", "You are not authorized");
-    });
-  });
-
-  describe("Failed to incrimenting user point value because id not found", () => {
-    it("should return object with message", async () => {
-      const body = { email: "bobby25@gmail.com", password: "12345" };
-      let res = await request(app).post("/login").send(body);
-      access_token = res.body.access_token;
-
-      res = await request(app)
-        .patch("/users/incrimentPoint/100")
-        .set("access_token", access_token);
-
-      expect(res.status).toBe(404);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body).toHaveProperty("msg", "User Not Found");
     });
   });
 });
