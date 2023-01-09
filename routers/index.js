@@ -38,4 +38,7 @@ router.use(cityRouter); // City
 // Midtrans
 router.use("/midtrans", midtransRouter);
 
+// Midtrans
+router.use("/midtrans", midtransRouter);
+
 module.exports = router;

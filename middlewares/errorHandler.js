@@ -72,9 +72,11 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "travelDataStepEmpty") {
     code = 400;
     msg = "Travel step data cannot be empty";
+
   } else if (err.name == "notMatchProvince") {
     code = 404;
     msg = "Sorry, you don't get any matched province.";
+
   }
 
   console.log(err);
