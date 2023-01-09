@@ -9,6 +9,7 @@ router.get("/provinces", ProvinceController.getProvinces)
 
 /* -------- Destinations --------- */
 router.get('/destinations', DestinationController.readAllDestination)
+router.get('/destinations/best', DestinationController.readBestDestination)
 router.get('/destinations/:slug', DestinationController.readOneDestination)
 
 /* -------- Hotels --------- */
