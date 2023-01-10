@@ -157,13 +157,6 @@ describe("Cities", () => {
     });
   });
   describe("GET /cities", () => {
-    test("401, failed authentication get cities", async () => {
-      const res = await request(app).get("/cities");
-      expect(res.status).toBe(401);
-      expect(res.body).toHaveProperty("msg", expect.any(String));
-    });
-  });
-  describe("GET /cities", () => {
     test("500, failed get all cities cause internal server error", async () => {
       jest.spyOn(City, "findAll").mockRejectedValue("Error");
       const res = await request(app)

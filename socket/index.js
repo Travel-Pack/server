@@ -12,10 +12,10 @@ const socketListener = () => {
 
         socket.on("send_message", async (data) => {
             try {
-                let { slug, email, text } = data
+                let { id, slug, email, text } = data
                 if (!slug || !email || !text) throw({name: "Bad Request"})
 
-                let calledForum = await Topic.findOne({where: { slug }})
+                let calledForum = await Topic.findOne({where: { id }})
                 if (!calledForum) throw ({name: "Invalid Topic"})
 
                 let calledUser = await User.findOne({where: {email}})
