@@ -42,7 +42,7 @@ class DestinationController {
     try {
       const { orderBy, searchByCity, filterCost, searchByDest } = req.query;
       const options = {};
-      options.include = [{ model: Review }, Image];
+      options.include = [{ model: Review }, Image, City];
 
       if (orderBy) {
         if (orderBy === "name") {
@@ -161,6 +161,7 @@ class DestinationController {
             model: User,
             attributes: ["fullName"],
           },
+          City
         ],
       });
       if (!destination) throw { name: 'Destination Not Found' }
