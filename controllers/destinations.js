@@ -83,6 +83,7 @@ class DestinationController {
   static async readBestDestination(req, res, next) {
     try {
       const destinations = await Destination.findAll({
+        where: { id: { [Op.ne]: 1 } },
         include: [Review, City]
       })
 
@@ -103,7 +104,6 @@ class DestinationController {
       }
       destinations.forEach(el => {
         avg_cost = avg_fun = avg_internet = avg_safety = avg = 0
-        console.log(el.Reviews, "LENGTH nih");
         el.Reviews.forEach(el => {
           avg_cost += el.cost
           avg_fun += el.fun
