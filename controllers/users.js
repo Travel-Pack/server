@@ -44,9 +44,9 @@ class UserController {
 
 	static async activatePremiumStatus(req, res, next) {
 		try {
-			const findUser = await User.findByPk(req.user.id);
+			// const findUser = await User.findByPk(req.user.id);
 
-			if (findUser.isPremium === false) {
+			if (req.user.isPremium === false) {
 				const transporter = nodemailer.createTransport({
 					service: 'gmail',
 					host: 'smtp.gmail.com',
@@ -59,10 +59,10 @@ class UserController {
 
 				const mailOptions = {
 					from: "bobby.notokoesoemo@gmail.com",
-					// to: findUser.email,
-					to: "bobby.notokoesoemo@gmail.com",
+					to: req.user.email,
+					// to: "bobby.notokoesoemo@gmail.com",
 					subject: "Premium status notification",
-					text: `Dear ${findUser.fullName},
+					text: `Dear ${req.user.fullName},
 
 We are pleased to inform you that you have been upgraded to a premium user!
 
@@ -94,9 +94,9 @@ TravelPack`,
 
 	static async deactivatePremiumStatus(req, res, next) {
 		try {
-			const findUser = await User.findByPk(req.user.id);
+			// const findUser = await User.findByPk(req.user.id);
 
-			if (findUser.isPremium === true) {
+			if (req.user.isPremium === true) {
 				const transporter = nodemailer.createTransport({
 					service: 'gmail',
 					host: 'smtp.gmail.com',
@@ -109,10 +109,10 @@ TravelPack`,
 
 				const mailOptions = {
 					from: "bobby.notokoesoemo@gmail.com",
-					// to: findUser.email,
-					to: "bobby.notokoesoemo@gmail.com",
+					to: req.user.email,
+					// to: "bobby.notokoesoemo@gmail.com",
 					subject: "Downgrade notification",
-					text: `Dear ${findUser.fullName},
+					text: `Dear ${req.user.fullName},
 
 We are sorry to inform you that you have been downgraded from premium user!
 
@@ -141,9 +141,9 @@ TravelPack`,
 
 	static async incrimentPointUser(req, res, next) {
 		try {
-			const findUser = await User.findByPk(req.user.id);
+			// const findUser = await User.findByPk(req.user.id);
 
-			await User.update({ point: findUser.point += 1 }, { where: { id: req.user.id } });
+			await User.update({ point: req.user.point += 1 }, { where: { id: req.user.id } });
 
 			res.status(200).json({ message: `User point has been incrimented by 1` });
 		} catch (error) {
