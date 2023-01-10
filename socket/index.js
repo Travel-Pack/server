@@ -8,6 +8,7 @@ const socketListener = () => {
         
         socket.on("join_room", (slug) => {
             socket.join(slug);
+            console.log(`User Joined ${socket.id}`);
         });
 
         socket.on("send_message", async (data) => {
@@ -15,7 +16,7 @@ const socketListener = () => {
                 let { slug, email, text } = data
                 if (!slug || !email || !text) throw({name: "Bad Request"})
 
-                let calledForum = await Topic.findOne({where: { title }})
+                let calledForum = await Topic.findOne({where: { slug }})
                 if (!calledForum) throw ({name: "Invalid Topic"})
                 
                 let calledUser = await User.findOne({where: {email}})
