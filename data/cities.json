@@ -36,94 +36,156 @@
   },
   {
     "id": 6,
-    "name": "Madiun"
+    "name": "Madiun",
+    "image": "https://travelspromo.com/wp-content/uploads/2022/04/pemandangan-puncak-tertinggi-Gunung-Kendil.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 7,
-    "name": "Mojokerto"
+    "name": "Mojokerto",
+    "image": "https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2022/02/27/2782118823.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 8,
-    "name": "Pasuruan"
+    "name": "Pasuruan",
+    "image": "https://t-2.tstatic.net/tribunnewswiki/foto/bank/images/pantai-lekok-2.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 9,
-    "name": "Malang"
+    "name": "Malang",
+    "image": "https://www.desabisa.com/wp-content/uploads/2019/10/kampung-warna-warni-jodipan-malang-via-bosniatravel.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 10,
-    "name": "Banyuwangi"
+    "name": "Banyuwangi",
+    "image": "https://asset.kompas.com/crops/598-xpb-lCKzeBESCpcQIsvqcvI=/0x0:1024x683/750x500/data/photo/2022/05/29/62934b49f3b6b.jpeg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 11,
-    "name": "Situbondo"
-  },
-  {
-    "id": 12,
-    "name": "Lumajang"
-  },
-  {
-    "id": 13,
-    "name": "Bangkalan"
-  },
-  {
-    "id": 14,
-    "name": "Probolinggo"
+    "name": "Situbondo",
+    "image": "https://asset.kompas.com/crops/H-tXVGtoTcPWQ7uvdXpjwuAas20=/81x0:1281x800/750x500/data/photo/2022/02/19/621052f23c2d4.jpeg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 15,
-    "name": "Selat Madura"
+    "name": "Lumajang",
+    "image": "https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2021/12/07/3468297834.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
+  },
+  {
+    "id": 13,
+    "name": "Bangkalan",
+    "image": "https://www.datawisata.com/wp-content/uploads/2019/09/Bukit-Jaddhih-Bangkalan-lingkarjatim-1024x800.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
+  },
+  {
+    "id": 14,
+    "name": "Probolinggo",
+    "image": "https://www.darmawisataindonesia.co.id/Content/images/tour/570/570bb5ccc7f-bef4-498d-92e4-061da4d4a28a.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
+  },
+  {
+    "id": 15,
+    "name": "Selat Madura",
+    "image": "https://www.darmawisataindonesia.co.id/Content/images/tour/570/570bb5ccc7f-bef4-498d-92e4-061da4d4a28a.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 16,
-    "name": "Surabaya"
+    "name": "Kota Batu",
+    "image": "https://asset.kompas.com/crops/Hu0u13hQ0memWz55y6tWX0jiLgQ=/0x0:0x0/750x500/data/photo/2021/04/02/6066e4449725a.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 17,
-    "name": "Kota Batu"
+    "name": "Pacitan",
+    "image": "https://cdn1-production-images-kly.akamaized.net/-6k_1DyHcXPLyH4k5mRJN8XEv3c=/1200x900/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2385896/original/019271200_1539772958-goa_gong.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 18,
-    "name": "Pacitan"
+    "name": "Sumenep",
+    "image": "https://cdn.nativeindonesia.com/foto/gili-labak/Mengunjungi-Taman-Laut-Gili-Labak.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 19,
-    "name": "Sumenep"
+    "name": "blitar",
+    "image": "https://www.blitarkab.go.id/wp-content/uploads/2016/05/slide2-Copy.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 20,
-    "name": "blitar"
+    "name": "Lamongan",
+    "image": "https://www.itrip.id/wp-content/uploads/2020/10/Wisata-Bahari-Lamongan.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 21,
-    "name": "Lamongan"
+    "name": "Jember",
+    "image": "https://pariwisataku.com/wp-content/uploads/2020/05/airterjuntancak-soulshinetravellers.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 22,
-    "name": "Jember"
+    "name": "Gresik",
+    "image": "https://cdn0-production-images-kly.akamaized.net/jDA6jSADlQbPQa0G1uudvGW7KYc=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/1500845/original/026436900_1486534389-3.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 23,
-    "name": "Gresik"
+    "name": "Tulungagung",
+    "image": "https://campatour.com/wp-content/uploads/2018/06/IMG-20190122-WA0011-1024x530.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 15
   },
   {
     "id": 24,
-    "name": "Tulungagung"
+    "name": "Karangasem",
+    "image": "https://tempatwisatadibali.info/wp-content/uploads/2018/02/Pura-Agung-Besakih-Karangasem-Bali-1.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 17
   },
   {
     "id": 25,
-    "name": "Karangasem"
+    "name": "Badung",
+    "image": "https://www.angkutkoper.com/wp-content/uploads/2015/08/wisata-pura-luhur-uluwatu.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 17
   },
   {
     "id": 26,
-    "name": "Badung"
+    "name": "Denpasar",
+    "image": "https://www.djkn.kemenkeu.go.id/files/images/2020/03/T-RDSC064321.jpg",
+    "geocoding": "5083867975799",
+    "ProvinceId": 17
   },
   {
     "id": 27,
-    "name": "Denpasar"
-  },
-  {
-    "id": 28,
-    "name": "Tabanan"
+    "name": "Tabanan",
+    "image": "https://awsimages.detik.net.id/community/media/visual/2020/06/10/tanah-lot_169.jpeg?w=700&q=90",
+    "geocoding": "5083867975799",
+    "ProvinceId": 17
   }
 ]
