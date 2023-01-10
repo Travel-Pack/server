@@ -120,7 +120,20 @@ _200 - OK_
             }
           },
           ...
-        ]
+        ],
+        "Hotel": {
+          "id": 4,
+          "name": "Livinn Hostel Surabaya",
+          "slug": "livinn-hostel-surabaya",
+          "image": "https://jenishotel.info/wp-content/uploads/2019/09/livinn-hostel.jpg",
+          "address": "Jl. jalan sehat",
+          "geocoding": "-7.263283, 112.751178",
+          "isRecommended": true,
+          "price": 88000,
+          "CityId": 3,
+          "createdAt": "2023-01-09T15:58:02.021Z",
+          "updatedAt": "2023-01-09T15:58:02.021Z"
+        }
       },
       ...
     ]
