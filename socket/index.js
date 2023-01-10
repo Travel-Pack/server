@@ -5,7 +5,7 @@ let io
 const socketListener = () => {
     io.on("connection", (socket) => {
         console.log(`User Connected: ${socket.id}`);
-        
+
         socket.on("join_room", (slug) => {
             socket.join(slug);
         });
@@ -17,7 +17,7 @@ const socketListener = () => {
 
                 let calledForum = await Topic.findOne({where: { title }})
                 if (!calledForum) throw ({name: "Invalid Topic"})
-                
+
                 let calledUser = await User.findOne({where: {email}})
                 if (!calledUser) throw ({name: "Invalid User"})
                 await calledUser.increment("point")
@@ -32,7 +32,7 @@ const socketListener = () => {
             }
 
         });
-      
+
         socket.on("disconnect", () => {
           console.log("User Disconnected", socket.id);
         });
