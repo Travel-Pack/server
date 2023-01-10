@@ -39,7 +39,8 @@ class HotelController {
               attributes: ["fullName"]
             }
           },
-          Image
+          Image,
+          City
         ]
       })
 
