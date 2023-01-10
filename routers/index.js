@@ -20,6 +20,7 @@ router.post("/login", Controller.login);
 router.use("/publics", publicsRouter);
 router.use(cityRouter); // City
 router.use("/destinations", destinationPath);
+router.use("/hotels", hotelPath);
 router.use(Authentication.verify);
 
 // User
@@ -31,7 +32,6 @@ router.use("/travel-steps", travelStepRouter);
 // Destinations
 
 // Hotels
-router.use("/hotels", hotelPath);
 
 // Topic
 router.use('/topic', topicRouter)
