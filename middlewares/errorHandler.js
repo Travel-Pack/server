@@ -3,7 +3,7 @@ const errorHandler = (err, req, res, next) => {
 
   let code = 500;
   let msg = "Internal Server Error";
-  console.log(err, '<=== error');
+  console.log(err, "<=== error");
   if (err.name == "SequelizeValidationError") {
     code = 400;
     msg = err.errors[0].message;
@@ -69,8 +69,11 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "notMatchReview") {
     code = 404;
     msg = "Sorry, not found review for this destination";
-  } else if (err.name === 'Destination Not Found' || err.name === 'Hotel Not Found') {
-    [code, msg] = [404, err.name]
+  } else if (
+    err.name === "Destination Not Found" ||
+    err.name === "Hotel Not Found"
+  ) {
+    [code, msg] = [404, err.name];
   } else if (err.name === "travelDataStepEmpty") {
     code = 400;
     msg = "Travel step data cannot be empty";
@@ -80,6 +83,12 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.message == "No recipients defined") {
     code = 500;
     msg = "Error Sending Mail";
+  } else if (err.name == "Topic Not Found") {
+    code = 404;
+    msg = "Sorry, you don't get any matched topic.";
+  } else if (err.name == "Title/ Topic required") {
+    code = 400;
+    msg = "Title or Topic is required";
   }
 
   res.status(code).json({ msg });

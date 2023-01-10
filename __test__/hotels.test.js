@@ -6,6 +6,10 @@ const { User, Province, City, Hotel, Review, sequelize } = require("../models");
 let admin_access_token;
 let customer_access_token;
 
+beforeEach(() => {
+  jest.restoreAllMocks();
+});
+
 beforeAll(async function () {
   let userAdmin = await User.create({
     fullName: "User Admin",
@@ -27,14 +31,15 @@ beforeAll(async function () {
 
   let Provinces = await Province.create({
     name: "Jawa Barat",
-    slug: "jawa-barat"
+    slug: "jawa-barat",
   });
   let Cities = await City.create({
     name: "Jakarta",
     slug: "jakarta",
-    image: "https://asset.kompas.com/crops/8GX0CBJ2-tDsMtpgq6TCN0WWPtI=/0x0:0x0/750x500/data/photo/2020/06/11/5ee208425be9b.jpg",
+    image:
+      "https://asset.kompas.com/crops/8GX0CBJ2-tDsMtpgq6TCN0WWPtI=/0x0:0x0/750x500/data/photo/2020/06/11/5ee208425be9b.jpg",
     geocoding: "5087379786581",
-    ProvinceId: 1
+    ProvinceId: 1,
   });
 
   admin_access_token = createToken({ id: userAdmin.id });
@@ -53,41 +58,48 @@ beforeAll(async function () {
         isRecommended: false,
         price: 0,
         CityId: 1,
-        createdAt: new Date(), updatedAt: new Date()
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         name: "ibis Surabaya City Center",
         slug: "ibis-surabaya-city-center",
-        image: "http://pix10.agoda.net/hotelImages/625695/-1/6f065fee7e3eee456d78bd4d38bc653e.jpg?ce=0&s=768x1024",
+        image:
+          "http://pix10.agoda.net/hotelImages/625695/-1/6f065fee7e3eee456d78bd4d38bc653e.jpg?ce=0&s=768x1024",
         address: "Jl. jalan sehat",
         geocoding: "-7.269665,112.741219",
         isRecommended: true,
         price: 400000,
         CityId: 1,
-        createdAt: new Date(), updatedAt: new Date()
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         name: "Swiss-Belinn Tunjungan, Surabaya",
         slug: "swiss-belinn-tunjungan,-surabaya",
-        image: "https://media-cdn.tripadvisor.com/media/photo-s/0c/98/b0/be/swiss-belinn-tunjungan.jpg",
+        image:
+          "https://media-cdn.tripadvisor.com/media/photo-s/0c/98/b0/be/swiss-belinn-tunjungan.jpg",
         address: "Jl. jalan sehat",
         geocoding: "-7.262066,112.740918",
         isRecommended: false,
         price: 450000,
         CityId: 1,
-        createdAt: new Date(), updatedAt: new Date()
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         name: "Livinn Hostel Surabaya",
         slug: "livinn-hostel-surabaya",
-        image: "https://jenishotel.info/wp-content/uploads/2019/09/livinn-hostel.jpg",
+        image:
+          "https://jenishotel.info/wp-content/uploads/2019/09/livinn-hostel.jpg",
         address: "Jl. jalan sehat",
         geocoding: "-7.263283,112.751178",
         isRecommended: true,
         price: 88000,
         CityId: 1,
-        createdAt: new Date(), updatedAt: new Date()
-      }
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ],
     {}
   );
@@ -99,50 +111,61 @@ beforeAll(async function () {
         name: "Ancol",
         slug: "ancol",
         address: "Jl. Lodan Timur no. 7 North Jakarta, Jakarta 14430 Indonesia",
-        mainImg: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/58/44/fd/ancol-dreamland.jpg?w=1200&h=-1&s=1",
+        mainImg:
+          "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/58/44/fd/ancol-dreamland.jpg?w=1200&h=-1&s=1",
         cost: 250000,
         geocoding: "123213123",
         description: "this is destination DESCRIPTIONS SECTION!",
         CityId: 1,
         UserId: 1,
-        createdAt: new Date(), updatedAt: new Date()
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         name: "Waterbom PIK",
         slug: "waterboom-pik",
-        address: "Jl. Pantai Indah Kapuk Jl. Pantai Indah Barat No.1, RW.2, Kamal Muara, Kec. Penjaringan, Kota Jkt Utara, Daerah Khusus Ibukota Jakarta 14470",
-        mainImg: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/5d/70/b0/waterbom-jakarta.jpg?w=1200&h=1200&s=1",
+        address:
+          "Jl. Pantai Indah Kapuk Jl. Pantai Indah Barat No.1, RW.2, Kamal Muara, Kec. Penjaringan, Kota Jkt Utara, Daerah Khusus Ibukota Jakarta 14470",
+        mainImg:
+          "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/06/5d/70/b0/waterbom-jakarta.jpg?w=1200&h=1200&s=1",
         cost: 300000,
         geocoding: "123433123",
         description: "this is destination DESCRIPTIONS SECTION!",
         CityId: 1,
         UserId: 1,
-        createdAt: new Date(), updatedAt: new Date()
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         name: "National Monument",
         slug: "nasional-monument",
-        address: "Gambir, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta",
-        mainImg: "https://d2ile4x3f22snf.cloudfront.net/wp-content/uploads/sites/329/2018/10/29141024/monas8.jpg",
+        address:
+          "Gambir, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta",
+        mainImg:
+          "https://d2ile4x3f22snf.cloudfront.net/wp-content/uploads/sites/329/2018/10/29141024/monas8.jpg",
         cost: 15000,
         geocoding: "-6.175316204693681, 106.82716704183527",
         description: "this is destination DESCRIPTIONS SECTION!",
         CityId: 1,
         UserId: 1,
-        createdAt: new Date(), updatedAt: new Date()
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
       {
         name: "Candi Borobudur",
         slug: "candi-borobudur",
-        address: "Jl. Badrawati, Kw. Candi Borobudur, Borobudur, Kec. Borobudur, Kabupaten Magelang, Jawa Tengah",
-        mainImg: "https://asset.kompas.com/crops/PREP49IjcIsLm5BEFNlETeDO8PE=/0x118:1430x1071/750x500/data/photo/2022/03/07/6225c0669e6d2.jpg",
+        address:
+          "Jl. Badrawati, Kw. Candi Borobudur, Borobudur, Kec. Borobudur, Kabupaten Magelang, Jawa Tengah",
+        mainImg:
+          "https://asset.kompas.com/crops/PREP49IjcIsLm5BEFNlETeDO8PE=/0x118:1430x1071/750x500/data/photo/2022/03/07/6225c0669e6d2.jpg",
         cost: 50000,
         geocoding: "-7.607703644149317, 110.20385858644774",
         description: "this is destination DESCRIPTIONS SECTION!",
         CityId: 1,
         UserId: 1,
-        createdAt: new Date(), updatedAt: new Date()
-      }
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ],
     {}
   );
@@ -154,7 +177,7 @@ beforeAll(async function () {
     internet: 5,
     safety: 5,
     comment: "woww!",
-    UserId: 1
+    UserId: 1,
   });
 });
 
@@ -206,11 +229,22 @@ describe("Hotels Public", () => {
       expect(res.body[0]).toHaveProperty("Reviews", expect.any(Array));
       expect(res.body[0]).toHaveProperty("Images", expect.any(Array));
     });
-
+  });
+  describe("GET /publics/hotels", () => {
+    test("500, failed get hotels without query", async () => {
+      jest.spyOn(Hotel, "findAll").mockRejectedValue("Error");
+      const res = await request(app).get("/publics/hotels").send({});
+      // console.log(res.body, "<<<<<-- res body1");
+      expect(res.status).toBe(500);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
   });
   describe("GET /publics/hotels/:slug", () => {
     test("200, success get a hotel details", async () => {
-      const res = await request(app).get("/publics/hotels/ibis-surabaya-city-center").send({});
+      const res = await request(app)
+        .get("/publics/hotels/ibis-surabaya-city-center")
+        .send({});
       // console.log(res.body, "<<< res body2");
       expect(res.status).toBe(200);
       expect(res.body).toBeInstanceOf(Object);
@@ -230,7 +264,9 @@ describe("Hotels Public", () => {
       expect(res.body).toHaveProperty("avg_safety");
     });
     test("200, success get a hotel details", async () => {
-      const res = await request(app).get("/publics/hotels/livinn-hostel-surabaya").send({});
+      const res = await request(app)
+        .get("/publics/hotels/livinn-hostel-surabaya")
+        .send({});
       // console.log(res.body, "<<< res body2");
       expect(res.status).toBe(200);
       expect(res.body).toBeInstanceOf(Object);
@@ -253,6 +289,15 @@ describe("Hotels Public", () => {
     test("200, success get a destinations", async () => {
       const res = await request(app).get("/publics/destinations/xxx").send({});
       // console.log(res.body, "<<< res body2");
+      expect(res.status).toBe(404);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("GET /publics/hotels", () => {
+    test("404, failed get hotels not found", async () => {
+      const res = await request(app).get("/publics/hotels/dsa").send({});
+      // console.log(res.body, "<<<<<-- res body1");
       expect(res.status).toBe(404);
       expect(res.body).toBeInstanceOf(Object);
       expect(res.body).toHaveProperty("msg", expect.any(String));

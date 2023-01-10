@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Topic extends Model {
     /**
@@ -12,27 +10,32 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Topic.hasMany(models.Message, {
-        foreignKey: "TopicId"
-      })
-      Topic.belongsTo(models.User, {foreignKey: "UserId"})
+        foreignKey: "TopicId",
+      });
+      Topic.belongsTo(models.User, { foreignKey: "UserId" });
     }
   }
-  Topic.init({
-    title: DataTypes.STRING,
-    slug: DataTypes.STRING,
-    type: DataTypes.STRING,
-    UserId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Topic',
-  });
+  Topic.init(
+    {
+      title: DataTypes.STRING,
+      slug: DataTypes.STRING,
+      type: DataTypes.STRING,
+      UserId: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "Topic",
+    }
+  );
 
   Topic.beforeCreate((instance, options) => {
-    return instance.slug = (instance.name).toLocaleLowerCase().replace(/ /g, '-')
-  })
+    instance.slug = instance.title.toLocaleLowerCase().replace(/ /g, "-");
+  });
 
   Topic.afterUpdate((instance, options) => {
-    return instance.slug = (instance.name).toLocaleLowerCase().replace(/ /g, '-')
-  })
+    return (instance.slug = instance.name
+      .toLocaleLowerCase()
+      .replace(/ /g, "-"));
+  });
   return Topic;
 };
