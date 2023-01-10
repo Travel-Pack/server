@@ -43,6 +43,7 @@ class Controller {
       res.status(200).json({
         message: `Success login with email ${findUser.email}`,
         access_token: createToken({ id: findUser.id, email: findUser.email }),
+        email: findUser.email
       });
     } catch (error) {
       next(error);

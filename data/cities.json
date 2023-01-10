@@ -1,37 +1,37 @@
 [
-    {   
-        "id": 1,
-        "name": "DKI Jakarta",
-        "image": "https://img.okezone.com/content/2022/10/17/1/2688935/pemprov-dki-apresiasi-sumbangsih-kolaborator-untuk-kemajuan-kota-jakarta-sZAYqfuogX.jpg",
-        "geocoding": "-6.179321632578393, 106.82702228106473",
-        "ProvinceId": 11
-    },
-    {   
-        "id": 2,
-        "name": "Yogyakarta",
-        "image": "https://asset.kompas.com/crops/8GX0CBJ2-tDsMtpgq6TCN0WWPtI=/0x0:0x0/750x500/data/photo/2020/06/11/5ee208425be9b.jpg",
-        "geocoding": "-7.812238221468897, 110.36314591176078",
-        "ProvinceId": 14
-    },
-    {   
-        "id": 3,
-        "name": "Surabaya",
-        "image": "https://asset.kompas.com/crops/GAuUyrwhmqnVAt7HRQnTw1s7K6g=/0x7:740x500/750x500/data/photo/2022/01/21/61ea96a857637.jpg",
-        "geocoding": "-7.263619711892757, 112.7452528522369",
-        "ProvinceId": 15
-    },
-    {   
-        "id": 4,
-        "name": "Semarang",
-        "image": "https://storyblok-cdn.ef.com/f/60990/1200x700/646a20cad6/kota-semarang-hero.jpg",
-        "geocoding": "-6.971627907761851, 110.42382202524762",
-        "ProvinceId": 13
-    },
-    {   
-        "id": 5,
-        "name": "Bandung",
-        "image": "https://asset.kompas.com/crops/Hu0u13hQ0memWz55y6tWX0jiLgQ=/0x0:0x0/750x500/data/photo/2021/04/02/6066e4449725a.jpg",
-        "geocoding": "-6.921622767247995, 107.60697115941927",
+  {
+    "id": 1,
+    "name": "DKI Jakarta",
+    "image": "https://img.okezone.com/content/2022/10/17/1/2688935/pemprov-dki-apresiasi-sumbangsih-kolaborator-untuk-kemajuan-kota-jakarta-sZAYqfuogX.jpg",
+    "geocoding": "-6.179321632578393, 106.82702228106473",
+    "ProvinceId": 11
+  },
+  {
+    "id": 2,
+    "name": "Yogyakarta",
+    "image": "https://asset.kompas.com/crops/8GX0CBJ2-tDsMtpgq6TCN0WWPtI=/0x0:0x0/750x500/data/photo/2020/06/11/5ee208425be9b.jpg",
+    "geocoding": "-7.812238221468897, 110.36314591176078",
+    "ProvinceId": 14
+  },
+  {
+    "id": 3,
+    "name": "Surabaya",
+    "image": "https://asset.kompas.com/crops/GAuUyrwhmqnVAt7HRQnTw1s7K6g=/0x7:740x500/750x500/data/photo/2022/01/21/61ea96a857637.jpg",
+    "geocoding": "-7.263619711892757, 112.7452528522369",
+    "ProvinceId": 15
+  },
+  {
+    "id": 4,
+    "name": "Semarang",
+    "image": "https://storyblok-cdn.ef.com/f/60990/1200x700/646a20cad6/kota-semarang-hero.jpg",
+    "geocoding": "-6.971627907761851, 110.42382202524762",
+    "ProvinceId": 13
+  },
+  {
+    "id": 5,
+    "name": "Bandung",
+    "image": "https://asset.kompas.com/crops/Hu0u13hQ0memWz55y6tWX0jiLgQ=/0x0:0x0/750x500/data/photo/2021/04/02/6066e4449725a.jpg",
+    "geocoding": "-6.921622767247995, 107.60697115941927",
         "ProvinceId": 12
     },
     {   
@@ -46,6 +46,98 @@
         "name": "Bogor",
         "image": "https://asset.kompas.com/crops/FXdqWgI7yLxoR4-cIGDc3YGnh_g=/0x0:0x0/750x500/data/photo/2021/12/17/61bc68612d34b.jpg",
         "geocoding": "-6.593349554036896, 106.7915073295078",
-        "ProvinceId": 12
-    }
+    "ProvinceId": 12
+  },
+  {
+    "id": 6,
+    "name": "Madiun"
+  },
+  {
+    "id": 7,
+    "name": "Mojokerto"
+  },
+  {
+    "id": 8,
+    "name": "Pasuruan"
+  },
+  {
+    "id": 9,
+    "name": "Malang"
+  },
+  {
+    "id": 10,
+    "name": "Banyuwangi"
+  },
+  {
+    "id": 11,
+    "name": "Situbondo"
+  },
+  {
+    "id": 12,
+    "name": "Lumajang"
+  },
+  {
+    "id": 13,
+    "name": "Bangkalan"
+  },
+  {
+    "id": 14,
+    "name": "Probolinggo"
+  },
+  {
+    "id": 15,
+    "name": "Selat Madura"
+  },
+  {
+    "id": 16,
+    "name": "Surabaya"
+  },
+  {
+    "id": 17,
+    "name": "Kota Batu"
+  },
+  {
+    "id": 18,
+    "name": "Pacitan"
+  },
+  {
+    "id": 19,
+    "name": "Sumenep"
+  },
+  {
+    "id": 20,
+    "name": "blitar"
+  },
+  {
+    "id": 21,
+    "name": "Lamongan"
+  },
+  {
+    "id": 22,
+    "name": "Jember"
+  },
+  {
+    "id": 23,
+    "name": "Gresik"
+  },
+  {
+    "id": 24,
+    "name": "Tulungagung"
+  },
+  {
+    "id": 25,
+    "name": "Karangasem"
+  },
+  {
+    "id": 26,
+    "name": "Badung"
+  },
+  {
+    "id": 27,
+    "name": "Denpasar"
+  },
+  {
+    "id": 28,
+    "name": "Tabanan"
+  }
 ]
