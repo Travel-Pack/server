@@ -3,7 +3,8 @@ const { Review, User } = require("../models");
 class ReviewController {
   static async postReview(req, res, next) {
     try {
-      let { DestinationId, cost, fun, internet, safety, comment } = req.body;
+      let { DestinationId, cost, fun, internet, safety, comment, HotelId } =
+        req.body;
       let UserId = req.user.id;
       let newReview = await Review.create({
         DestinationId,
@@ -13,19 +14,12 @@ class ReviewController {
         safety,
         comment,
         UserId,
+        HotelId,
       });
       console.log(newReview, ">>>");
       const findUser = await User.findByPk(UserId);
 
-      if (!findUser) {
-        throw { name: "User not found" };
-      }
-
       await User.increment({ point: 1 }, { where: { id: UserId } });
-      // await User.update(
-      //   { point: (findUser.point += 1) },
-      //   { where: { UserId } }
-      // );
       console.log(findUser, "<<< USER");
       res
         .status(201)
@@ -82,7 +76,7 @@ class ReviewController {
         include: [User],
         where: { DestinationId },
       });
-      console.log(destinationReviews, "<<<<<< BUKAN ERROR");
+      // console.log(destinationReviews, "<<<<<< BUKAN ERROR");
       if (destinationReviews.length == 0) throw { name: 'Destination Not Found' }
       let sumCost = 0;
       let sumFun = 0;
@@ -97,7 +91,7 @@ class ReviewController {
         sumSafety += el.safety;
         commentArr.push({
           user: el.User.fullName,
-          comment: el.comment
+          comment: el.comment,
         });
       });
 
@@ -110,7 +104,6 @@ class ReviewController {
 
       res.status(200).json({ averageReviews, commentArr });
     } catch (error) {
-      console.log(error, "<<<<<<<<<<<<<<<<<<<<<<");
       next(error);
     }
   }
@@ -121,8 +114,7 @@ class ReviewController {
         include: [User],
         where: { HotelId },
       });
-
-      if (!hotels.length == 0) throw { name: 'Hotel Not Found' }
+      if (hotels.length == 0) throw { name: "Hotel Not Found" };
       let sumCost = 0;
       let sumFun = 0;
       let sumInternet = 0;
@@ -136,7 +128,7 @@ class ReviewController {
         sumSafety += el.safety;
         commentArr.push({
           user: el.User.fullName,
-          comment: el.comment
+          comment: el.comment,
         });
       });
 
@@ -155,11 +147,11 @@ class ReviewController {
   static async getReviews(req, res, next) {
     try {
       let destinationReviews = await Review.findAll({
-        include: [User]
+        include: [User],
       });
       let reviews = await Review.findAll({
-        include: [User]
-      })
+        include: [User],
+      });
       let sumCost = 0;
       let sumFun = 0;
       let sumInternet = 0;
@@ -178,12 +170,12 @@ class ReviewController {
         avgInternet: (sumInternet /= destinationReviews.length).toFixed(1),
         avgSafety: (sumSafety /= destinationReviews.length).toFixed(1),
       };
-      let reviewByUser = reviews.map(el => {
+      let reviewByUser = reviews.map((el) => {
         return {
           comment: el.comment,
-          user: el.User.fullName
-        }
-      })
+          user: el.User.fullName,
+        };
+      });
 
       res.status(200).json({ averageReviews, reviewByUser });
     } catch (error) {

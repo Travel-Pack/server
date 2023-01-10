@@ -17,7 +17,6 @@ router.post("/register", Controller.register);
 router.post("/login", Controller.login);
 
 router.use("/publics", publicsRouter);
-router.use(cityRouter);
 router.use(Authentication.verify);
 
 // User
@@ -34,6 +33,7 @@ router.use("/hotels", hotelPath);
 
 router.use(provincesRouter); // Provinces
 router.use(reviewsRouter); // Reviews
+router.use(cityRouter); // City
 
 // Midtrans
 router.use("/midtrans", midtransRouter);
