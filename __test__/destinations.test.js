@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../app");
 const { createToken } = require("../helpers/jsonwebtoken");
-const { User, Province, City, Destination, sequelize } = require("../models");
+const { User, Province, City, Destination, Review, sequelize } = require("../models");
 
 let admin_access_token;
 let customer_access_token;
@@ -94,6 +94,69 @@ beforeAll(async function () {
     ],
     {}
   );
+
+  // HOTELS
+  await sequelize.queryInterface.bulkInsert(
+    "Hotels",
+    [
+      {
+        name: "NULL VALUES",
+        slug: "",
+        image: "NULL VALUES",
+        address: "NULL VALUES",
+        geocoding: "NULL VALUES",
+        isRecommended: false,
+        price: 0,
+        CityId: 1,
+        createdAt: new Date(), updatedAt: new Date()
+      },
+      {
+        name: "ibis Surabaya City Center",
+        slug: "ibis-surabaya-city-center",
+        image: "http://pix10.agoda.net/hotelImages/625695/-1/6f065fee7e3eee456d78bd4d38bc653e.jpg?ce=0&s=768x1024",
+        address: "Jl. jalan sehat",
+        geocoding: "-7.269665,112.741219",
+        isRecommended: true,
+        price: 400000,
+        CityId: 1,
+        createdAt: new Date(), updatedAt: new Date()
+      },
+      {
+        name: "Swiss-Belinn Tunjungan, Surabaya",
+        slug: "swiss-belinn-tunjungan,-surabaya",
+        image: "https://media-cdn.tripadvisor.com/media/photo-s/0c/98/b0/be/swiss-belinn-tunjungan.jpg",
+        address: "Jl. jalan sehat",
+        geocoding: "-7.262066,112.740918",
+        isRecommended: false,
+        price: 450000,
+        CityId: 1,
+        createdAt: new Date(), updatedAt: new Date()
+      },
+      {
+        name: "Livinn Hostel Surabaya",
+        slug: "livinn-hostel-surabaya",
+        image: "https://jenishotel.info/wp-content/uploads/2019/09/livinn-hostel.jpg",
+        address: "Jl. jalan sehat",
+        geocoding: "-7.263283,112.751178",
+        isRecommended: true,
+        price: 88000,
+        CityId: 1,
+        createdAt: new Date(), updatedAt: new Date()
+      }
+    ],
+    {}
+  );
+
+  let Reviews = await Review.create({
+    DestinationId: 2,
+    HotelId: 1,
+    cost: 5,
+    fun: 5,
+    internet: 5,
+    safety: 5,
+    comment: "woww!",
+    UserId: 1
+  });
 });
 
 afterAll(async function () {
@@ -120,168 +183,168 @@ afterAll(async function () {
   });
 });
 
-describe("Destinations Public", () => {
-  describe("GET /publics/destinations", () => {
-    test("200, success get destinations without query", async () => {
-      const res = await request(app).get("/publics/destinations").send({});
-      // console.log(res.body, "<<<<<-- res body1");
-      expect(res.status).toBe(200);
-      expect(res.body).toBeInstanceOf(Array);
-      expect(res.body[0]).toHaveProperty("id", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("name", expect.any(String));
-      expect(res.body[0]).toHaveProperty("slug", expect.any(String));
-      expect(res.body[0]).toHaveProperty("address", expect.any(String));
-      expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
-      expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("geocoding", expect.any(String));
-      expect(res.body[0]).toHaveProperty("description", expect.any(String));
-      expect(res.body[0]).toHaveProperty("CityId", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("Reviews", expect.any(Array));
-      expect(res.body[0]).toHaveProperty("Images", expect.any(Array));
-    });
-    test("200, success get destinations with query: orderBy=name ", async () => {
-      const res = await request(app).get("/publics/destinations?orderBy=name").send({});
-      // console.log(res.body, "<<<<<-- res body1");
-      expect(res.status).toBe(200);
-      expect(res.body).toBeInstanceOf(Array);
-      expect(res.body[0]).toHaveProperty("id", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("name", expect.any(String));
-      expect(res.body[0]).toHaveProperty("slug", expect.any(String));
-      expect(res.body[0]).toHaveProperty("address", expect.any(String));
-      expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
-      expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("geocoding", expect.any(String));
-      expect(res.body[0]).toHaveProperty("description", expect.any(String));
-      expect(res.body[0]).toHaveProperty("CityId", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("Reviews", expect.any(Array));
-      expect(res.body[0]).toHaveProperty("Images", expect.any(Array));
-    });
-    test("200, success get destinations with query: orderBy=costLowToHigh ", async () => {
-      const res = await request(app).get("/publics/destinations?orderBy=costLowToHigh").send({});
-      // console.log(res.body, "<<<<<-- res body1");
-      expect(res.status).toBe(200);
-      expect(res.body).toBeInstanceOf(Array);
-      expect(res.body[0]).toHaveProperty("id", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("name", expect.any(String));
-      expect(res.body[0]).toHaveProperty("slug", expect.any(String));
-      expect(res.body[0]).toHaveProperty("address", expect.any(String));
-      expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
-      expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("geocoding", expect.any(String));
-      expect(res.body[0]).toHaveProperty("description", expect.any(String));
-      expect(res.body[0]).toHaveProperty("CityId", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("Reviews", expect.any(Array));
-      expect(res.body[0]).toHaveProperty("Images", expect.any(Array));
-    });
-    test("200, success get destinations with query: orderBy=costHighToLow ", async () => {
-      const res = await request(app).get("/publics/destinations?orderBy=costHighToLow").send({});
-      // console.log(res.body, "<<<<<-- res body1");
-      expect(res.status).toBe(200);
-      expect(res.body).toBeInstanceOf(Array);
-      expect(res.body[0]).toHaveProperty("id", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("name", expect.any(String));
-      expect(res.body[0]).toHaveProperty("slug", expect.any(String));
-      expect(res.body[0]).toHaveProperty("address", expect.any(String));
-      expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
-      expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("geocoding", expect.any(String));
-      expect(res.body[0]).toHaveProperty("description", expect.any(String));
-      expect(res.body[0]).toHaveProperty("CityId", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("Reviews", expect.any(Array));
-      expect(res.body[0]).toHaveProperty("Images", expect.any(Array));
-    });
-    test("200, success get destinations with query: searchByCity=jakarta & filterCost=251000 ", async () => {
-      const res = await request(app).get("/publics/destinations?searchByCity=jakarta&filterCost=251000").send({});
-      // console.log(res.body, "<<<<<-- tesss");
-      expect(res.status).toBe(200);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body.destinations[0]).toHaveProperty("id", expect.any(Number));
-      expect(res.body.destinations[0]).toHaveProperty("name", expect.any(String));
-      expect(res.body.destinations[0]).toHaveProperty("slug", expect.any(String));
-      expect(res.body.destinations[0]).toHaveProperty("address", expect.any(String));
-      expect(res.body.destinations[0]).toHaveProperty("mainImg", expect.any(String));
-      expect(res.body.destinations[0]).toHaveProperty("cost", expect.any(Number));
-      expect(res.body.destinations[0]).toHaveProperty("geocoding", expect.any(String));
-      expect(res.body.destinations[0]).toHaveProperty("description", expect.any(String));
-      expect(res.body.destinations[0]).toHaveProperty("CityId", expect.any(Number));
-      expect(res.body.destinations[0]).toHaveProperty("UserId", expect.any(Number));
-      expect(res.body.destinations[0]).toHaveProperty("Reviews", expect.any(Array));
-      expect(res.body.destinations[0]).toHaveProperty("Images", expect.any(Array));
-    });
-    test("200, success get destinations with query: searchByDest=ancol ", async () => {
-      const res = await request(app).get("/publics/destinations?searchByDest=ancol").send({});
-      // console.log(res.body, "<<<<<-- tesss");
-      expect(res.status).toBe(200);
-      expect(res.body).toBeInstanceOf(Array);
-      expect(res.body[0]).toHaveProperty("id", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("name", expect.any(String));
-      expect(res.body[0]).toHaveProperty("slug", expect.any(String));
-      expect(res.body[0]).toHaveProperty("address", expect.any(String));
-      expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
-      expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("geocoding", expect.any(String));
-      expect(res.body[0]).toHaveProperty("description", expect.any(String));
-      expect(res.body[0]).toHaveProperty("CityId", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("Reviews", expect.any(Array));
-      expect(res.body[0]).toHaveProperty("Images", expect.any(Array));
-    });
-    test("200, success get best destinations ", async () => {
-      const res = await request(app).get("/publics/destinations/best").send({});
-      // console.log(res.body, "<<<<<-- tesss");
-      expect(res.status).toBe(200);
-      expect(res.body).toBeInstanceOf(Array);
-      expect(res.body[0]).toHaveProperty("id", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("name", expect.any(String));
-      expect(res.body[0]).toHaveProperty("slug", expect.any(String));
-      expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
-      expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
-      expect(res.body[0]).toHaveProperty("cityName", expect.any(String));
-      expect(res.body[0]).toHaveProperty("avg_review", expect.any(Number));
-    });
-    // ERROR
-    test("404, failed to get destinations with query: searchByCity=xxx ", async () => {
-      const res = await request(app).get("/publics/destinations?searchByCity=xxx").send({});
-      // console.log(res.body, "<<<<<-- tesss");
-      expect(res.status).toBe(404);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body).toHaveProperty("msg", expect.any(String));
-    });
-
+// describe("Destinations Public", () => {
+describe("GET /publics/destinations", () => {
+  test("200, success get destinations without query", async () => {
+    const res = await request(app).get("/publics/destinations").send({});
+    // console.log(res.body, "<<<<<-- res body1");
+    expect(res.status).toBe(200);
+    expect(res.body).toBeInstanceOf(Array);
+    expect(res.body[0]).toHaveProperty("id", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("name", expect.any(String));
+    expect(res.body[0]).toHaveProperty("slug", expect.any(String));
+    expect(res.body[0]).toHaveProperty("address", expect.any(String));
+    expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
+    expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("geocoding", expect.any(String));
+    expect(res.body[0]).toHaveProperty("description", expect.any(String));
+    expect(res.body[0]).toHaveProperty("CityId", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("Reviews", expect.any(Array));
+    expect(res.body[0]).toHaveProperty("Images", expect.any(Array));
   });
-  describe("GET /publics/destinations/:slug", () => {
-    test("200, success get a destinations", async () => {
-      const res = await request(app).get("/publics/destinations/ancol").send({});
-      // console.log(res.body, "<<< res body2");
-      expect(res.status).toBe(200);
-      expect(res.body.destination).toBeInstanceOf(Object);
-      expect(res.body.destination).toHaveProperty("id", expect.any(Number));
-      expect(res.body.destination).toHaveProperty("name", expect.any(String));
-      expect(res.body.destination).toHaveProperty("slug", expect.any(String));
-      expect(res.body.destination).toHaveProperty("address", expect.any(String));
-      expect(res.body.destination).toHaveProperty("mainImg", expect.any(String));
-      expect(res.body.destination).toHaveProperty("cost", expect.any(Number));
-      expect(res.body.destination).toHaveProperty("geocoding", expect.any(String));
-      expect(res.body.destination).toHaveProperty("description", expect.any(String));
-      expect(res.body.destination).toHaveProperty("CityId", expect.any(Number));
-      expect(res.body.destination).toHaveProperty("UserId", expect.any(Number));
-      expect(res.body.destination).toHaveProperty("Reviews", expect.any(Array));
-      expect(res.body.destination).toHaveProperty("Images", expect.any(Array));
-    });
-    //  ERROR destination with :slug
-    test("200, success get a destinations", async () => {
-      const res = await request(app).get("/publics/destinations/xxx").send({});
-      // console.log(res.body, "<<< res body2");
-      expect(res.status).toBe(404);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body).toHaveProperty("msg", expect.any(String));
-    });
+  test("200, success get destinations with query: orderBy=name ", async () => {
+    const res = await request(app).get("/publics/destinations?orderBy=name").send({});
+    // console.log(res.body, "<<<<<-- res body1");
+    expect(res.status).toBe(200);
+    expect(res.body).toBeInstanceOf(Array);
+    expect(res.body[0]).toHaveProperty("id", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("name", expect.any(String));
+    expect(res.body[0]).toHaveProperty("slug", expect.any(String));
+    expect(res.body[0]).toHaveProperty("address", expect.any(String));
+    expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
+    expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("geocoding", expect.any(String));
+    expect(res.body[0]).toHaveProperty("description", expect.any(String));
+    expect(res.body[0]).toHaveProperty("CityId", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("Reviews", expect.any(Array));
+    expect(res.body[0]).toHaveProperty("Images", expect.any(Array));
+  });
+  test("200, success get destinations with query: orderBy=costLowToHigh ", async () => {
+    const res = await request(app).get("/publics/destinations?orderBy=costLowToHigh").send({});
+    // console.log(res.body, "<<<<<-- res body1");
+    expect(res.status).toBe(200);
+    expect(res.body).toBeInstanceOf(Array);
+    expect(res.body[0]).toHaveProperty("id", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("name", expect.any(String));
+    expect(res.body[0]).toHaveProperty("slug", expect.any(String));
+    expect(res.body[0]).toHaveProperty("address", expect.any(String));
+    expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
+    expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("geocoding", expect.any(String));
+    expect(res.body[0]).toHaveProperty("description", expect.any(String));
+    expect(res.body[0]).toHaveProperty("CityId", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("Reviews", expect.any(Array));
+    expect(res.body[0]).toHaveProperty("Images", expect.any(Array));
+  });
+  test("200, success get destinations with query: orderBy=costHighToLow ", async () => {
+    const res = await request(app).get("/publics/destinations?orderBy=costHighToLow").send({});
+    // console.log(res.body, "<<<<<-- res body1");
+    expect(res.status).toBe(200);
+    expect(res.body).toBeInstanceOf(Array);
+    expect(res.body[0]).toHaveProperty("id", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("name", expect.any(String));
+    expect(res.body[0]).toHaveProperty("slug", expect.any(String));
+    expect(res.body[0]).toHaveProperty("address", expect.any(String));
+    expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
+    expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("geocoding", expect.any(String));
+    expect(res.body[0]).toHaveProperty("description", expect.any(String));
+    expect(res.body[0]).toHaveProperty("CityId", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("Reviews", expect.any(Array));
+    expect(res.body[0]).toHaveProperty("Images", expect.any(Array));
+  });
+  test("200, success get destinations with query: searchByCity=jakarta & filterCost=251000 ", async () => {
+    const res = await request(app).get("/publics/destinations?searchByCity=jakarta&filterCost=251000").send({});
+    // console.log(res.body, "<<<<<-- tesss");
+    expect(res.status).toBe(200);
+    expect(res.body).toBeInstanceOf(Array);
+    expect(res.body[0]).toHaveProperty("id", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("name", expect.any(String));
+    expect(res.body[0]).toHaveProperty("slug", expect.any(String));
+    expect(res.body[0]).toHaveProperty("address", expect.any(String));
+    expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
+    expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("geocoding", expect.any(String));
+    expect(res.body[0]).toHaveProperty("description", expect.any(String));
+    expect(res.body[0]).toHaveProperty("CityId", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("Reviews", expect.any(Array));
+    expect(res.body[0]).toHaveProperty("Images", expect.any(Array));
+  });
+  test("200, success get destinations with query: searchByDest=ancol ", async () => {
+    const res = await request(app).get("/publics/destinations?searchByDest=ancol").send({});
+    // console.log(res.body, "<<<<<-- tesss");
+    expect(res.status).toBe(200);
+    expect(res.body).toBeInstanceOf(Array);
+    expect(res.body[0]).toHaveProperty("id", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("name", expect.any(String));
+    expect(res.body[0]).toHaveProperty("slug", expect.any(String));
+    expect(res.body[0]).toHaveProperty("address", expect.any(String));
+    expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
+    expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("geocoding", expect.any(String));
+    expect(res.body[0]).toHaveProperty("description", expect.any(String));
+    expect(res.body[0]).toHaveProperty("CityId", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("Reviews", expect.any(Array));
+    expect(res.body[0]).toHaveProperty("Images", expect.any(Array));
+  });
+  test("200, success get best destinations ", async () => {
+    const res = await request(app).get("/publics/destinations/best").send({});
+    // console.log(res.body, "<<<<<-- tesss");
+    expect(res.status).toBe(200);
+    expect(res.body).toBeInstanceOf(Array);
+    expect(res.body[0]).toHaveProperty("id", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("name", expect.any(String));
+    expect(res.body[0]).toHaveProperty("slug", expect.any(String));
+    expect(res.body[0]).toHaveProperty("mainImg", expect.any(String));
+    expect(res.body[0]).toHaveProperty("cost", expect.any(Number));
+    expect(res.body[0]).toHaveProperty("cityName", expect.any(String));
+    expect(res.body[0]).toHaveProperty("avg_review", expect.any(Number));
+  });
+  // ERROR
+  test("404, failed to get destinations with query: searchByCity=xxx ", async () => {
+    const res = await request(app).get("/publics/destinations?searchByCity=xxx").send({});
+    // console.log(res.body, "<<<<<-- tesss");
+    expect(res.status).toBe(404);
+    expect(res.body).toBeInstanceOf(Object);
+    expect(res.body).toHaveProperty("msg", expect.any(String));
+  });
+
+});
+describe("GET /publics/destinations/:slug", () => {
+  test("200, success get a destinations", async () => {
+    const res = await request(app).get("/publics/destinations/ancol").send({});
+    // console.log(res.body, "<<< res body2");
+    expect(res.status).toBe(200);
+    expect(res.body.destination).toBeInstanceOf(Object);
+    expect(res.body.destination).toHaveProperty("id", expect.any(Number));
+    expect(res.body.destination).toHaveProperty("name", expect.any(String));
+    expect(res.body.destination).toHaveProperty("slug", expect.any(String));
+    expect(res.body.destination).toHaveProperty("address", expect.any(String));
+    expect(res.body.destination).toHaveProperty("mainImg", expect.any(String));
+    expect(res.body.destination).toHaveProperty("cost", expect.any(Number));
+    expect(res.body.destination).toHaveProperty("geocoding", expect.any(String));
+    expect(res.body.destination).toHaveProperty("description", expect.any(String));
+    expect(res.body.destination).toHaveProperty("CityId", expect.any(Number));
+    expect(res.body.destination).toHaveProperty("UserId", expect.any(Number));
+    expect(res.body.destination).toHaveProperty("Reviews", expect.any(Array));
+    expect(res.body.destination).toHaveProperty("Images", expect.any(Array));
+  });
+  //  ERROR destination with :slug
+  test("200, success get a destinations", async () => {
+    const res = await request(app).get("/publics/destinations/xxx").send({});
+    // console.log(res.body, "<<< res body2");
+    expect(res.status).toBe(404);
+    expect(res.body).toBeInstanceOf(Object);
+    expect(res.body).toHaveProperty("msg", expect.any(String));
   });
 });
+// });
 
 // describe("Provinces for Admin", () => {
 //   describe("POST /provinces", () => {
