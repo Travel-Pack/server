@@ -19,6 +19,7 @@ router.post("/login", Controller.login);
 
 router.use("/publics", publicsRouter);
 router.use(cityRouter); // City
+router.use("/destinations", destinationPath);
 router.use(Authentication.verify);
 
 // User
@@ -28,7 +29,6 @@ router.use("/users", userRouter);
 router.use("/travel-steps", travelStepRouter);
 
 // Destinations
-router.use("/destinations", destinationPath);
 
 // Hotels
 router.use("/hotels", hotelPath);
