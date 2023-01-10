@@ -3,6 +3,7 @@ const DestinationController = require("../controllers/destinations");
 const HotelController = require("../controllers/hotels");
 const ProvinceController = require("../controllers/provinces");
 const ReviewController = require("../controllers/reviews");
+const TopicController = require("../controllers/topic")
 
 /* -------- Provinces --------- */
 router.get("/provinces", ProvinceController.getProvinces);
@@ -23,5 +24,9 @@ router.get(
   ReviewController.getReviewByDestination
 );
 router.get("/reviews/h/:HotelId", ReviewController.getReviewByHotel);
+
+/* -------- Topic/Forum --------- */
+router.get('/topic', TopicController.getAllTopics)
+router.get('/topic/:id', TopicController.getTopic)
 
 module.exports = router;

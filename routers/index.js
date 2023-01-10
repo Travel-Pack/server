@@ -10,6 +10,7 @@ const reviewsRouter = require("./reviews");
 const publicsRouter = require("./public");
 const cityRouter = require("./cities");
 const midtransRouter = require("./midtrans");
+const topicRouter = require("./topic")
 const Authentication = require("../middlewares/Authentication");
 
 // Register & Login
@@ -30,6 +31,9 @@ router.use("/destinations", destinationPath);
 
 // Hotels
 router.use("/hotels", hotelPath);
+
+// Topic
+router.use('/topic', topicRouter)
 
 router.use(provincesRouter); // Provinces
 router.use(reviewsRouter); // Reviews
