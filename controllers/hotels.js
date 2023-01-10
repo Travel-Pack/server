@@ -32,7 +32,10 @@ class HotelController {
       let hotel = await Hotel.findOne({
         where: { slug: req.params.slug },
         include: [
-          Review,
+          {
+            model:Review,
+            include: User
+          },
           Image
         ]
       })
