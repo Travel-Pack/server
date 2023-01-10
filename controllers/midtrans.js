@@ -2,8 +2,8 @@ const midtransClient = require("midtrans-client");
 const { User } = require("../models");
 
 class midtransController {
-    static async generateSnapToken(req, res, next) {
-		try {
+  static async generateSnapToken(req, res, next) {
+    try {
       const snap = new midtransClient.Snap({
         // Set to true if you want Production Environment (accept real transaction).
         isProduction: false,
@@ -34,10 +34,10 @@ class midtransController {
       const transactionToken = transaction.token;
 
       res.status(201).json({ transactionToken });
-		} catch (error) {
-			next(error);
-		}
+    } catch (error) {
+      next(error);
     }
+  }
 }
 
 module.exports = midtransController;
