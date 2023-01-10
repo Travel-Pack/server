@@ -4,6 +4,7 @@ const { hashPassword } = require("../helpers/bcryptjs.js");
 const { sequelize, TravelStep } = require("../models");
 const { queryInterface } = sequelize;
 let access_token;
+let access_token_premium;
 
 beforeAll(async () => {
   await queryInterface.bulkInsert("Users", [
@@ -22,7 +23,7 @@ beforeAll(async () => {
       phoneNumber: "08111",
       email: "bobby22@gmail.com",
       password: hashPassword("12345"),
-      isPremium: false,
+      isPremium: true,
       role: "Customer",
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -312,6 +313,15 @@ beforeAll(async () => {
       }
     )
   access_token = response.body.access_token;
+  const res = await request(app)
+    .post('/login')
+    .send(
+      {
+        email: "bobby22@gmail.com",
+        password: "12345"
+      }
+    )
+  access_token_premium = res.body.access_token;
 });
 
 afterAll(async () => {
@@ -348,9 +358,61 @@ afterAll(async () => {
 
 describe("Generate Travel Steps", () => {
   describe("POST /travel-steps/generates", () => {
-    test("200, success generate Travel Steps", async () => {
+    test("200, success generate Travel Steps without premium", async () => {
       const res = await request(app).post("/travel-steps/generates").set({
         access_token
+      })
+        .send({
+          "budgetDestination": 2000000,
+          "budgetHotel": 500000,
+          "CityId": 3,
+          "DestinationIds": [4],
+          "numberOfDestination": 2
+        });
+      expect(res.status).toBe(200);console.log(res.body.travelStep.length, "<<<<<");
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("travelStep");
+      expect(res.body.travelStep).toBeInstanceOf(Array);
+      expect(res.body).toHaveProperty("needPremium");
+      expect(res.body.needPremium).toBe(true);
+      let totalPriceDestination = 0;
+      let totalPriceTravelSteps = 0;
+      for (let i = 0; i < res.body.travelStep.length; i++) {
+        expect(res.body.travelStep[i]).toHaveProperty("hotel");
+        expect(res.body.travelStep[i].hotel).toBeInstanceOf(Object);
+        expect(res.body.travelStep[i].hotel).toHaveProperty("id", expect.any(Number));
+        expect(res.body.travelStep[i].hotel).toHaveProperty("name", expect.any(String));
+        expect(res.body.travelStep[i].hotel).toHaveProperty("image", expect.any(String));
+        expect(res.body.travelStep[i].hotel).toHaveProperty("geocoding", expect.any(String));
+        expect(res.body.travelStep[i].hotel).toHaveProperty("price", expect.any(Number));
+        expect(res.body.travelStep[i].hotel).toHaveProperty("CityId", expect.any(Number));
+        expect(res.body.travelStep[i].hotel.CityId).toBe(3);
+        expect(res.body.travelStep[i].hotel).toHaveProperty("price", expect.any(Number));
+        expect(res.body.travelStep[i].hotel.price).toBeLessThan(100000);
+        expect(res.body.travelStep[i]).toHaveProperty("destination");
+        for (let j = 0; j < res.body.travelStep[i].destination.length; j++) {
+          expect(res.body.travelStep[i].destination[j]).toBeInstanceOf(Object);
+          expect(res.body.travelStep[i].destination[j]).toHaveProperty("id", expect.any(Number));
+          expect(res.body.travelStep[i].destination[j]).toHaveProperty("name", expect.any(String));
+          expect(res.body.travelStep[i].destination[j]).toHaveProperty("slug", expect.any(String));
+          expect(res.body.travelStep[i].destination[j]).toHaveProperty("address", expect.any(String));
+          expect(res.body.travelStep[i].destination[j]).toHaveProperty("mainImg", expect.any(String));
+          expect(res.body.travelStep[i].destination[j]).toHaveProperty("cost", expect.any(Number));
+          totalPriceDestination += res.body.travelStep[i].destination[j].cost;
+          expect(res.body.travelStep[i].destination[j].cost).toBeLessThan(2000000 / 2);
+          expect(res.body.travelStep[i].destination[j]).toHaveProperty("geocoding", expect.any(String));
+          expect(res.body.travelStep[i].destination[j]).toHaveProperty("CityId", expect.any(Number));
+          expect(res.body.travelStep[i].destination[j].CityId).toBe(3);
+          expect(res.body.travelStep[i].destination[j]).toHaveProperty("UserId", expect.any(Number));
+        }
+        totalPriceTravelSteps = res.body.travelStep[i].hotel.price + totalPriceDestination;
+        expect(totalPriceTravelSteps).toBeLessThan(100000 + 2000000);
+        expect(totalPriceDestination).toBeLessThan(2000000 / 2);
+      }
+    });
+    test("200, success generate Travel Steps with premium", async () => {
+      const res = await request(app).post("/travel-steps/generates").set({
+        access_token: access_token_premium
       })
         .send({
           "budgetDestination": 2000000,
@@ -363,6 +425,8 @@ describe("Generate Travel Steps", () => {
       expect(res.body).toBeInstanceOf(Object);
       expect(res.body).toHaveProperty("travelStep");
       expect(res.body.travelStep).toBeInstanceOf(Array);
+      expect(res.body).toHaveProperty("needPremium");
+      expect(res.body.needPremium).toBe(false);
       let totalPriceDestination = 0;
       let totalPriceTravelSteps = 0;
       for (let i = 0; i < res.body.travelStep.length; i++) {
