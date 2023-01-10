@@ -57,7 +57,7 @@ class DestinationController {
       }
 
       if (filterCost) {
-        options.where = { cost: { [Op.lte]: filterCost } };
+        options.where = { ...options.where, cost: { [Op.lte]: filterCost } };
       }
 
       let findCity;
@@ -69,17 +69,13 @@ class DestinationController {
         if (!findCity) {
           throw { name: "City does not exist" };
         }
-        options.where = { CityId: findCity.id };
-        destinations = await Destination.findAll(options);
-        res.status(200).json({ destinations, city: findCity });
-      } else if (searchByDest) {
-        options.where = { name: { [Op.iLike]: `%${searchByDest}%` } };
-        destinations = await Destination.findAll(options);
-        res.status(200).json(destinations);
-      } else {
-        destinations = await Destination.findAll(options);
-        res.status(200).json(destinations);
+        options.where = { ...options.where, CityId: findCity.id };
       }
+      if (searchByDest) {
+        options.where = { ...options.where, name: { [Op.iLike]: `%${searchByDest}%` } };
+      }
+      destinations = await Destination.findAll(options);
+      res.status(200).json(destinations);
     } catch (error) {
       next(error);
     }
