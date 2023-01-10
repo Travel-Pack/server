@@ -45,48 +45,46 @@ class UserController {
 			const findUser = await User.findByPk(req.user.id);
 
 			if (findUser.isPremium === false) {
-                await User.update({ isPremium: true }, { where: { id: req.user.id } });
+                const transporter = nodemailer.createTransport({
+					service: 'gmail',
+					host: 'smtp.gmail.com',
+					port: 486,
+					auth: {
+					  user: 'bobby.notokoesoemo@gmail.com',
+					  pass: process.env.NODEMAILER_PASS,
+					},
+				  });
+
+				const mailOptions = {
+					from: "bobby.notokoesoemo@gmail.com",
+					// to: findUser.email,
+					to: "bobby.notokoesoemo@gmail.com",
+					subject: "Premium status notification",
+					text: `Dear ${findUser.fullName},
+
+We are pleased to inform you that you have been upgraded to a premium user!
+
+As a premium user, you will have access to a range of exclusive benefits and features that are not available to standard users. These include:
+
+Priority customer support
+Advanced customization options
+And more!
+We hope you will enjoy your upgraded experience. If you have any questions or need assistance, please don't hesitate to reach out to our customer support team.
+
+Sincerely,
+TravelPack`,
+				};
+
+				transporter.sendMail(mailOptions, async (err) => {
+					if (!err) {
+						await User.update({ isPremium: true }, { where: { id: req.user.id } });
+
+						res.status(200).json({ message: `User status has been updated to premium` });
+					}
+				});
             } else {
 				throw({ name: `User status already premium` });
 			}
-
-			const transporter = nodemailer.createTransport({
-				service: 'gmail',
-				host: 'smtp.gmail.com',
-				port: 486,
-				auth: {
-				  user: 'bobby.notokoesoemo@gmail.com',
-				  pass: process.env.NODEMAILER_PASS,
-				},
-			  });
-
-			const mailOptions = {
-				from: "bobby.notokoesoemo@gmail.com",
-				to: findUser.email,
-				// to: "bobby.notokoesoemo@gmail.com",
-				subject: "Premium status notification",
-				text: `Dear ${findUser.fullName},
-
-				We are pleased to inform you that you have been upgraded to a premium user!
-
-				As a premium user, you will have access to a range of exclusive benefits and features that are not available to standard users. These include:
-
-				Priority customer support
-				Advanced customization options
-				And more!
-				We hope you will enjoy your upgraded experience. If you have any questions or need assistance, please don't hesitate to reach out to our customer support team.
-
-				Sincerely,
-				TravelPack`,
-			};
-
-			transporter.sendMail(mailOptions, (err) => {
-				if (err) {
-				  return res.status(500).json({ message: "error sending mail" });
-				}
-			});
-
-			res.status(200).json({ message: `User status has been updated to premium` });
 		} catch (error) {
 			next(error);
 		}
@@ -97,45 +95,43 @@ class UserController {
 			const findUser = await User.findByPk(req.user.id);
 
 			if (findUser.isPremium === true) {
-                await User.update({ isPremium: false }, { where: { id: req.user.id } });
+                const transporter = nodemailer.createTransport({
+					service: 'gmail',
+					host: 'smtp.gmail.com',
+					port: 486,
+					auth: {
+					  user: 'bobby.notokoesoemo@gmail.com',
+					  pass: process.env.NODEMAILER_PASS,
+					},
+				  });
+
+				const mailOptions = {
+					from: "bobby.notokoesoemo@gmail.com",
+					// to: findUser.email,
+					to: "bobby.notokoesoemo@gmail.com",
+					subject: "Downgrade notification",
+					text: `Dear ${findUser.fullName},
+
+We are sorry to inform you that you have been downgraded from premium user!
+
+As a standard user, you will still have access to a range of benefits and features that we provided.
+
+We hope you will still enjoy your experience. If you have any questions or need assistance, please don't hesitate to reach out to our customer support team.
+
+Sincerely,
+TravelPack`,
+				};
+
+				transporter.sendMail(mailOptions, async (err) => {
+					if (!err) {
+						await User.update({ isPremium: false }, { where: { id: req.user.id } });
+
+						res.status(200).json({ message: `User status no longer premium` });
+					}
+				});
             } else {
 				throw({ name: `User status already not premium` });
 			}
-
-			const transporter = nodemailer.createTransport({
-				service: 'gmail',
-				host: 'smtp.gmail.com',
-				port: 486,
-				auth: {
-				  user: 'bobby.notokoesoemo@gmail.com',
-				  pass: process.env.NODEMAILER_PASS,
-				},
-			  });
-
-			const mailOptions = {
-				from: "bobby.notokoesoemo@gmail.com",
-				to: findUser.email,
-				// to: "bobby.notokoesoemo@gmail.com",
-				subject: "Downgrade notification",
-				text: `Dear ${findUser.fullName},
-
-				We are sorry to inform you that you have been downgraded from premium user!
-
-				As a standard user, you will still have access to a range of benefits and features that we provided.
-
-				We hope you will still enjoy your experience. If you have any questions or need assistance, please don't hesitate to reach out to our customer support team.
-
-				Sincerely,
-				TravelPack`,
-			};
-
-			transporter.sendMail(mailOptions, (err) => {
-				if (err) {
-				  return res.status(500).json({ message: "error sending mail" });
-				}
-			});
-
-			res.status(200).json({ message: `User status no longer premium` });
 		} catch (error) {
 			next(error);
 		}

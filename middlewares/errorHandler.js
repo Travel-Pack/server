@@ -3,7 +3,7 @@ const errorHandler = (err, req, res, next) => {
 
   let code = 500;
   let msg = "Internal Server Error";
-  // console.log(err, '<=== error');
+  console.log(err, '<=== error');
   if (err.name == "SequelizeValidationError") {
     code = 400;
     msg = err.errors[0].message;
@@ -74,14 +74,14 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "travelDataStepEmpty") {
     code = 400;
     msg = "Travel step data cannot be empty";
-
   } else if (err.name == "notMatchProvince") {
     code = 404;
     msg = "Sorry, you don't get any matched province.";
-
+  } else if (err.message == "No recipients defined") {
+    code = 500;
+    msg = "Error Sending Mail";
   }
 
-  // console.log(err);
   res.status(code).json({ msg });
 };
 
