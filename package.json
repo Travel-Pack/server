@@ -8,7 +8,8 @@
     "dev": "nodemon ./bin/www",
     "reset": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
     "test": "jest --runInBand --forceExit --coverage",
-    "testAll": "jest --runInBand --collect-coverage --forceExit"
+    "testAll": "jest --runInBand --collect-coverage --forceExit",
+    "resetTest": "npx sequelize --env test db:drop && npx sequelize --env test db:create && npx sequelize --env test db:migrate"
   },
   "repository": {
     "type": "git",

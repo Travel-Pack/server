@@ -15,7 +15,7 @@ const socketListener = () => {
                 let { slug, email, text } = data
                 if (!slug || !email || !text) throw({name: "Bad Request"})
 
-                let calledForum = await Topic.findOne({where: { title }})
+                let calledForum = await Topic.findOne({where: { slug }})
                 if (!calledForum) throw ({name: "Invalid Topic"})
 
                 let calledUser = await User.findOne({where: {email}})
@@ -25,7 +25,7 @@ const socketListener = () => {
                 let newMessage = await Message.create({TopicId: calledForum.id, UserId: calledUser.id, text})
                 let sendedMessage = await Message.findOne({where: {id: newMessage.id}, include: [User, Topic]})
 
-                socket.to(slug).emit("receive_message", sendedMessage);
+                io.in(slug).emit("receive_message", sendedMessage);
             } catch (error) {
                 console.log(error);
                 socket.to(socket.id).emit("receive_message", ["error", error]);
