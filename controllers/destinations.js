@@ -183,7 +183,8 @@ class DestinationController {
         sumSafety += el.safety;
         commentArr.push({
           user: el.User.fullName,
-          comment: el.comment
+          comment: el.comment,
+          createdAt: el.createdAt
         });
         // commentArr.push(el.comment);
       });
