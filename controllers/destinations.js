@@ -41,7 +41,7 @@ class DestinationController {
   static async readAllDestination(req, res, next) {
     try {
       const { orderBy, searchByCity, filterCost, searchByDest } = req.query;
-      const options = {};
+      const options = { where: { id: { [Op.ne]: 1 } } };
       options.include = [{ model: Review }, Image, City];
 
       if (orderBy) {
