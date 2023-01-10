@@ -3,22 +3,24 @@ const { hashPassword } = require('../helpers/bcryptjs');
 const nodemailer = require("nodemailer");
 
 class UserController {
-    static async userById(req, res, next) {
-        try {
-            const userById = await User.findByPk(req.user.id);
+	static async userById(req, res, next) {
+		try {
+			const userById = await User.findByPk(req.user.id, {
+				attributes: { exclude: ['password'] }
+			});
 
-            res.status(200).json({ userById });
-        } catch (error) {
-            next(error);
-        }
-    }
+			res.status(200).json({ userById });
+		} catch (error) {
+			next(error);
+		}
+	}
 
-    static async updateUser(req, res, next) {
+	static async updateUser(req, res, next) {
 		try {
 			if (!req.body.password) {
-				throw({ name: 'Password is required'})
+				throw ({ name: 'Password is required' })
 			} else if (req.body.password.length < 5) {
-				throw({ name: 'Minimum password length must be 5 letter'})
+				throw ({ name: 'Minimum password length must be 5 letter' })
 			}
 
 			const updateUser = {
@@ -34,26 +36,26 @@ class UserController {
 				},
 			});
 
-			res.status(200).json({message: "User successfully updated"});
+			res.status(200).json({ message: "User successfully updated" });
 		} catch (error) {
 			next(error);
 		}
 	}
 
-    static async activatePremiumStatus(req, res, next) {
+	static async activatePremiumStatus(req, res, next) {
 		try {
 			const findUser = await User.findByPk(req.user.id);
 
 			if (findUser.isPremium === false) {
-                const transporter = nodemailer.createTransport({
+				const transporter = nodemailer.createTransport({
 					service: 'gmail',
 					host: 'smtp.gmail.com',
 					port: 486,
 					auth: {
-					  user: 'bobby.notokoesoemo@gmail.com',
-					  pass: process.env.NODEMAILER_PASS,
+						user: 'bobby.notokoesoemo@gmail.com',
+						pass: process.env.NODEMAILER_PASS,
 					},
-				  });
+				});
 
 				const mailOptions = {
 					from: "bobby.notokoesoemo@gmail.com",
@@ -82,8 +84,8 @@ TravelPack`,
 						res.status(200).json({ message: `User status has been updated to premium` });
 					}
 				});
-            } else {
-				throw({ name: `User status already premium` });
+			} else {
+				throw ({ name: `User status already premium` });
 			}
 		} catch (error) {
 			next(error);
@@ -95,15 +97,15 @@ TravelPack`,
 			const findUser = await User.findByPk(req.user.id);
 
 			if (findUser.isPremium === true) {
-                const transporter = nodemailer.createTransport({
+				const transporter = nodemailer.createTransport({
 					service: 'gmail',
 					host: 'smtp.gmail.com',
 					port: 486,
 					auth: {
-					  user: 'bobby.notokoesoemo@gmail.com',
-					  pass: process.env.NODEMAILER_PASS,
+						user: 'bobby.notokoesoemo@gmail.com',
+						pass: process.env.NODEMAILER_PASS,
 					},
-				  });
+				});
 
 				const mailOptions = {
 					from: "bobby.notokoesoemo@gmail.com",
@@ -129,8 +131,8 @@ TravelPack`,
 						res.status(200).json({ message: `User status no longer premium` });
 					}
 				});
-            } else {
-				throw({ name: `User status already not premium` });
+			} else {
+				throw ({ name: `User status already not premium` });
 			}
 		} catch (error) {
 			next(error);
@@ -141,7 +143,7 @@ TravelPack`,
 		try {
 			const findUser = await User.findByPk(req.user.id);
 
-            await User.update({ point: findUser.point += 1 }, { where: { id: req.user.id } });
+			await User.update({ point: findUser.point += 1 }, { where: { id: req.user.id } });
 
 			res.status(200).json({ message: `User point has been incrimented by 1` });
 		} catch (error) {

@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const CityController = require("../controllers/cities");
 const DestinationController = require("../controllers/destinations");
 const HotelController = require("../controllers/hotels");
 const ProvinceController = require("../controllers/provinces");
@@ -7,6 +8,10 @@ const TopicController = require("../controllers/topic")
 
 /* -------- Provinces --------- */
 router.get("/provinces", ProvinceController.getProvinces);
+
+/* -------- Cities --------- */
+router.get("/cities", CityController.getCities);
+router.get("/cities/:slug", CityController.getCityById);
 
 /* -------- Destinations --------- */
 router.get('/destinations', DestinationController.readAllDestination)
