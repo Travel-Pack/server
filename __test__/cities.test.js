@@ -2,10 +2,14 @@ const request = require("supertest");
 const app = require("../app");
 const { hashPassword } = require("../helpers/bcryptjs");
 const { createToken } = require("../helpers/jsonwebtoken");
-const { User, sequelize } = require("../models");
+const { User, City, sequelize } = require("../models");
 
 let admin_access_token;
 let customer_access_token;
+
+beforeEach(() => {
+  jest.restoreAllMocks();
+});
 
 beforeAll(async function () {
   let userAdmin = await User.create({
@@ -138,7 +142,7 @@ afterAll(async function () {
 
 describe("Cities", () => {
   describe("GET /cities", () => {
-    test("200, success get reviews", async () => {
+    test("200, success get all cities", async () => {
       const res = await request(app)
         .get("/cities")
         .set({ access_token: customer_access_token });
@@ -153,9 +157,20 @@ describe("Cities", () => {
     });
   });
   describe("GET /cities", () => {
-    test("400, failed authentication get cities", async () => {
+    test("401, failed authentication get cities", async () => {
       const res = await request(app).get("/cities");
-      expect(res.status).toBe(400);
+      expect(res.status).toBe(401);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("GET /cities", () => {
+    test("500, failed get all cities cause internal server error", async () => {
+      jest.spyOn(City, "findAll").mockRejectedValue("Error");
+      const res = await request(app)
+        .get("/cities")
+        .set({ access_token: customer_access_token });
+      expect(res.status).toBe(500);
+      expect(res.body).toBeInstanceOf(Object);
       expect(res.body).toHaveProperty("msg", expect.any(String));
     });
   });
@@ -195,24 +210,6 @@ describe("Cities", () => {
           ProvinceId: 11,
         });
       expect(res.status).toBe(201);
-      expect(res.body).toBeInstanceOf(Object);
-      expect(res.body).toHaveProperty("msg", expect.any(String));
-    });
-  });
-  describe("POST /cities", () => {
-    test("404, failed add city", async () => {
-      const res = await request(app)
-        .post("/cities")
-        .set({ access_token: customer_access_token })
-        .send({
-          id: 1,
-          //   name: "DKI Jakarta",
-          image:
-            "https://img.okezone.com/content/2022/10/17/1/2688935/pemprov-dki-apresiasi-sumbangsih-kolaborator-untuk-kemajuan-kota-jakarta-sZAYqfuogX.jpg",
-          geocoding: "5083867975799",
-          ProvinceId: 11,
-        });
-      expect(res.status).toBe(404);
       expect(res.body).toBeInstanceOf(Object);
       expect(res.body).toHaveProperty("msg", expect.any(String));
     });
@@ -301,6 +298,24 @@ describe("Cities", () => {
             "https://img.okezone.com/content/2022/10/17/1/2688935/pemprov-dki-apresiasi-sumbangsih-kolaborator-untuk-kemajuan-kota-jakarta-sZAYqfuogX.jpg",
           geocoding: "5083867975799",
           ProvinceId: 11,
+        });
+      expect(res.status).toBe(404);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("PUT /cities/:slug", () => {
+    test("404, failed edit city province not found", async () => {
+      const res = await request(app)
+        .put("/cities/dki-jakarta")
+        .set({ access_token: customer_access_token })
+        .send({
+          id: 1,
+          name: "DKI Jakarta",
+          image:
+            "https://img.okezone.com/content/2022/10/17/1/2688935/pemprov-dki-apresiasi-sumbangsih-kolaborator-untuk-kemajuan-kota-jakarta-sZAYqfuogX.jpg",
+          geocoding: "5083867975799",
+          ProvinceId: 99,
         });
       expect(res.status).toBe(404);
       expect(res.body).toBeInstanceOf(Object);

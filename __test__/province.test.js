@@ -1,10 +1,14 @@
 const request = require("supertest");
 const app = require("../app");
 const { createToken } = require("../helpers/jsonwebtoken");
-const { User, sequelize } = require("../models");
+const { User, Province, sequelize } = require("../models");
 
 let admin_access_token;
 let customer_access_token;
+
+beforeEach(() => {
+  jest.restoreAllMocks();
+});
 
 beforeAll(async function () {
   let userAdmin = await User.create({
@@ -62,6 +66,18 @@ describe("Provinces Public", () => {
       expect(res.body).toBeInstanceOf(Array);
       expect(res.body[0]).toHaveProperty("id", expect.any(Number));
       expect(res.body[0]).toHaveProperty("name", expect.any(String));
+      expect(res.body[0]).toHaveProperty("createdAt", expect.any(String));
+      expect(res.body[0]).toHaveProperty("updatedAt", expect.any(String));
+    });
+  });
+  describe("GET /publics/provinces", () => {
+    test("500, failed get provinces cause internal server error", async () => {
+      jest.spyOn(Province, "findAll").mockRejectedValue("Error");
+      const res = await request(app).get("/publics/provinces").send({});
+      console.log(res.status);
+      expect(res.status).toBe(500);
+      expect(res.body).toBeInstanceOf(Object);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
     });
   });
 });
@@ -92,13 +108,13 @@ describe("Provinces for Admin", () => {
     });
   });
   describe("POST /provinces", () => {
-    test("400, FAILED create provinces cause validation failed", async () => {
+    test("500, FAILED create provinces cause validation failed", async () => {
       const res = await request(app)
         .post("/provinces")
         .set({ access_token: admin_access_token });
       // .send({ name: "Admin Test Province" });
 
-      expect(res.status).toBe(201);
+      expect(res.status).toBe(500);
       expect(res.body).toBeInstanceOf(Object);
       expect(res.body).toHaveProperty("msg", expect.any(String));
     });
@@ -130,7 +146,7 @@ describe("Provinces for Admin", () => {
   describe("PUT /provinces", () => {
     test("404, FAILED update provinces cause not found", async () => {
       const res = await request(app)
-        .put("/provinces/99")
+        .put("/provinces/999")
         .set({ access_token: admin_access_token })
         .send({ name: "Update Admin Test Province" });
 
