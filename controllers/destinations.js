@@ -42,7 +42,7 @@ class DestinationController {
     try {
       const { orderBy, searchByCity, filterCost, searchByDest } = req.query;
       const options = {};
-      options.include = [{ model: Review }, Image];
+      options.include = [{ model: Review }, Image, City];
 
       if (orderBy) {
         if (orderBy === "name") {
@@ -57,7 +57,7 @@ class DestinationController {
       }
 
       if (filterCost) {
-        options.where = { cost: { [Op.lte]: filterCost } };
+        options.where = { ...options.where, cost: { [Op.lte]: filterCost } };
       }
 
       let findCity;
@@ -69,17 +69,13 @@ class DestinationController {
         if (!findCity) {
           throw { name: "City does not exist" };
         }
-        options.where = { CityId: findCity.id };
-        destinations = await Destination.findAll(options);
-        res.status(200).json({ destinations, city: findCity });
-      } else if (searchByDest) {
-        options.where = { name: { [Op.iLike]: `%${searchByDest}%` } };
-        destinations = await Destination.findAll(options);
-        res.status(200).json(destinations);
-      } else {
-        destinations = await Destination.findAll(options);
-        res.status(200).json(destinations);
+        options.where = { ...options.where, CityId: findCity.id };
       }
+      if (searchByDest) {
+        options.where = { ...options.where, name: { [Op.iLike]: `%${searchByDest}%` } };
+      }
+      destinations = await Destination.findAll(options);
+      res.status(200).json(destinations);
     } catch (error) {
       next(error);
     }
@@ -107,6 +103,7 @@ class DestinationController {
       }
       destinations.forEach(el => {
         avg_cost = avg_fun = avg_internet = avg_safety = avg = 0
+        console.log(el.Reviews, "LENGTH nih");
         el.Reviews.forEach(el => {
           avg_cost += el.cost
           avg_fun += el.fun
@@ -161,6 +158,7 @@ class DestinationController {
             model: User,
             attributes: ["fullName"],
           },
+          City
         ],
       });
       if (!destination) throw { name: 'Destination Not Found' }
@@ -183,7 +181,8 @@ class DestinationController {
         sumSafety += el.safety;
         commentArr.push({
           user: el.User.fullName,
-          comment: el.comment
+          comment: el.comment,
+          createdAt: el.createdAt
         });
         // commentArr.push(el.comment);
       });
