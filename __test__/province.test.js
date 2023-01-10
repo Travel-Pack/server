@@ -146,7 +146,7 @@ describe("Provinces for Admin", () => {
   describe("PUT /provinces", () => {
     test("404, FAILED update provinces cause not found", async () => {
       const res = await request(app)
-        .put("/provinces/999")
+        .put("/provinces/99")
         .set({ access_token: admin_access_token })
         .send({ name: "Update Admin Test Province" });
 

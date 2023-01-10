@@ -19,6 +19,7 @@ router.post("/login", Controller.login);
 router.post("/google", Controller.googleSignIn);
 
 router.use("/publics", publicsRouter);
+router.use(cityRouter); // City
 router.use(Authentication.verify);
 
 // User
@@ -38,7 +39,6 @@ router.use('/topic', topicRouter)
 
 router.use(provincesRouter); // Provinces
 router.use(reviewsRouter); // Reviews
-router.use(cityRouter); // City
 
 // Midtrans
 router.use("/midtrans", midtransRouter);

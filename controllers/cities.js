@@ -21,13 +21,11 @@ class CityController {
       if (!findCity) throw { name: "City does not exist" };
       const showDestination = await Destination.findAll({
         where: { CityId: findCity.id, id: { [Op.ne]: 1 } },
-        order: [["cost", "asc"]],
-        limit: 1,
+        order: [["cost", "asc"]]
       });
       const showHotel = await Hotel.findAll({
         where: { CityId: findCity.id, id: { [Op.ne]: 1 } },
-        order: [["price", "asc"]],
-        limit: 1,
+        order: [["price", "asc"]]
       });
       console.log(showDestination);
       res.status(200).json({
