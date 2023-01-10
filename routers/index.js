@@ -16,6 +16,7 @@ const Authentication = require("../middlewares/Authentication");
 // Register & Login
 router.post("/register", Controller.register);
 router.post("/login", Controller.login);
+router.post("/google", Controller.googleSignIn);
 
 router.use("/publics", publicsRouter);
 router.use(cityRouter); // City

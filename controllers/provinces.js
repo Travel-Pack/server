@@ -20,7 +20,7 @@ class ProvinceController {
       let { id } = req.params;
 
       let updatedProvince = await Province.findByPk(id);
-      if (!updatedProvince) throw { name: "InvalidId" };
+      if (!updatedProvince) throw { name: "notMatchProvince" };
 
       const oldName = updatedProvince.name;
       await updatedProvince.update({ name });
