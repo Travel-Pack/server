@@ -8,6 +8,10 @@ let admin_access_token;
 let customer_access_token;
 let customer_access_token_2;
 
+beforeEach(() => {
+  jest.restoreAllMocks();
+});
+
 beforeAll(async function () {
   let userAdmin = await User.create({
     fullName: "User Admin",
@@ -150,18 +154,17 @@ afterAll(async function () {
 describe("Reviews", () => {
   describe("GET /reviews", () => {
     test("200, success get reviews", async () => {
-      const res = await request(app)
-        .get("/reviews/1")
-        .set({ access_token: customer_access_token });
+      const res = await request(app).get("/publics/reviews");
       expect(res.status).toBe(200);
       expect(res.body).toBeInstanceOf(Object);
     });
   });
   describe("GET /reviews", () => {
-    test("400, failed get reviews", async () => {
-      const res = await request(app).get("/reviews/1");
-      expect(res.status).toBe(400);
-      expect(res.body).toHaveProperty("msg", expect.any(String));
+    test("500, failed get reviews", async () => {
+      jest.spyOn(Review, "findAll").mockRejectedValue("Error");
+      const res = await request(app).get("/publics/reviews");
+      expect(res.status).toBe(500);
+      expect(res.body).toBeInstanceOf(Object);
     });
   });
   describe("POST /reviews", () => {
@@ -280,29 +283,43 @@ describe("Reviews", () => {
       expect(res.body).toHaveProperty("msg", expect.any(String));
     });
   });
+  describe("DEL /reviews/:id", () => {
+    test("401, del failed user invalid token", async () => {
+      const res = await request(app).delete("/reviews/99").set({
+        access_token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjczMjQ3ODEzfQ.W9fDoH7jqD5VhlCgXQ2rE1r8LGnuW9YuwCwbWJKA6fgfda",
+      });
+      expect(res.status).toBe(401);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
+  describe("DEL /reviews/:id", () => {
+    test("401, del failed user invalid token", async () => {
+      const res = await request(app).delete("/reviews/99").set({
+        access_token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTksImlhdCI6MTY3MzI0NzgxM30.cyUrqbA8bpzMYf6rCik3QZkQZnTHmJTHi4w39xPuhbs",
+      });
+      expect(res.status).toBe(401);
+      expect(res.body).toHaveProperty("msg", expect.any(String));
+    });
+  });
   describe("GET /reviews/hotels/:HotelId", () => {
     test("200, success get reviews by hotel", async () => {
-      const res = await request(app)
-        .get("/reviews/hotels/1")
-        .set({ access_token: customer_access_token });
+      const res = await request(app).get("/publics/reviews/h/1");
       expect(res.status).toBe(200);
       expect(res.body).toBeInstanceOf(Object);
     });
   });
   describe("GET /reviews/:HotelId", () => {
-    test("404, failed get reviews by hotel", async () => {
-      const res = await request(app)
-        .get("/reviews/hotels/99")
-        .set({ access_token: customer_access_token });
+    test("404, failed get reviews by hotel couse not found", async () => {
+      const res = await request(app).get("/publics/reviews/h/99");
       expect(res.status).toBe(404);
       expect(res.body).toBeInstanceOf(Object);
     });
   });
   describe("GET /reviews/:DestinationId", () => {
-    test("200, success get reviews by hotel", async () => {
-      const res = await request(app)
-        .get("/reviews/1")
-        .set({ access_token: customer_access_token });
+    test("200, success get reviews by destination", async () => {
+      const res = await request(app).get("/publics/reviews/d/1");
       expect(res.status).toBe(200);
       expect(res.body).toBeInstanceOf(Object);
     });
@@ -310,7 +327,7 @@ describe("Reviews", () => {
   describe("GET /reviews/:DestinationId", () => {
     test("404, failed get reviews by destination", async () => {
       const res = await request(app)
-        .get("/reviews/99")
+        .get("/publics/reviews/d/99")
         .set({ access_token: customer_access_token });
       expect(res.status).toBe(404);
       expect(res.body).toBeInstanceOf(Object);
