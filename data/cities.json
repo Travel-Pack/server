@@ -187,5 +187,26 @@
     "image": "https://awsimages.detik.net.id/community/media/visual/2020/06/10/tanah-lot_169.jpeg?w=700&q=90",
     "geocoding": "5083867975799",
     "ProvinceId": 17
-  }
+  },
+  {   
+    "id": 29,
+    "name": "Sukabumi",
+    "image": "https://brilianews.com/wp-content/uploads/2022/01/1400-Revitalisasi-Alun-Alun-dan-Lapang-Kota-Sukabumi-Ridwan-Kamil-Minta-Jaga-Kebersihan-dan-Ketertiban-2-e1641714893333.jpeg",
+    "geocoding": "-6.928398825591568, 106.92801583466964",
+    "ProvinceId": 12
+  },
+  {   
+    "id": 30,
+    "name": "Bogor",
+    "image": "https://asset.kompas.com/crops/FXdqWgI7yLxoR4-cIGDc3YGnh_g=/0x0:0x0/750x500/data/photo/2021/12/17/61bc68612d34b.jpg",
+    "geocoding": "-6.593349554036896, 106.7915073295078",
+    "ProvinceId": 12
+   },
+   {   
+     "id": 31,
+     "name": "Depok",
+     "image": "https://asset.kompas.com/crops/FXdqWgI7yLxoR4-cIGDc3YGnh_g=/0x0:0x0/750x500/data/photo/2021/12/17/61bc68612d34b.jpg",
+     "geocoding": "-6.593349554036896, 106.7915073295078",
+     "ProvinceId": 12
+    }
 ]
