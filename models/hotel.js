@@ -23,6 +23,9 @@ module.exports = (sequelize, DataTypes) => {
       Hotel.belongsTo(models.City, {
         foreignKey: "CityId",
       })
+      Hotel.hasOne(models.TravelStep, {
+        foreignKey: 'HotelId'
+      });
     }
   }
   Hotel.init({

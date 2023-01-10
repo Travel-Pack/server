@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       TravelStep.hasMany(models.Favourite, {
         foreignKey: 'UseTravelStepId'
       });
+      TravelStep.belongsTo(models.Hotel, {
+        foreignKey: 'HotelId'
+      });
     }
   }
   TravelStep.init({
