@@ -9,35 +9,35 @@ const {
 } = require("../models");
 
 class DestinationController {
-  static async createDestination(req, res, next) {
-    const t = await sequelize.transaction();
-    try {
-      const { name, address, mainImg, cost, geocoding, CityId, imgUrl } =
-        req.body;
-      const UserId = req.user.id;
-      const slug = name.toLowerCase().split(" ").join("-");
+  // static async createDestination(req, res, next) {
+  //   const t = await sequelize.transaction();
+  //   try {
+  //     const { name, address, mainImg, cost, geocoding, CityId, imgUrl } =
+  //       req.body;
+  //     const UserId = req.user.id;
+  //     const slug = name.toLowerCase().split(" ").join("-");
 
-      const newDestination = await Destination.create(
-        { name, address, mainImg, cost, geocoding, CityId, UserId, slug },
-        { transaction: t }
-      );
-      if (imgUrl) {
-        const images = imgUrl.map((el) => {
-          return {
-            DestinationId: newDestination.id,
-            imgUrl: el,
-          };
-        });
-        await Image.bulkCreate(images, { transaction: t });
-      }
+  //     const newDestination = await Destination.create(
+  //       { name, address, mainImg, cost, geocoding, CityId, UserId, slug },
+  //       { transaction: t }
+  //     );
+  //     if (imgUrl) {
+  //       const images = imgUrl.map((el) => {
+  //         return {
+  //           DestinationId: newDestination.id,
+  //           imgUrl: el,
+  //         };
+  //       });
+  //       await Image.bulkCreate(images, { transaction: t });
+  //     }
 
-      await t.commit();
-      res.status(201).json("Ok - Destination Added");
-    } catch (error) {
-      await t.rollback();
-      next(error);
-    }
-  }
+  //     await t.commit();
+  //     res.status(201).json("Ok - Destination Added");
+  //   } catch (error) {
+  //     await t.rollback();
+  //     next(error);
+  //   }
+  // }
   static async readAllDestination(req, res, next) {
     try {
       const { orderBy, searchByCity, filterCost, searchByDest } = req.query;
@@ -84,6 +84,70 @@ class DestinationController {
       next(error);
     }
   }
+  static async readBestDestination(req, res, next) {
+    try {
+      const destinations = await Destination.findAll({
+        include: [Review, City]
+      })
+
+      let avg_cost = 0
+      let avg_fun = 0
+      let avg_internet = 0
+      let avg_safety = 0
+      let avg = 0
+      let test = []
+      let obj = {
+        id: 0,
+        name: "",
+        slug: "",
+        cost: 0,
+        mainImg: "",
+        cityName: "",
+        avg_review: 0,
+      }
+      destinations.forEach(el => {
+        avg_cost = avg_fun = avg_internet = avg_safety = avg = 0
+        el.Reviews.forEach(el => {
+          avg_cost += el.cost
+          avg_fun += el.fun
+          avg_internet += el.internet
+          avg_safety += el.safety
+        })
+
+        let divide = el.Reviews.length > 0 ? el.Reviews.length : 1
+        avg_cost = (avg_cost / divide).toFixed(1)
+        avg_fun = (avg_fun / divide).toFixed(1)
+        avg_internet = (avg_internet / divide).toFixed(1)
+        avg_safety = (avg_safety / divide).toFixed(1)
+
+        let divide2 = el.Reviews.length > 0 ? 4 : 1
+
+        avg = (parseFloat(avg_cost) + parseFloat(avg_fun) + parseFloat(avg_internet) + parseFloat(avg_safety)) / divide2
+        // console.log(avg_cost, avg_fun, avg_internet, avg_safety, "-----avg--> ", avg, "--div2--> ", divide2);
+
+        obj = {
+          id: el.id,
+          name: el.name,
+          slug: el.slug,
+          cost: el.cost,
+          mainImg: el.mainImg,
+          cityName: el.City.name,
+          avg_review: isNaN(avg) ? 0 : avg,
+        }
+        test.push(obj)
+      })
+
+      test.sort((a, b) => {
+        return (b.avg_review - a.avg_review)
+      })
+
+      // test.slice(1, 10)
+      // console.log(test.length, "<<< Length");
+      res.status(200).json(test.slice(0, 10))
+    } catch (error) {
+      next(error);
+    }
+  }
   static async readOneDestination(req, res, next) {
     try {
       const { slug } = req.params;
@@ -101,7 +165,7 @@ class DestinationController {
       });
       if (!destination) throw { name: 'Destination Not Found' }
       const destinationReviews = await Review.findAll({
-        where: { DestinationId: destination.id },
+        include: [User], where: { DestinationId: destination.id },
       });
       if (!destinationReviews) {
         throw { name: "notMatchReview" };
@@ -117,7 +181,11 @@ class DestinationController {
         sumFun += el.fun;
         sumInternet += el.internet;
         sumSafety += el.safety;
-        commentArr.push(el.comment);
+        commentArr.push({
+          user: el.User.fullName,
+          comment: el.comment
+        });
+        // commentArr.push(el.comment);
       });
 
       let averageReviews = {

@@ -8,8 +8,9 @@ const ReviewController = require("../controllers/reviews");
 router.get("/provinces", ProvinceController.getProvinces);
 
 /* -------- Destinations --------- */
-router.get("/destinations", DestinationController.readAllDestination);
-router.get("/destinations/:slug", DestinationController.readOneDestination);
+router.get('/destinations', DestinationController.readAllDestination)
+router.get('/destinations/best', DestinationController.readBestDestination)
+router.get('/destinations/:slug', DestinationController.readOneDestination)
 
 /* -------- Hotels --------- */
 router.get("/hotels", HotelController.readAllHotels);

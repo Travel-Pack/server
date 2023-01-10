@@ -76,9 +76,8 @@ class ReviewController {
         include: [User],
         where: { DestinationId },
       });
-      console.log(destinationReviews, "<<<<<< BUKAN ERROR");
-      if (destinationReviews.length == 0)
-        throw { name: "Destination Not Found" };
+      // console.log(destinationReviews, "<<<<<< BUKAN ERROR");
+      if (destinationReviews.length == 0) throw { name: 'Destination Not Found' }
       let sumCost = 0;
       let sumFun = 0;
       let sumInternet = 0;
