@@ -7,11 +7,21 @@ class TopicController {
             let calledForum = await Topic.findOne({
                 where : { id }, 
                 include: [
-                    { model: User, through: { attributes: ['fullName'] }}, 
-                    { model: Message, include: { model: User, through: { attributes: ['fullName'] }}}
-                ]})
+                    { model: User, attributes: ['fullName']}, 
+                    { model: Message, include: { model: User, attributes: ['fullName'] }}
+                ]
+            })
             
             res.status(200).json(calledForum)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async getAllTopics(req, res, next){
+        try {
+            let allTopics = await Topic.findAll()
+            res.status(200).json(allTopics)
         } catch (error) {
             next(error)
         }
