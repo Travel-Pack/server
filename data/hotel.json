@@ -96,7 +96,7 @@
     "geocoding": "-6.918560228677602, 106.93696559826014",
     "isRecommended": true,
     "price": 464000,
-    "CityId": 6
+    "CityId": 28
   },
   {
     "name": "Balcony Hotel",
@@ -105,7 +105,7 @@
     "geocoding": "-6.908100825148624, 106.93610650990526",
     "isRecommended": true,
     "price": 340000,
-    "CityId": 6
+    "CityId": 28
   },
   {
     "name": "Bogor Icon Hotel and Convention",
@@ -114,7 +114,7 @@
     "geocoding": "-6.5558201283037265, 106.78258735223162",
     "isRecommended": true,
     "price": 398000,
-    "CityId": 7
+    "CityId": 29
   },
   {
     "name": "Balcony Hotel",
@@ -123,6 +123,24 @@
     "geocoding": "-6.561573395091871, 106.8001868116029",
     "isRecommended": true,
     "price": 340000,
-    "CityId": 7
+    "CityId": 29
+  },
+  {
+    "name": "Savero Hotel Depok",
+    "image": "https://indonesiadaily.net/wp-content/uploads/2022/11/Hotel-Savero-Depok.jpeg",
+    "address": "Jl. Margonda Raya No.230A, Kemiri Muka, Kecamatan Beji, Kota Depok, Jawa Barat 16423",
+    "geocoding": "-6.381844686053671, 106.83024756757253",
+    "isRecommended": true,
+    "price": 512000,
+    "CityId": 30
+  },
+  {
+    "name": "Hotel Santika Depok",
+    "image": "http://mix.co.id/wp-content/uploads/2013/09/Margonda-Residence-3.jpg",
+    "address": "Jl. Margonda Raya No.88, Kemiri Muka, Kecamatan Beji, Kota Depok, Jawa Barat 16423",
+    "geocoding": "-6.386660290192075, 106.82696132524353",
+    "isRecommended": true,
+    "price": 514000,
+    "CityId": 30
   }
 ]

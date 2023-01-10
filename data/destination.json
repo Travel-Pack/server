@@ -204,7 +204,7 @@
     "mainImg": "https://travelspromo.com/wp-content/uploads/2022/04/pemandangan-puncak-tertinggi-Gunung-Kendil.jpg",
     "cost": 5000,
     "geocoding": "-7.666791899362204, 111.56444179728209",
-    "description": "The tourist spot has a very similar view to the view of Santa Monica, Los Angeles. Previously, before being used as a tourist spot, this place was a military training ground. However, after it was not used for military training, this place was then converted into a tourist spot with very complete playgrounds and facilities.",
+    "description": "The tourist spot has a very similar view to the view of Santa Monica, Los Angeles. Previously, before being used as a tourist spot, this place was a military training ground.",
     "CityId": 6,
     "UserId": 5
   },
@@ -226,7 +226,7 @@
     "mainImg": "https://t-2.tstatic.net/tribunnewswiki/foto/bank/images/pantai-lekok-2.jpg",
     "cost": 7500,
     "geocoding": "-7.657438545146224, 112.9918489758317",
-    "description": "This beach is known by that name because the location of the beach is in Lekok Village, so that it is easy to remember and makes it easier to find the location, it is called Lekok Beach. This beach has a charm of beauty that is quite attractive to tourists so that this tourist attraction will be increasingly crowded with visitors when holidays arrive.",
+    "description": "This beach is known by that name because the location of the beach is in Lekok Village, so that it is easy to remember.",
     "CityId": 8,
     "UserId": 5
   },
@@ -248,7 +248,7 @@
     "mainImg": "https://pantainesia.com/wp-content/uploads/2022/06/Pantai-Mbehi-Malang-Jawa-Timur.jpg",
     "cost": 10000,
     "geocoding": "-8.40070688852219, 112.50405058584893",
-    "description": "This area is called Teluk Bidadari which is located on Mbehi Beach. This very beautiful tourist object is indeed a tourist destination for Malang residents. Besides being beautiful, this place presents a challenge that is hard to forget. In fact, every second of his experience will always be remembered until the end of time.",
+    "description": "This area is called Teluk Bidadari which is located on Mbehi Beach. This very beautiful tourist object is indeed a tourist destination for Malang residents. Besides being beautiful, this place presents a challenge that is hard to forget.",
     "CityId": 9,
     "UserId": 5
   },
@@ -292,7 +292,7 @@
     "mainImg": "https://o-cdn-cas.sirclocdn.com/parenting/images/coban-tumpak-sewu.width-1000.jpg",
     "cost": 10000,
     "geocoding": "-8.230171763984831, 112.9166379134291",
-    "description": "Tumpak Sewu, also known as Coban Sewu, is a tiered waterfall that is located between the Pronojiwo District, Lumajang Regency, and the Ampelgading District, Malang Regency, in East Java, Indonesia. The waterfall is overshadowed by Semeru, an active volcano and the highest mountain in Java.",
+    "description": "Tumpak Sewu, also known as Coban Sewu, is a tiered waterfall that is located between the Pronojiwo District, Lumajang Regency, and the Ampelgading District, Malang Regency, in East Java, Indonesia.",
     "CityId": 12,
     "UserId": 5
   },
@@ -402,7 +402,7 @@
     "mainImg": "https://cdn.nativeindonesia.com/foto/gili-labak/Mengunjungi-Taman-Laut-Gili-Labak.jpg",
     "cost": 150000,
     "geocoding": "-7.199944905872116, 114.04544933893465",
-    "description": "Gili Labak is a small island that located in southeast side of Puteran island, the capital city of Puteran island or Madura island. Administratively, this island is in Talango sub-district, Sumenep regency, East Java. This small island is covered only 5 hectares and there are 35 families live in this island.",
+    "description": "Gili Labak is a small island that located in southeast side of Puteran island, the capital city of Puteran island or Madura island. Administratively, this island is in Talango sub-district, Sumenep regency, East Java.",
     "CityId": 18,
     "UserId": 5
   },
@@ -468,7 +468,7 @@
     "mainImg": "https://asset.kompas.com/crops/598-xpb-lCKzeBESCpcQIsvqcvI=/0x0:1024x683/750x500/data/photo/2022/05/29/62934b49f3b6b.jpeg",
     "cost": 250000,
     "geocoding": "-8.72556973235918, 114.36254830972752",
-    "description": "G-Land, also known as Plengkung Beach, is an internationally renowned surf break on Grajagan Bay, Banyuwangi, Alas Purwo National Park, East Java, Indonesia, about half a day by road from the popular tourist destinations of Bali. It is most commonly reached via boat charter from Bali.",
+    "description": "G-Land, also known as Plengkung Beach, is an internationally renowned surf break on Grajagan Bay, Banyuwangi, Alas Purwo National Park, East Java, Indonesia.",
     "CityId": 10,
     "UserId": 5
   },
@@ -655,7 +655,7 @@
     "mainImg": "https://a.cdn-hotels.com/gdcs/production161/d644/bf88dd30-dc5c-4e05-9465-1b0e9532012d.jpg",
     "cost": 0,
     "geocoding": "-8.508343339298271, 115.5644275847382",
-    "description": "Candi Dasa, or often Candidasa is a seaside town on the eastern cost of Bali that rests on the edge of a fresh water lagoon, named Candi Dasa Lagoon. The town is centred around Jalan Raya Candida, where a number of hotels, restaurants, and shops line the main road.",
+    "description": "Candi Dasa, or often Candidasa is a seaside town on the eastern cost of Bali that rests on the edge of a fresh water lagoon, named Candi Dasa Lagoon.",
     "CityId": 24,
     "UserId": 5
   },
@@ -1173,7 +1173,7 @@
     "cost": 10000,
     "geocoding": "-7.0608646557245525, 106.52413445655681",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 6,
+    "CityId": 28,
     "UserId": 3
   },
   {
@@ -1184,7 +1184,7 @@
     "cost": 5000,
     "geocoding": "-7.360251345647797, 106.61759945408612",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 6,
+    "CityId": 28,
     "UserId": 2
   },
   {
@@ -1195,7 +1195,7 @@
     "cost": 50000,
     "geocoding": "-6.830783678140147, 106.9289190829175",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 6,
+    "CityId": 28,
     "UserId": 2
   },
   {
@@ -1206,7 +1206,7 @@
     "cost": 5000,
     "geocoding": "-7.169782351064984, 106.47337888292004",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 6,
+    "CityId": 28,
     "UserId": 2
   },
   {
@@ -1217,7 +1217,7 @@
     "cost": 50000,
     "geocoding": "-6.948504344165317, 106.9267830559313",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 6,
+    "CityId": 28,
     "UserId": 2
   },
   {
@@ -1228,7 +1228,7 @@
     "cost": 5000,
     "geocoding": "-6.885523365954366, 106.98541716942442",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 6,
+    "CityId": 28,
     "UserId": 2
   },
   {
@@ -1239,7 +1239,7 @@
     "cost": 5000,
     "geocoding": "-6.9499612949753, 106.51756175408292",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 6,
+    "CityId": 28,
     "UserId": 2
   },
   {
@@ -1250,7 +1250,7 @@
     "cost": 3000,
     "geocoding": "-7.259282838205014, 106.51039959456588",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 6,
+    "CityId": 28,
     "UserId": 2
   },
   {
@@ -1261,7 +1261,7 @@
     "cost": 3000,
     "geocoding": "-7.185379181586997, 106.49781503874289",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 6,
+    "CityId": 28,
     "UserId": 2
   },
   {
@@ -1272,7 +1272,7 @@
     "cost": 5000,
     "geocoding": "-7.41436108844993, 106.58032503264468",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 6,
+    "CityId": 28,
     "UserId": 2
   },
   {
@@ -1283,7 +1283,7 @@
     "cost": 200000,
     "geocoding": "-6.720372162123022, 106.95082476757477",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 7,
+    "CityId": 29,
     "UserId": 2
   },
   {
@@ -1294,7 +1294,7 @@
     "cost": 25000,
     "geocoding": "-6.597301308410816, 106.79961701805902",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 7,
+    "CityId": 29,
     "UserId": 2
   },
   {
@@ -1305,7 +1305,7 @@
     "cost": 220000,
     "geocoding": "-6.572063196099593, 106.89468738620903",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 7,
+    "CityId": 29,
     "UserId": 2
   },
   {
@@ -1316,7 +1316,7 @@
     "cost": 45000,
     "geocoding": "-6.633744596221109, 106.79538995836286",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 7,
+    "CityId": 29,
     "UserId": 2
   },
   {
@@ -1327,7 +1327,7 @@
     "cost": 30000,
     "geocoding": "-6.414282536890397, 106.98657875407922",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 7,
+    "CityId": 29,
     "UserId": 2
   },
   {
@@ -1338,7 +1338,7 @@
     "cost": 5000,
     "geocoding": "-6.689977667978595, 106.79114930990363",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 7,
+    "CityId": 29,
     "UserId": 2
   },
   {
@@ -1349,7 +1349,7 @@
     "cost": 10000,
     "geocoding": "-6.580359277335392, 106.90373881892094",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 7,
+    "CityId": 29,
     "UserId": 2
   },
   {
@@ -1360,7 +1360,7 @@
     "cost": 40000,
     "geocoding": "-6.636864999559598, 106.79528659456133",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 7,
+    "CityId": 29,
     "UserId": 2
   },
   {
@@ -1371,7 +1371,7 @@
     "cost": 15000,
     "geocoding": "-6.603550280786861, 106.79695212351614",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 7,
+    "CityId": 29,
     "UserId": 2
   },
   {
@@ -1382,7 +1382,117 @@
     "cost": 350000,
     "geocoding": "-6.699254901653518, 106.98853739789887",
     "description": "this is destination DESCRIPTIONS SECTION!",
-    "CityId": 7,
+    "CityId": 29,
+    "UserId": 2
+  },
+  {
+    "id": "36",
+    "name": "D'Kandang Amazing Farm",
+    "address": "Jl. Penarikan No.RT 01 / 02, Pasir Putih, Kec. Sawangan, Kota Depok, Jawa Barat 16519",
+    "mainImg": "https://www.kupasmerdeka.com/wp-content/uploads/2022/02/IMG_20220214_113325_193.jpg",
+    "cost": 250000,
+    "geocoding": "-6.415793543707351, 106.78457564453076",
+    "description": "Recreation center with farm animal & plant exhibits, ATV & archery lessons.",
+    "CityId": 30,
+    "UserId": 2
+  },
+  {
+    "id": "36",
+    "name": "Taman Lembah Gurame",
+    "address": "Jl. Nangka Raya No.68, Depok Jaya, Kec. Pancoran Mas, Kota Depok, Jawa Barat 16432",
+    "mainImg": "https://mytrip123.com/wp-content/uploads/2021/11/taman-lembah-gurame.jpg",
+    "cost": 350000,
+    "geocoding": "-6.394481854815271, 106.80894443550132",
+    "description": "A green room with fitness equipment and a children's playground, as well as a pond, walkways and sculptures.",
+    "CityId": 30,
+    "UserId": 2
+  },
+  {
+    "id": "36",
+    "name": "Taman Wisata Pasir Putih",
+    "address": "Jl. Garuda Raya No.1, RT.01/RW.07, Pasir Putih, Kec. Sawangan, Kota Depok, Jawa Barat 16519",
+    "mainImg": "https://cdn.nativeindonesia.com/foto/taman-wisata-pasir-putih-pilihan-kolam-renang-di-sawangan-depok/memiliki-kolam-yang-luas.jpg",
+    "cost": 35000,
+    "geocoding": "-6.432940090599567, 106.78736272524381",
+    "description": "Family water park with outdoor pool, water slides, playground and food court.",
+    "CityId": 30,
+    "UserId": 2
+  },
+  {
+    "id": "36",
+    "name": "Kampung 99 Pepohonan",
+    "address": "Jl. KH. Muhasan 2, Meruyung, Kec. Limo, Kota Depok, Jawa Barat 16515",
+    "mainImg": "https://mytrip123.com/wp-content/uploads/2021/11/rute-lokasi-dan-alamat-kampung-99-pepohonan.jpg",
+    "cost": 25000,
+    "geocoding": "-6.384726085611673, 106.764273338737",
+    "description": "this is destination DESCRIPTIONS SECTION!",
+    "CityId": 30,
+    "UserId": 2
+  },
+  {
+    "id": "36",
+    "name": "Pondok Zidane",
+    "address": "Jalan Kekupu Blok, Blok Porek 1, Bedahan, Kec. Sawangan, Kota Depok, Jawa Barat 16519",
+    "mainImg": "https://cdn.nativeindonesia.com/foto/pondok-zidane/area-kolam-renang.jpg",
+    "cost": 30000,
+    "geocoding": "-6.4332588762175495, 106.77612568106635",
+    "description": "Natural outdoor activity center with swimming pool, altitude obstacle course, games, camping, lodging.",
+    "CityId": 30,
+    "UserId": 2
+  },
+  {
+    "id": "36",
+    "name": "Kolam Renang Paragon Semi Indoor",
+    "address": "Sukamaju, Kec. Cilodong, Kota Depok, Jawa Barat 16415",
+    "mainImg": "https://mytrip123.com/wp-content/uploads/2021/11/kolam-renang-paragon-1021x580.jpg",
+    "cost": 12000,
+    "geocoding": "-6.413104723117762, 106.85121081175012",
+    "description": "this is destination DESCRIPTIONS SECTION!",
+    "CityId": 30,
+    "UserId": 2
+  },
+  {
+    "id": "36",
+    "name": "Kampung 3D Depok",
+    "address": "Jl. Danau Tandano II No.172, Abadijaya, Kec. Sukmajaya, Kota Depok, Jawa Barat 16417",
+    "mainImg": "https://mytrip123.com/wp-content/uploads/2021/11/harga-tiket-masuk-kampung-3d-depok-1.jpg",
+    "cost": 7000,
+    "geocoding": "-6.4006438181794305, 106.8517805675726",
+    "description": "this is destination DESCRIPTIONS SECTION!",
+    "CityId": 30,
+    "UserId": 2
+  },
+  {
+    "id": "36",
+    "name": "Padang Golf Pangkalan Jati",
+    "address": "Jl. Jati Indah Raya No.1, Pangkalan Jati, Kec. Cinere, Kota Depok, Jawa Barat 16513",
+    "mainImg": "https://fastly.4sqi.net/img/general/600x600/23099388_8gvoevMxAAe2b7drBb_xZnGXOEwInoHRPrkMVPuSRaI.jpg",
+    "cost": 25000,
+    "geocoding": "-6.319707815288528, 106.78907475904293",
+    "description": "18 hole golf course in the naval complex, with restaurant, bar, gym, golf shop, event room & spa.",
+    "CityId": 30,
+    "UserId": 2
+  },
+  {
+    "id": "36",
+    "name": "Situ Cilangkap Kota Depok",
+    "address": " Jl. Cilangkap, Cilangkap, Kec. Tapos, Kota Depok, Jawa Barat 16458",
+    "mainImg": "https://konservasisitudepok.files.wordpress.com/2010/03/clkp1.jpg",
+    "cost": 3000,
+    "geocoding": "-6.444870817878391, 106.86162683240778",
+    "description": "this is destination DESCRIPTIONS SECTION!",
+    "CityId": 30,
+    "UserId": 2
+  },
+  {
+    "id": "36",
+    "name": "Taman Merdeka Depok Timur",
+    "address": "Jl. Merdeka No.1, Mekar Jaya, Kec. Sukmajaya, Kota Depok, Jawa Barat 16411",
+    "mainImg": "https://travelspromo.com/wp-content/uploads/2019/12/4-Taman-Merdeka-Edu-Juga-1024x576.jpg",
+    "cost": 0,
+    "geocoding": "-6.396603768424059, 106.8367500675725",
+    "description": "this is destination DESCRIPTIONS SECTION!",
+    "CityId": 30,
     "UserId": 2
   }
 ]
