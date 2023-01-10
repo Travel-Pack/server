@@ -34,5 +34,95 @@
     "isRecommended": true,
     "price": 88000,
     "CityId": 3
+  },
+  {
+    "name": "Hotel Ciputra Semarang",
+    "image": "https://dbijapkm3o6fj.cloudfront.net/resources/2332,1004,1,6,4,0,600,400/-4601-/20210429165746/facilities.jpeg",
+    "address": "Jl. Simpang Lima No.1, Pekunden, Kec. Semarang Tengah, Kota Semarang, Jawa Tengah 50134",
+    "geocoding": "-6.988886965298048, 110.42360052524774",
+    "isRecommended": true,
+    "price": 552000,
+    "CityId": 4
+  },
+  {
+    "name": "Ibis Budget Semarang Hotel",
+    "image": "https://imgcy.trivago.com/c_lfill,d_dummy.jpeg,e_sharpen:60,f_auto,h_360,q_auto,w_360/itemimages/38/42/3842448_v4.jpeg",
+    "address": "Jl. Kapten Piere Tendean No.21, Sekayu, Kec. Semarang Tengah, Kota Semarang, Jawa Tengah 50132",
+    "geocoding": "-6.977490512481564, 110.41359331175414",
+    "isRecommended": true,
+    "price": 248000,
+    "CityId": 4
+  },
+  {
+    "name": "Sahid Raya Hotel & Convention",
+    "image": "https://www.gudeg.net/cni-content/uploads/modules/direktori/logo/20161017082111.jpg",
+    "address": "Jl. Babarsari No.2, Janti, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281",
+    "geocoding": "-7.779665523620796, 110.41394533874752",
+    "isRecommended": true,
+    "price": 372000,
+    "CityId": 2
+  },
+  {
+    "name": "Grand Keisha Yogyakarta",
+    "image": "https://adv.kompas.id/wp-content/uploads/2020/02/1002-grand-keishat-hotel.jpg",
+    "address": "Jl. Affandi No.9, Soropadan, Condongcatur, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55283",
+    "geocoding": "-7.758945776182376, 110.39574162710218",
+    "isRecommended": true,
+    "price": 446000,
+    "CityId": 2
+  },
+  {
+    "name": "Merlynn Park Hotel",
+    "image": "https://ak-d.tripcdn.com/images/220o1d000001e8ped7752_R_960_660_R5_D.jpg",
+    "address": "Jl. KH. Hasyim Ashari No.29-31, RT.7/RW.7, Petojo Utara, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10130",
+    "geocoding": "-6.165637226215155, 106.81559796941936",
+    "isRecommended": true,
+    "price": 651000,
+    "CityId": 1
+  },
+  {
+    "name": "Oasis Amir Hotel",
+    "image": "https://live.staticflickr.com/65535/48658240807_b925cbaa1c_b.jpg",
+    "address": "Jl. Senen Raya No.135-137, Senen, Kec. Senen, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10410",
+    "geocoding": "-6.174167230500954, 106.83913259640654",
+    "isRecommended": true,
+    "price": 356000,
+    "CityId": 1
+  },
+  {
+    "name": "Horison Sukabumi",
+    "image": "https://liputan12.id/wp-content/uploads/2020/09/IMG_20200907_202911.jpg",
+    "address": "Jl. Siliwangi No.68, Kebonjati, Kec. Cikole, Kota Sukabumi, Jawa Barat 43113",
+    "geocoding": "-6.918560228677602, 106.93696559826014",
+    "isRecommended": true,
+    "price": 464000,
+    "CityId": 6
+  },
+  {
+    "name": "Balcony Hotel",
+    "image": "https://origin.pegipegi.com/jalan/images/pict1L/Y8/Y925088/Y925088002.jpg",
+    "address": "Jl. Selabintana No.27, Selabatu, Kec. Cikole, Kabupaten Sukabumi, Jawa Barat 43151",
+    "geocoding": "-6.908100825148624, 106.93610650990526",
+    "isRecommended": true,
+    "price": 340000,
+    "CityId": 6
+  },
+  {
+    "name": "Bogor Icon Hotel and Convention",
+    "image": "https://rm.id/images/berita/750x390/rebranding-horison-bogor-icon-hotel-convention_58147.jpeg",
+    "address": "Bukit Cimanggu City, Jl. Sholeh Iskandar No.1, RT.01/RW.13, Cibadak, Kec. Tanah Sereal, Kota Bogor, Jawa Barat 16168",
+    "geocoding": "-6.5558201283037265, 106.78258735223162",
+    "isRecommended": true,
+    "price": 398000,
+    "CityId": 7
+  },
+  {
+    "name": "Balcony Hotel",
+    "image": "https://origin.pegipegi.com/jalan/images/pict1L/Y4/Y992184/Y992184033.jpg",
+    "address": "Jl. Sholeh Iskandar No.5, RT.04/RW.11, Kedungbadak, Kec. Tanah Sereal, Kota Bogor, Jawa Barat 16164",
+    "geocoding": "-6.561573395091871, 106.8001868116029",
+    "isRecommended": true,
+    "price": 340000,
+    "CityId": 7
   }
 ]
