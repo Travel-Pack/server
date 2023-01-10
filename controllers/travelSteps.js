@@ -37,10 +37,12 @@ class TravelStepsController {
         where: {
           UserId: req.user.id
         },
-        include: {
+        include: [{
           model: Favourite,
           include: Destination
-        }
+        },
+        Hotel
+      ]
       })
       res.status(200).json(travelSteps);
     } catch (error) {

@@ -537,6 +537,21 @@ describe("Save Travel Steps", () => {
 describe("Get Travel Steps by user", () => {
   describe("GET /travel-steps", () => {
     test("200, success save Travel Steps", async () => {
+      await request(app).post("/travel-steps").set({
+        access_token
+      })
+        .send({
+          HotelId: 4,
+          name: "test",
+          DestinationIds: [
+            {
+              id: 2
+            },
+            {
+              id: 4
+            }
+          ]
+        });
       const res = await request(app).get("/travel-steps").set({
         access_token
       })
@@ -545,6 +560,16 @@ describe("Get Travel Steps by user", () => {
       expect(res.body[0]).toHaveProperty("UserId", expect.any(Number));
       expect(res.body[0]).toHaveProperty("HotelId", expect.any(Number));
       expect(res.body[0]).toHaveProperty("name", expect.any(String));
+      expect(res.body[0]).toHaveProperty("Hotel");
+      expect(res.body[0].Hotel).toBeInstanceOf(Object);
+      expect(res.body[0].Hotel).toHaveProperty("id", expect.any(Number));
+      expect(res.body[0].Hotel).toHaveProperty("name", expect.any(String));
+      expect(res.body[0].Hotel).toHaveProperty("slug", expect.any(String));
+      expect(res.body[0].Hotel).toHaveProperty("image", expect.any(String));
+      expect(res.body[0].Hotel).toHaveProperty("address", expect.any(String));
+      expect(res.body[0].Hotel).toHaveProperty("geocoding", expect.any(String));
+      expect(res.body[0].Hotel).toHaveProperty("price", expect.any(Number));
+      expect(res.body[0].Hotel).toHaveProperty("CityId", expect.any(Number));
       expect(res.body[0]).toHaveProperty("Favourites");
       expect(res.body[0].Favourites).toBeInstanceOf(Array);
       expect(res.body[0].Favourites[0]).toHaveProperty("DestinationId", expect.any(Number));
@@ -563,6 +588,21 @@ describe("Get Travel Steps by user", () => {
       expect(res.body[0].Favourites[0].Destination).toHaveProperty("UserId", expect.any(Number));
     });
     test('500, Internal Server Error', async () => {
+      await request(app).post("/travel-steps").set({
+        access_token
+      })
+        .send({
+          HotelId: 4,
+          name: "test",
+          DestinationIds: [
+            {
+              id: 2
+            },
+            {
+              id: 4
+            }
+          ]
+        });
       jest.spyOn(TravelStep, 'findAll').mockRejectedValue('Error')
       return request(app)
         .get('/travel-steps').set({access_token})
