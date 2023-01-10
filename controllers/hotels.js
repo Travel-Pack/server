@@ -34,7 +34,10 @@ class HotelController {
         include: [
           {
             model:Review,
-            include: User
+            include: {
+              model: User,
+              attributes: ["fullName"]
+            }
           },
           Image
         ]
