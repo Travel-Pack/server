@@ -1,5 +1,4 @@
 const midtransClient = require("midtrans-client");
-const { User } = require("../models");
 
 class midtransController {
   static async generateSnapToken(req, res, next) {
