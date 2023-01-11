@@ -190,5 +190,77 @@
     "DestinationId": 17,
     "HotelId": 1,
     "imgUrl": "https://youimg1.tripcdn.com/target/0101f12000978tfcmAB24.png?proc=source%2Ftrip"
+  },
+  {
+    "id": 33,
+    "DestinationId": 1,
+    "HotelId": 2,
+    "imgUrl": "https://3.bp.blogspot.com/-1nexvFAgqaM/Wss0YVFzo9I/AAAAAAAACc8/PGRQ3sJMqjEZUYkT-R2cIvOBWMU7GJQUACLcBGAs/s1600/2018-03-23%2B02.57.30%2B1.jpg"
+  },
+  {
+    "id": 33,
+    "DestinationId": 1,
+    "HotelId": 2,
+    "imgUrl": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/126307856.jpg?k=b00f37443d2386588d2374e1d086bc668e80c9e7f35c426b7d69ff6c5603582a&o=&hp=1"
+  },
+  {
+    "id": 34,
+    "DestinationId": 1,
+    "HotelId": 9,
+    "imgUrl": "https://pix10.agoda.net/hotelImages/182137/-1/b5100ec8d59923ac814736da812604db.jpg?ca=13&ce=1&s=1024x768"
+  },
+  {
+    "id": 35,
+    "DestinationId": 1,
+    "HotelId": 9,
+    "imgUrl": "https://www.kayak.co.id/rimg/himg/b5/12/16/expediav2-345094-e82239-600916.jpg?width=1366&height=768&crop=true"
+  },
+  {
+    "id": 36,
+    "DestinationId": 1,
+    "HotelId": 8,
+    "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnf6tIxwPLClI1gTCjx0-LHKjr-OHaiUXvHKAfvlnD6qPjMOpNoc1wUfbwAzLZw7tTkEc&usqp=CAU"
+  },
+  {
+    "id": 37,
+    "DestinationId": 1,
+    "HotelId": 8,
+    "imgUrl": "https://visitingjogja.jogjaprov.go.id/web/wp-content/uploads/2019/04/5-1024x684.jpg"
+  },
+  {
+    "id": 38,
+    "DestinationId": 1,
+    "HotelId": 10,
+    "imgUrl": "https://live.staticflickr.com/65535/48658240807_b925cbaa1c_b.jpg"
+  },
+  {
+    "id": 39,
+    "DestinationId": 1,
+    "HotelId": 10,
+    "imgUrl": "https://pix10.agoda.net/hotelImages/178/178530/178530_16101013100047577482.jpg?ca=6&ce=1&s=1024x768"
+  },
+  {
+    "id": 40,
+    "DestinationId": 1,
+    "HotelId": 3,
+    "imgUrl": "https://www.hotelscombined.co.id/himg/0e/25/9a/expediav2-3011339-4e18a4-415373.jpg"
+  },
+  {
+    "id": 41,
+    "DestinationId": 1,
+    "HotelId": 3,
+    "imgUrl": "https://pix10.agoda.net/hotelImages/3578560/-1/522f37fae1e4a7dce724751b2417fa75.jpg?ca=9&ce=1&s=1024x768"
+  },
+  {
+    "id": 42,
+    "DestinationId": 1,
+    "HotelId": 6,
+    "imgUrl": "https://pix10.agoda.net/hotelImages/84796/-1/524c38e892e020e662726a9ddf4bfefe.jpg?ca=23&ce=0&s=1024x768"
+  },
+  {
+    "id": 37,
+    "DestinationId": 1,
+    "HotelId": 6,
+    "imgUrl": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/322549725.jpg?k=bd6a85c794719878f1488bc6f44970034c38d33b781907578ab9321f070ef108&o=&hp=1"
   }
 ]
