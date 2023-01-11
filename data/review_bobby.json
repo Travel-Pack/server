@@ -1,0 +1,167 @@
+[
+    {
+        "DestinationId": 1,
+        "namaDestinasi": "Ancol",
+        "HotelId": 1,
+        "cost": 4,
+        "fun": 4,
+        "internet": 3,
+        "safety": 3,
+        "comment": "The park has several hotels and resorts to choose from. I stayed at the Bayview Hotel which is inside the theme park, the room was modern, spacious, and clean. The hotel staff were friendly and helpful, and it was a convenient location for visiting the park.",
+        "UserId": 1
+    },
+    {
+        "DestinationId": 1,
+        "namaDestinasi": "Ancol",
+        "HotelId": 2,
+        "cost": 2,
+        "fun": 5,
+        "internet": 3,
+        "safety": 3,
+        "comment": "The theme park offers a wide variety of rides, from roller coasters to water rides and kid-friendly attractions. The highlight of my visit was the roller coaster ride which was quite thrilling, also the water park and the ocean dream park which have an aquarium and sea life. The park also has a beach, a golf course, and other outdoor activities available.",
+        "UserId": 2
+      },
+      {
+        "DestinationId": 1,
+        "namaDestinasi": "Ancol",
+        "HotelId": 3,
+        "cost": 3,
+        "fun": 4,
+        "internet": 2,
+        "safety": 4,
+        "comment": "The park offers a wide range of food and dining options to choose from, including several restaurants and food courts. The prices were reasonable and the food was good. I particularly enjoyed the traditional Indonesian food and the seafood.",
+        "UserId": 3
+      },
+      {
+        "DestinationId": 1,
+        "namaDestinasi": "Ancol",
+        "HotelId": 1,
+        "cost": 4,
+        "fun": 5,
+        "internet": 3,
+        "safety": 5,
+        "comment": "Ancol Dreamland is located in Jakarta, and it's easily accessible by car or public transportation. It's well-sign posted, and parking is available at the theme park. You can also take Transjakarta bus from some point in Jakarta and it will drop you in front of the theme park.",
+        "UserId": 4
+      },
+      {
+        "DestinationId": 1,
+        "namaDestinasi": "Ancol",
+        "HotelId": 1,
+        "cost": 4,
+        "fun": 3,
+        "internet": 5,
+        "safety": 3,
+        "comment": "I had a great time at Ancol Dreamland. The theme park has a great variety of rides and attractions for visitors of all ages, and the food and accommodations were good. I would highly recommend it for families and those looking for a fun day out in Jakarta. The park is well-maintained and provides a good entertainment for the visitors.",
+        "UserId": 5
+      },
+      {
+        "DestinationId": 2,
+        "namaDestinasi": "Waterbom PIK",
+        "HotelId": 1,
+        "cost": 3,
+        "fun": 5,
+        "internet": 4,
+        "safety": 2,
+        "comment": "The park does not have on-site accommodations but it's easy to find hotels or resorts nearby. I stayed at a hotel within a walking distance, so it was convenient to go back and forth from the hotel.",
+        "UserId": 1
+      },
+      {
+        "DestinationId": 2,
+        "namaDestinasi": "Waterbom PIK",
+        "HotelId": 1,
+        "cost": 4,
+        "fun": 4,
+        "internet": 5,
+        "safety": 3,
+        "comment": "The park offers a wide variety of rides and attractions, including slides, lazy rivers, and a wave pool. The highlight of my visit was the "Super Bowl" and "Boogie Ride" slide, they were really thrilling and a lot of fun. They also have kid-friendly rides and a relaxing area. The park is clean and well-maintained, and there is plenty of seating available.",
+        "UserId": 2
+      },
+      {
+        "DestinationId": 2,
+        "namaDestinasi": "Waterbom PIK",
+        "HotelId": 1,
+        "cost": 2,
+        "fun": 4,
+        "internet": 4,
+        "safety": 4,
+        "comment": "The park has several food and beverage outlets, including restaurants and snack stands. The prices were reasonable and the food was good. There's also a variety of food choices available. The best was the Indonesian food, it was delicious and freshly made.",
+        "UserId": 3
+      },
+      {
+        "DestinationId": 2,
+        "namaDestinasi": "Waterbom PIK",
+        "HotelId": 1,
+        "cost": 2,
+        "fun": 5,
+        "internet": 3,
+        "safety": 4,
+        "comment": "Waterbom Jakarta is located in the heart of Jakarta and it's easily accessible by car or public transportation. There's plenty of parking available. Taxis and ride-sharing services are also readily available. The park also provides a free shuttle bus from some points in Jakarta.",
+        "UserId": 4
+      },
+      {
+        "DestinationId": 2,
+        "namaDestinasi": "Waterbom PIK",
+        "HotelId": 1,
+        "cost": 5,
+        "fun": 5,
+        "internet": 3,
+        "safety": 4,
+        "comment": "I had an amazing time at Waterbom Jakarta. The park has a great variety of rides and attractions and it's well-maintained and clean. The staff were friendly and helpful. I would definitely recommend this water park to anyone looking for a fun and exciting day out in Jakarta. It's a great place to beat the heat and have a great time with friends and family.",
+        "UserId": 5
+      },
+      {
+        "DestinationId": 1,
+        "namaDestinasi": "Hotel apa aja, tinggal dipilih",
+        "HotelId": 2,
+        "cost": 3,
+        "fun": 4,
+        "internet": 5,
+        "safety": 5,
+        "comment": "I stayed in a deluxe room, which was spacious and well-appointed, with a comfortable king-size bed, a flat-screen TV, and a minibar. The room also had a balcony with a beautiful view of the city. The bathroom was large and had a separate shower and bathtub, as well as high-end toiletries. The housekeeping staff did an excellent job of keeping the room clean and tidy.",
+        "UserId": 1
+      },
+      {
+        "DestinationId": 1,
+        "namaDestinasi": "Hotel apa aja, tinggal dipilih",
+        "HotelId": 2,
+        "cost": 5,
+        "fun": 5,
+        "internet": 5,
+        "safety": 5,
+        "comment": "The hotel offers a wide range of amenities to its guests, including a fitness center, an indoor swimming pool, and a spa. The fitness center was well-equipped and I enjoyed working out there. The indoor pool was also great, it was clean and well-maintained. I also had the chance to book a massage in the spa, it was very relaxing and enjoyable.",
+        "UserId": 2
+      },
+      {
+        "DestinationId": 1,
+        "namaDestinasi": "Hotel apa aja, tinggal dipilih",
+        "HotelId": 2,
+        "cost": 4,
+        "fun": 4,
+        "internet": 5,
+        "safety": 5,
+        "comment": "The hotel has a fine-dining restaurant, which serves delicious and innovative cuisine. The service was excellent, the atmosphere was upscale and the prices were reasonable. I also enjoyed the breakfast buffet which was bountiful, with a wide variety of fresh fruits, cereals, breads and hot dishes, it was a great way to start the day.",
+        "UserId": 3
+      },
+      {
+        "DestinationId": 1,
+        "namaDestinasi": "Hotel apa aja, tinggal dipilih",
+        "HotelId": 2,
+        "cost": 4,
+        "fun": 4,
+        "internet": 4,
+        "safety": 4,
+        "comment": "The hotel is located in the city center, which is convenient for exploring the city. It's within walking distance of many shops, restaurants, and popular tourist attractions. It's also close to public transportation, making it easy to get around.",
+        "UserId": 4
+      },
+      {
+        "DestinationId": 1,
+        "namaDestinasi": "Hotel apa aja, tinggal dipilih",
+        "HotelId": 2,
+        "cost": 3,
+        "fun": 3,
+        "internet": 4,
+        "safety": 5,
+        "comment": "This hotel exceeded my expectations in every way. The accommodations were luxurious, the amenities were top-notch, and the service was exceptional. I would highly recommend this hotel to anyone visiting the city and looking for a comfortable, upscale experience. The hotel exceeded my expectations, it was a great experience and I would definitely stay there again.",
+        "UserId": 5
+      }
+  ]
