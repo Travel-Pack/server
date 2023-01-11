@@ -8,7 +8,7 @@ const app = express();
 const router = require("./routers");
 const errorHandler = require("./middlewares/errorHandler");
 
-const { socketIoInit } = require('./socket')
+const socketIoInit= require('./socket')
 const http = require('http')
 
 app.use(cors());

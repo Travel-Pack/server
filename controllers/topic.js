@@ -36,8 +36,7 @@ class TopicController {
       let UserId = req.user.id;
       if (!title || !type) throw { name: "Title/ Topic required" };
       let newTopic = await Topic.create({ title, type, UserId });
-      if (type == "Forum")
-        await User.increment("point", { where: { id: UserId } });
+      if (type == "Forum") await User.increment("point", { where: { id: UserId } });
       res.status(201).json(newTopic);
     } catch (error) {
       next(error);
