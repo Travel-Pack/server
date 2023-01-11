@@ -44,6 +44,18 @@ beforeAll(async function () {
     "Destinations",
     [
       {
+        name: "NULL",
+        slug: "NULL",
+        address: "NULL",
+        mainImg: "NULL",
+        cost: 0,
+        geocoding: "123213123",
+        description: "NULL",
+        CityId: 1,
+        UserId: 1,
+        createdAt: new Date(), updatedAt: new Date()
+      },
+      {
         name: "Ancol",
         slug: "ancol",
         address: "Jl. Lodan Timur no. 7 North Jakarta, Jakarta 14430 Indonesia",
