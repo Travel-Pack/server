@@ -58,7 +58,7 @@
   {
     "id": 9,
     "name": "Malang",
-    "image": "https://www.desabisa.com/wp-content/uploads/2019/10/kampung-warna-warni-jodipan-malang-via-bosniatravel.jpg",
+    "image": "https://images.unsplash.com/photo-1588528305358-5c7399b6a184?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     "geocoding": "5083867975799",
     "ProvinceId": 15
   },
@@ -121,7 +121,7 @@
   {
     "id": 18,
     "name": "Sumenep",
-    "image": "https://cdn.nativeindonesia.com/foto/gili-labak/Mengunjungi-Taman-Laut-Gili-Labak.jpg",
+    "image": "https://www.pinhome.id/info-area/wp-content/uploads/2022/05/AF1QipMgI3aH3A-eqUuDMeYW_-Xf1sCZJ10SNcT-BkJYs677-k-no.jpg",
     "geocoding": "5083867975799",
     "ProvinceId": 15
   },
@@ -198,7 +198,7 @@
   {   
     "id": 30,
     "name": "Bogor",
-    "image": "https://t-2.tstatic.net/tribunnewswiki/foto/bank/images/Tea-Bridge-di-kawasan-Agro-Wisata-Gunung-Mas-Puncak-Bogor2.jpg",
+    "image": "https://images.unsplash.com/photo-1623484280902-71ce37709e5b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1012&q=80",
     "geocoding": "-6.593349554036896, 106.7915073295078",
     "ProvinceId": 12
    },
