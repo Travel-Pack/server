@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../app");
+const { server: app } = require("../app");
 const { createToken } = require("../helpers/jsonwebtoken");
 const { User, Province, City, Destination, Review, sequelize } = require("../models");
 
@@ -43,6 +43,18 @@ beforeAll(async function () {
   await sequelize.queryInterface.bulkInsert(
     "Destinations",
     [
+      {
+        name: "NULL",
+        slug: "NULL",
+        address: "NULL",
+        mainImg: "NULL",
+        cost: 0,
+        geocoding: "123213123",
+        description: "NULL",
+        CityId: 1,
+        UserId: 1,
+        createdAt: new Date(), updatedAt: new Date()
+      },
       {
         name: "Ancol",
         slug: "ancol",

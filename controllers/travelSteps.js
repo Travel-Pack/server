@@ -58,14 +58,16 @@ class TravelStepsController {
       const hotels = await Hotel.findAll({
         where: {
           CityId,
-          price: { [Op.lte]: budgetHotel }
+          price: { [Op.lte]: budgetHotel },
+          id: { [Op.ne]: 1 }
         }
       })
       budgetDestination = budgetDestination / numberOfDestination;
       const destinations = await Destination.findAll({
         where: {
           CityId,
-          cost: { [Op.lte]: budgetDestination }
+          cost: { [Op.lte]: budgetDestination },
+          id: { [Op.ne]: 1 }
         }
       })
       if (!hotels.length) {
@@ -101,7 +103,7 @@ class TravelStepsController {
         data.needPremium = true;
       }
       else{
-        data.travelStep = sortedTravelStep;
+        data.travelStep = sortedTravelStep.slice(0, 10);
         data.needPremium = false;
       }
       res.status(200).json(data);

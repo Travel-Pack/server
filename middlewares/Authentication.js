@@ -13,8 +13,8 @@ class Authentication {
             let calledUser = await User.findByPk(payload.id)
             if (!calledUser) throw ({name: "InvalidToken"})
 
-            let { id, fullname, isPremium, role } = calledUser
-            req.user = { id, fullname, isPremium, role }
+            let { id, fullName, isPremium, role, point, email, phoneNumber, createdAt, updatedAt } = calledUser
+            req.user = { id, fullName, phoneNumber, email, isPremium, role, point, createdAt, updatedAt }
 
             next ()
         } catch (error) {

@@ -19,6 +19,6 @@ app.use(router);
 app.use(errorHandler);
 
 const server = http.createServer(app)
-socketIoInit(server)
+let io = socketIoInit(server)
 
-module.exports = server
+module.exports = { server, io }

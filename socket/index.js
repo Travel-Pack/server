@@ -45,12 +45,13 @@ const socketIoInit = (app) => {
 
     io = new Server(app, {
         cors: {
-            origin: client,
+            origin: "*" || client,
             methods: ["GET", "POST", "PUT", "DELETE"],
         },
     });
 
     socketListener()
+    return io
 }
 
 const socketBroadcast = (room, message) => {

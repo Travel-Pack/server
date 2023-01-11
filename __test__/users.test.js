@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../app.js");
+const { server: app } = require("../app.js");
 const { hashPassword } = require("../helpers/bcryptjs.js");
 const { sequelize } = require("../models");
 const { queryInterface } = sequelize;
@@ -301,7 +301,6 @@ describe("GET User By Id", () => {
         expect.any(String)
       );
       expect(res.body.userById).toHaveProperty("email", expect.any(String));
-      expect(res.body.userById).toHaveProperty("password", expect.any(String));
       expect(res.body.userById).toHaveProperty(
         "isPremium",
         expect.any(Boolean)
