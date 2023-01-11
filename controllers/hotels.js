@@ -36,7 +36,7 @@ class HotelController {
             model:Review,
             include: {
               model: User,
-              attributes: ["fullName"]
+              attributes: ["fullName", "isPremium"]
             }
           },
           Image,
