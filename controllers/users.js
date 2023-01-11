@@ -5,9 +5,11 @@ const nodemailer = require("nodemailer");
 class UserController {
 	static async userById(req, res, next) {
 		try {
-			const userById = await User.findByPk(req.user.id, {
-				attributes: { exclude: ['password'] }
-			});
+			// const userById = await User.findByPk(req.user.id, {
+			// 	attributes: { exclude: ['password'] }
+			// });
+
+			const userById = req.user
 
 			res.status(200).json({ userById });
 		} catch (error) {
@@ -44,8 +46,6 @@ class UserController {
 
 	static async activatePremiumStatus(req, res, next) {
 		try {
-			// const findUser = await User.findByPk(req.user.id);
-
 			if (req.user.isPremium === false) {
 				const transporter = nodemailer.createTransport({
 					service: 'gmail',
@@ -94,8 +94,6 @@ TravelPack`,
 
 	static async deactivatePremiumStatus(req, res, next) {
 		try {
-			// const findUser = await User.findByPk(req.user.id);
-
 			if (req.user.isPremium === true) {
 				const transporter = nodemailer.createTransport({
 					service: 'gmail',
@@ -141,8 +139,6 @@ TravelPack`,
 
 	static async incrimentPointUser(req, res, next) {
 		try {
-			// const findUser = await User.findByPk(req.user.id);
-
 			await User.update({ point: req.user.point += 1 }, { where: { id: req.user.id } });
 
 			res.status(200).json({ message: `User point has been incrimented by 1` });

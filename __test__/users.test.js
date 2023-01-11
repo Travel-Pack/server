@@ -301,7 +301,6 @@ describe("GET User By Id", () => {
         expect.any(String)
       );
       expect(res.body.userById).toHaveProperty("email", expect.any(String));
-      expect(res.body.userById).toHaveProperty("password", expect.any(String));
       expect(res.body.userById).toHaveProperty(
         "isPremium",
         expect.any(Boolean)
