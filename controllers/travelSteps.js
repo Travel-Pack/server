@@ -97,7 +97,7 @@ class TravelStepsController {
       }
       const sortedTravelStep = TravelStepsController.sortTravelStep(travelStep);
       let data = {};
-      console.log(sortedTravelStep.length > 4 && !req.user.isPremium);
+      // console.log(sortedTravelStep.length > 4 && !req.user.isPremium);
       if(sortedTravelStep.length > 4 && !req.user.isPremium){
         data.travelStep = sortedTravelStep.slice(0, 4);
         data.needPremium = true;
