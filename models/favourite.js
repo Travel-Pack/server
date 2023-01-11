@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       Favourite.belongsTo(models.Destination, {
         foreignKey: "DestinationId",
       });
-      Favourite.belongsTo(models.User, {
-        foreignKey: "UserId",
+      Favourite.belongsTo(models.TravelStep, {
+        foreignKey: "UseTravelStepId",
       });
     }
   }
@@ -24,16 +24,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        notNull: { msg: "Destination is required" },
-        notEmpty: { msg: "Destination is required" },
+        notNull: { msg: "DestinationId is required" },
+        notEmpty: { msg: "DestinationId is required" },
       },
     },
-    UserId: {
+    UseTravelStepId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        notNull: { msg: "User is required" },
-        notEmpty: { msg: "User is required" },
+        notNull: { msg: "TravelStepId is required" },
+        notEmpty: { msg: "TravelStepId is required" },
       },
     }
   }, {

@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class City extends Model {
     /**
@@ -16,61 +14,84 @@ module.exports = (sequelize, DataTypes) => {
       });
       City.hasMany(models.Destination, {
         foreignKey: "CityId",
+      });
+      City.hasMany(models.Hotel, {
+        foreignKey: "CityId",
       })
     }
   }
-  City.init({
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Name is required",
+  City.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Name is required",
+          },
+          notEmpty: {
+            msg: "Name is required",
+          },
         },
-        notEmpty: {
-          msg: "Name is required",
+      },
+      slug: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Slug is required",
+          },
+          notEmpty: {
+            msg: "Slug is required",
+          },
+        },
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Image is required",
+          },
+          notEmpty: {
+            msg: "Image is required",
+          },
+        },
+      },
+      geocoding: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Location is required",
+          },
+          notEmpty: {
+            msg: "Location is required",
+          },
+        },
+      },
+      ProvinceId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Province is required",
+          },
+          notEmpty: {
+            msg: "Province is required",
+          },
         },
       },
     },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Image is required",
-        },
-        notEmpty: {
-          msg: "Image is required",
-        },
-      },
-    },
-    geocoding: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Location is required",
-        },
-        notEmpty: {
-          msg: "Location is required",
-        },
-      },
-    },
-    ProvinceId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: "Province is required",
-        },
-        notEmpty: {
-          msg: "Province is required",
-        },
-      },
-    },
-  }, {
-    sequelize,
-    modelName: 'City',
+    {
+      sequelize,
+      modelName: "City",
+    }
+  );
+  City.beforeCreate((city, options) => {
+    const slugName = city.name.toLocaleLowerCase().split(" ").join("-");
+    city.slug = slugName;
   });
+
   return City;
 };

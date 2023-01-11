@@ -14,10 +14,20 @@ module.exports = (sequelize, DataTypes) => {
       Image.belongsTo(models.Destination, {
         foreignKey: "DestinationId"
       })
+      Image.belongsTo(models.Hotel, {
+        foreignKey: "HotelId"
+      })
     }
   }
   Image.init({
-    DestinationId: DataTypes.INTEGER,
+    DestinationId: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1
+    },
+    HotelId: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1
+    },
     imgUrl: {
       type: DataTypes.STRING,
       allowNull: false,

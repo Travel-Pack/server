@@ -15,6 +15,16 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Favourite, {
         foreignKey: "UserId"
       })
+      User.hasMany(models.Destination, {
+        foreignKey: "UserId"
+      })
+      User.hasMany(models.Review, {
+        foreignKey: "UserId"
+      })
+      User.hasMany(models.Message, {
+        foreignKey: "UserId"
+      })
+      User.hasMany(models.Topic, {foreignKey: "UserId"})
     }
   }
   User.init({
@@ -48,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         isEmail: {
-          msg: "Use email format",
+          msg: "Email format is not valid",
         },
         notNull: {
           msg: "Email is required",
@@ -56,10 +66,10 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: {
           msg: "Email is required",
         },
-        async unique(value) {
-          const findUser = await User.findOne({ where: { email: value } });
-          if (findUser) throw new Error("Email already exist");
-        },
+        // async unique(value) {
+        //   const findUser = await User.findOne({ where: { email: value } });
+        //   if (findUser) throw new Error("Email already exist");
+        // },
       },
     },
     password: {
@@ -72,10 +82,11 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: {
           msg: "Password is required",
         },
-        len: {
-          args: 5,
-          msg: "Password cannot be less than 5 characters",
-        },
+        minimumLength(str) {
+          if (str.length < 5 || !str) {
+            throw new Error('Minimum password length must be 5 letter');
+          }
+        }
       },
     },
     isPremium: {
@@ -85,7 +96,12 @@ module.exports = (sequelize, DataTypes) => {
     role: {
       type: DataTypes.STRING,
       defaultValue: "Customer"
-    }
+    },
+    point: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: false
+    },
   }, {
     sequelize,
     modelName: 'User',
@@ -94,6 +110,14 @@ module.exports = (sequelize, DataTypes) => {
   User.beforeCreate((user) => {
     user.password = hashPassword(user.password);
   });
+
+  User.beforeUpdate((user) => {
+    user.password = hashPassword(user.password);
+  });
+
+  // User.afterUpdate((user) => {
+  //   user.password = hashPassword(user.password);
+  // });
 
   return User;
 };

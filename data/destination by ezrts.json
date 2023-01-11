@@ -1,5 +1,15 @@
 [
   {
+    "id": 1,
+    "name": "Ancol",
+    "address": "Jl. Lodan Timur no. 7 North Jakarta, Jakarta 14430 Indonesia",
+    "mainImg": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/58/44/fd/ancol-dreamland.jpg?w=1200&h=-1&s=1",
+    "cost": "250000",
+    "geocoding": "-6.128028, 106.845054",
+    "CityId": 1,
+    "UserId": 5
+  },
+  {
     "id": "2",
     "name": "Taman Mini Indonesia Indah",
     "address": "East Jakarta City, Jakarta",

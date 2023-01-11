@@ -14,11 +14,27 @@ module.exports = (sequelize, DataTypes) => {
       Review.belongsTo(models.Destination, {
         foreignKey: "DestinationId",
       })
+      Review.belongsTo(models.Hotel, {
+        foreignKey: "HotelId"
+      })
+      Review.belongsTo(models.User, {
+        foreignKey: "UserId",
+      })
     }
   }
   Review.init({
     DestinationId: {
       type: DataTypes.INTEGER,
+      defaultValue: 1,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true,
+      },
+    },
+    HotelId: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1,
       allowNull: false,
       validate: {
         notNull: true,
@@ -26,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     cost: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notNull: {
@@ -73,7 +89,15 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    comment: DataTypes.TEXT
+    comment: DataTypes.TEXT,
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true,
+      },
+    },
   }, {
     sequelize,
     modelName: 'Review',

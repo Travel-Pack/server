@@ -1,53 +1,68 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Destinations', {
+    await queryInterface.createTable("Destinations", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
         allowNull: false,
+        type: Sequelize.STRING,
+      },
+      slug: {
         type: Sequelize.STRING
       },
       address: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       mainImg: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       cost: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
       },
       geocoding: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+      },
+      description: {
+        allowNull: false,
+        type: Sequelize.TEXT,
       },
       CityId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: "Cities",
-          key: "id"
-        }
+          key: "id",
+        },
+      },
+      UserId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id",
+        },
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Destinations');
-  }
+    await queryInterface.dropTable("Destinations");
+  },
 };

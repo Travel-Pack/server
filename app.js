@@ -8,6 +8,9 @@ const app = express();
 const router = require("./routers");
 const errorHandler = require("./middlewares/errorHandler");
 
+const socketIoInit= require('./socket')
+const http = require('http')
+
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -15,4 +18,7 @@ app.use(express.json());
 app.use(router);
 app.use(errorHandler);
 
-module.exports = app
+const server = http.createServer(app)
+let io = socketIoInit(server)
+
+module.exports = { server, io }
