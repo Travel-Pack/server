@@ -4,17 +4,9 @@ const nodemailer = require("nodemailer");
 
 class UserController {
 	static async userById(req, res, next) {
-		try {
-			// const userById = await User.findByPk(req.user.id, {
-			// 	attributes: { exclude: ['password'] }
-			// });
+		const userById = req.user
 
-			const userById = req.user
-
-			res.status(200).json({ userById });
-		} catch (error) {
-			next(error);
-		}
+		res.status(200).json({ userById });
 	}
 
 	static async updateUser(req, res, next) {
@@ -78,11 +70,9 @@ TravelPack`,
 				};
 
 				transporter.sendMail(mailOptions, async (err) => {
-					if (!err) {
-						await User.update({ isPremium: true }, { where: { id: req.user.id } });
+					await User.update({ isPremium: true }, { where: { id: req.user.id } });
 
-						res.status(200).json({ message: `User status has been updated to premium` });
-					}
+					res.status(200).json({ message: `User status has been updated to premium` });
 				});
 			} else {
 				throw ({ name: `User status already premium` });
@@ -123,11 +113,9 @@ TravelPack`,
 				};
 
 				transporter.sendMail(mailOptions, async (err) => {
-					if (!err) {
-						await User.update({ isPremium: false }, { where: { id: req.user.id } });
+					await User.update({ isPremium: false }, { where: { id: req.user.id } });
 
-						res.status(200).json({ message: `User status no longer premium` });
-					}
+					res.status(200).json({ message: `User status no longer premium` });
 				});
 			} else {
 				throw ({ name: `User status already not premium` });
@@ -138,13 +126,9 @@ TravelPack`,
 	}
 
 	static async incrimentPointUser(req, res, next) {
-		try {
-			await User.update({ point: req.user.point += 1 }, { where: { id: req.user.id } });
+		await User.update({ point: req.user.point += 1 }, { where: { id: req.user.id } });
 
-			res.status(200).json({ message: `User point has been incrimented by 1` });
-		} catch (error) {
-			next(error);
-		}
+		res.status(200).json({ message: `User point has been incrimented by 1` });
 	}
 }
 
