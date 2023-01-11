@@ -16,11 +16,11 @@ class ReviewController {
         UserId,
         HotelId,
       });
-      console.log(newReview, ">>>");
+      // console.log(newReview, ">>>");
       const findUser = await User.findByPk(UserId);
 
       await User.increment({ point: 1 }, { where: { id: UserId } });
-      console.log(findUser, "<<< USER");
+      // console.log(findUser, "<<< USER");
       res
         .status(201)
         .json({ msg: `New Review with id ${newReview.id} has been created` });

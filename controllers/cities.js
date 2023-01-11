@@ -27,7 +27,7 @@ class CityController {
         where: { CityId: findCity.id, id: { [Op.ne]: 1 } },
         order: [["price", "asc"]]
       });
-      console.log(showDestination);
+      // console.log(showDestination);
       res.status(200).json({
         city: findCity,
         destination: showDestination,
