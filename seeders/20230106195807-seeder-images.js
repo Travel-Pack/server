@@ -14,8 +14,9 @@ module.exports = {
      */
     const data = require("../data/image.json").map((el) => {
       delete el.id;
-      delete el.namaHotel;
-      delete el.namaDestinasi;
+      if (el.namaHotel) delete el.namaHotel;
+      if (el.namaDestinasi) delete el.namaDestinasi;
+
       return {
         ...el,
         createdAt: new Date(),

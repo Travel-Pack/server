@@ -182,7 +182,8 @@ class DestinationController {
         commentArr.push({
           user: el.User.fullName,
           comment: el.comment,
-          createdAt: el.createdAt
+          createdAt: el.createdAt,
+          isPremium: el.User.isPremium
         });
         // commentArr.push(el.comment);
       });

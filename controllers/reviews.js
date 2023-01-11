@@ -174,6 +174,7 @@ class ReviewController {
         return {
           comment: el.comment,
           user: el.User.fullName,
+          isPremium: el.User.isPremium
         };
       });
 
