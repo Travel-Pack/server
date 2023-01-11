@@ -208,6 +208,20 @@ beforeAll(async () => {
     "Destinations",
     [
       {
+        name: "Ancol",
+        slug: "ancol",
+        address: "Jl. Lodan Timur no. 7 North Jakarta, Jakarta 14430 Indonesia",
+        mainImg:
+          "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/58/44/fd/ancol-dreamland.jpg?w=1200&h=-1&s=1",
+        cost: 250000,
+        geocoding: "123213123",
+        description: "this is destination DESCRIPTIONS SECTION!",
+        CityId: 1,
+        UserId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
         name: "Wisata Air Taman Prestasi",
         slug: "Wisata Air Taman Prestasi",
         address: "Jl. Ketabang Kali No.2-B, Ketabang, Kec. Genteng, Kota Surabaya, Jawa Timur 60272",
@@ -278,6 +292,18 @@ beforeAll(async () => {
   await sequelize.queryInterface.bulkInsert(
     "Hotels",
     [
+      {
+        name: "NULL VALUES",
+        slug: "",
+        image: "NULL VALUES",
+        address: "NULL VALUES",
+        geocoding: "NULL VALUES",
+        isRecommended: false,
+        price: 0,
+        CityId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
       {
         name: "Swiss-Belinn Tunjungan, Surabaya",
         slug: "Swiss-Belinn Tunjungan, Surabaya",
@@ -418,7 +444,7 @@ describe("Generate Travel Steps", () => {
           "budgetDestination": 2000000,
           "budgetHotel": 100000,
           "CityId": 3,
-          "DestinationIds": [1],
+          "DestinationIds": [2],
           "numberOfDestination": 2
         });
       expect(res.status).toBe(200);
