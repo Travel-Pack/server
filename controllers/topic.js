@@ -7,10 +7,10 @@ class TopicController {
       let calledForum = await Topic.findOne({
         where: { id },
         include: [
-          { model: User, attributes: ["fullName"] },
+          { model: User, attributes: ["fullName", 'isPremium', 'point'] },
           {
             model: Message,
-            include: { model: User, attributes: ["fullName"] },
+            include: { model: User, attributes: ["fullName", 'isPremium', 'point'] },
           },
         ],
       });
@@ -23,7 +23,7 @@ class TopicController {
 
   static async getAllTopics(req, res, next) {
     try {
-      let allTopics = await Topic.findAll({include: { model: User, attributes: ["fullName"] }});
+      let allTopics = await Topic.findAll({include: { model: User, attributes: ["fullName", 'isPremium', 'point'] }});
       res.status(200).json(allTopics);
     } catch (error) {
       next(error);
@@ -36,8 +36,7 @@ class TopicController {
       let UserId = req.user.id;
       if (!title || !type) throw { name: "Title/ Topic required" };
       let newTopic = await Topic.create({ title, type, UserId });
-      if (type == "Forum")
-        await User.increment("point", { where: { id: UserId } });
+      if (type == "Forum") await User.increment("point", { where: { id: UserId } });
       res.status(201).json(newTopic);
     } catch (error) {
       next(error);

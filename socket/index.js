@@ -13,7 +13,7 @@ const socketListener = () => {
         socket.on("send_message", async (data) => {
             try {
                 let { id, slug, email, text } = data
-                if (!slug || !email || !text) throw({name: "Bad Request"})
+                if (!id || !slug || !email || !text) throw({name: "Bad Request"})
 
                 let calledForum = await Topic.findOne({where: { id }})
                 if (!calledForum) throw ({name: "Invalid Topic"})
@@ -23,12 +23,15 @@ const socketListener = () => {
                 await calledUser.increment("point")
 
                 let newMessage = await Message.create({TopicId: calledForum.id, UserId: calledUser.id, text})
-                let sendedMessage = await Message.findOne({where: {id: newMessage.id}, include: [User, Topic]})
+                let sendedMessage = await Message.findOne({
+                    where: {id: newMessage.id}, 
+                    include: [Topic, {model: User, attributes: ['fullName', 'isPremium', 'point']}]
+                })
 
                 io.in(slug).emit("receive_message", sendedMessage);
             } catch (error) {
                 console.log(error);
-                socket.to(socket.id).emit("receive_message", ["error", error]);
+                io.to(socket.id).emit("receive_message", ["error", error]);
             }
 
         });
@@ -54,8 +57,4 @@ const socketIoInit = (app) => {
     return io
 }
 
-const socketBroadcast = (room, message) => {
-    io.in(room).emit("receive_message", message)
-}
-
-module.exports = { socketIoInit, socketBroadcast }
+module.exports = socketIoInit

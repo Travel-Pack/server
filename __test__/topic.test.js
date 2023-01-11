@@ -118,7 +118,7 @@ describe("Topics", () => {
       const res = await request(app)
         .post("/topic")
         .set({ access_token: customer_access_token })
-        .send({ title: "Title test", type: "Type test" });
+        .send({ title: "Title test", type: "Forum" });
       expect(res.status).toBe(201);
       expect(res.body).toBeInstanceOf(Object);
       expect(res.body).toHaveProperty("id", expect.any(Number));
