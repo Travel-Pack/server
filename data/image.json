@@ -29,126 +29,126 @@
     },
     {
         "id": 3,
-        "DestinationId": 73,
+        "DestinationId": 87,
         "HotelId": 1,
         "namaDestinasi": "Saloka Theme Park",
         "imgUrl": "https://thumb.viva.co.id/media/frontend/thumbs3/2022/11/15/6373164f0803b-wisata-saloka_1265_711.jpg"
     },
     {
         "id": 4,
-        "DestinationId": 73,
+        "DestinationId": 87,
         "HotelId": 1,
         "namaDestinasi": "Saloka Theme Park",
         "imgUrl": "https://meramuda.com/wp-content/uploads/2019/04/Mau-Rekreasi-ke-Saloka-Theme-Park-Ini-Beragam-Kegiatan-Seru-yang-Bisa-Dijajal-cover.jpg"
     },
     {
         "id": 3,
-        "DestinationId": 74,
+        "DestinationId": 88,
         "HotelId": 1,
         "namaDestinasi": "Klenteng Sam Poo Kong",
         "imgUrl": "https://cdn2.tstatic.net/tribunnewswiki/foto/bank/images/klenteng-sam-poo-kong.jpg"
     },
     {
         "id": 4,
-        "DestinationId": 74,
+        "DestinationId": 88,
         "HotelId": 1,
         "namaDestinasi": "Klenteng Sam Poo Kong",
         "imgUrl": "https://budaya.blog.unisbank.ac.id/wp-content/uploads/2021/03/133121960_227363665511874_5742138706554744533_n.jpg"
     },
     {
         "id": 3,
-        "DestinationId": 75,
+        "DestinationId": 89,
         "HotelId": 1,
         "namaDestinasi": "Kota Lama Semarang",
         "imgUrl": "https://www.indonesia.travel/content/dam/indtravelrevamp/en/events/microsite-event/suka-nostalgia-sini-simak-info-festival-kota-lama-semarang-2021-dulu-aja/header.jpg"
     },
     {
         "id": 4,
-        "DestinationId": 75,
+        "DestinationId": 89,
         "HotelId": 1,
         "namaDestinasi": "Kota Lama Semarang",
         "imgUrl": "https://cdn.popbela.com/content-images/post/20190930/01-kota-lama-semarang-09f33d57ab8d9d103eaeeb27038bd9ad.jpg"
     },
     {
         "id": 3,
-        "DestinationId": 76,
+        "DestinationId": 90,
         "HotelId": 1,
         "namaDestinasi": "Pagoda Avalokitesvara",
         "imgUrl": "https://indonesiakaya.com/wp-content/uploads/2020/10/Patung_Dewi_Kwan_lm_yang_ada_di_pelataran_depan_pagoda_ini.jpg"
     },
     {
         "id": 4,
-        "DestinationId": 76,
+        "DestinationId": 90,
         "HotelId": 1,
         "namaDestinasi": "Pagoda Avalokitesvara",
         "imgUrl": "http://phinemo.com/wp-content/uploads/2015/04/semarang.jpg"
     },
     {
         "id": 3,
-        "DestinationId": 77,
+        "DestinationId": 91,
         "HotelId": 1,
         "namaDestinasi": "Museum Ranggawarsita",
         "imgUrl": "http://i2.wp.com/exploresemarang.com/wp-content/uploads/2015/09/Tampak-Depan-Museum-Ronggowarsito.jpg"
     },
     {
         "id": 4,
-        "DestinationId": 77,
+        "DestinationId": 91,
         "HotelId": 1,
         "namaDestinasi": "Museum Ranggawarsita",
         "imgUrl": "https://asset.kompas.com/crops/Yn6sg-3bgfbJlCV3bRxsbP9zSCc=/0x0:0x0/750x500/data/photo/2022/03/08/622714792631a.jpg"
     },
     {
         "id": 3,
-        "DestinationId": 78,
+        "DestinationId": 92,
         "HotelId": 1,
         "namaDestinasi": "Brown Canyon Semarang",
         "imgUrl": "https://wisato.id/wp-content/uploads/2020/02/84427244_132425968261174_8076191180490838275_n.jpg"
     },
     {
         "id": 4,
-        "DestinationId": 78,
+        "DestinationId": 92,
         "HotelId": 1,
         "namaDestinasi": "Brown Canyon Semarang",
         "imgUrl": "https://bosniatravel.net/wp-content/uploads/2019/07/Eksotisme-brown-canyon-semarang.jpg"
     },
     {
         "id": 3,
-        "DestinationId": 79,
+        "DestinationId": 93,
         "HotelId": 1,
         "namaDestinasi": "Umbul Sidomukti",
         "imgUrl": "https://www.pengindolan.com/wp-content/uploads/2020/04/pondok-kopi-umbul-sidomukti-semarang-jawa-tengah.jpg"
     },
     {
         "id": 4,
-        "DestinationId": 79,
+        "DestinationId": 93,
         "HotelId": 1,
         "namaDestinasi": "Umbul Sidomukti",
         "imgUrl": "https://cdn.nativeindonesia.com/foto/2018/11/Umbul-Sidomukuti-Drone-View.jpg"
     },
     {
         "id": 3,
-        "DestinationId": 80,
+        "DestinationId": 94,
         "HotelId": 1,
         "namaDestinasi": "Ayanaz Gedong Songo",
         "imgUrl": "https://joss.co.id/data/uploads/2021/06/tiket-masuk-ayana-gedongsongo-678x381.jpg"
     },
     {
         "id": 4,
-        "DestinationId": 80,
+        "DestinationId": 94,
         "HotelId": 1,
         "namaDestinasi": "Ayanaz Gedong Songo",
         "imgUrl": "https://cdn.nativeindonesia.com/foto/2018/11/Umbul-Sidomukuti-Drone-View.jpg"
     },
     {
         "id": 3,
-        "DestinationId": 81,
+        "DestinationId": 95,
         "HotelId": 1,
         "namaDestinasi": "Taman Bunga Celosia",
         "imgUrl": "https://tamanbungacelosia.gtc9.com/wp-content/uploads/sites/48/2020/08/img-9253333-1200x675.jpg"
     },
     {
         "id": 4,
-        "DestinationId": 81,
+        "DestinationId": 95,
         "HotelId": 1,
         "namaDestinasi": "Taman Bunga Celosia",
         "imgUrl": "https://asset.kompas.com/crops/GsXpeg6LS1b-ruZlEZHoAzUnbCw=/0x17:1134x584/780x390/data/photo/2021/02/05/601d0b6cabee2.jpg"
