@@ -23,7 +23,15 @@ class TopicController {
 
   static async getAllTopics(req, res, next) {
     try {
-      let allTopics = await Topic.findAll({include: { model: User, attributes: ["fullName", 'isPremium', 'point'] }});
+      let allTopics = await Topic.findAll({
+        include: [
+          { model: User, attributes: ["fullName", 'isPremium', 'point'] },
+          {
+            model: Message,
+            include: { model: User, attributes: ["fullName", 'isPremium', 'point'] },
+          },
+        ]});
+
       res.status(200).json(allTopics);
     } catch (error) {
       next(error);
