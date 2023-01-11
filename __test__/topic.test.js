@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../app.js");
+const { server: app } = require("../app.js");
 const { hashPassword } = require("../helpers/bcryptjs.js");
 const { createToken } = require("../helpers/jsonwebtoken.js");
 const { User, Topic, sequelize } = require("../models");

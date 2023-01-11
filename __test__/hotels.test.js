@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../app");
+const { server: app } = require("../app");
 const { createToken } = require("../helpers/jsonwebtoken");
 const { User, Province, City, Hotel, Review, sequelize } = require("../models");
 
