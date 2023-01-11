@@ -110,6 +110,7 @@ beforeAll(async function () {
   await sequelize.queryInterface.bulkInsert(
     "Reviews",
     require("../data/review.json").map((el) => {
+      delete el?.namaDestinasi;
       return {
         ...el,
         createdAt: new Date(),
