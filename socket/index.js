@@ -23,7 +23,10 @@ const socketListener = () => {
                 await calledUser.increment("point")
 
                 let newMessage = await Message.create({TopicId: calledForum.id, UserId: calledUser.id, text})
-                let sendedMessage = await Message.findOne({where: {id: newMessage.id}, include: [User, Topic]})
+                let sendedMessage = await Message.findOne({
+                    where: {id: newMessage.id}, 
+                    include: [Topic, {model: User, attributes: ['fullName', 'isPremium', 'point']}]
+                })
 
                 io.in(slug).emit("receive_message", sendedMessage);
             } catch (error) {
