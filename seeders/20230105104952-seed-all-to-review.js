@@ -4,6 +4,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     const data = require("../data/review.json").map((el) => {
+      delete el.namaDestinasi;
       return {
         ...el,
         createdAt: new Date(),
