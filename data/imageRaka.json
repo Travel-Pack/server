@@ -1,0 +1,352 @@
+[
+    {
+        "id": 1,
+        "DestinationId": 72,
+        "HotelId": 1,
+        "DestName": "Lawang Sewu",
+        "imgUrl": "https://images.unsplash.com/photo-1604973746130-1876090c8a79?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+    },
+    {
+        "id": 2,
+        "DestinationId": 72,
+        "HotelId": 1,
+        "DestName": "Lawang Sewu",
+        "imgUrl": "https://images.unsplash.com/photo-1634991599324-cb0ee4942962?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1475&q=80"
+    },
+    {
+        "id": 3,
+        "DestinationId": 73,
+        "HotelId": 1,
+        "DestName": "Saloka Theme Park",
+        "imgUrl": "https://thumb.viva.co.id/media/frontend/thumbs3/2022/11/15/6373164f0803b-wisata-saloka_1265_711.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 73,
+        "HotelId": 1,
+        "DestName": "Saloka Theme Park",
+        "imgUrl": "https://meramuda.com/wp-content/uploads/2019/04/Mau-Rekreasi-ke-Saloka-Theme-Park-Ini-Beragam-Kegiatan-Seru-yang-Bisa-Dijajal-cover.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 74,
+        "HotelId": 1,
+        "DestName": "Klenteng Sam Poo Kong",
+        "imgUrl": "https://cdn2.tstatic.net/tribunnewswiki/foto/bank/images/klenteng-sam-poo-kong.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 74,
+        "HotelId": 1,
+        "DestName": "Klenteng Sam Poo Kong",
+        "imgUrl": "https://budaya.blog.unisbank.ac.id/wp-content/uploads/2021/03/133121960_227363665511874_5742138706554744533_n.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 75,
+        "HotelId": 1,
+        "DestName": "Kota Lama Semarang",
+        "imgUrl": "https://www.indonesia.travel/content/dam/indtravelrevamp/en/events/microsite-event/suka-nostalgia-sini-simak-info-festival-kota-lama-semarang-2021-dulu-aja/header.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 75,
+        "HotelId": 1,
+        "DestName": "Kota Lama Semarang",
+        "imgUrl": "https://cdn.popbela.com/content-images/post/20190930/01-kota-lama-semarang-09f33d57ab8d9d103eaeeb27038bd9ad.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 76,
+        "HotelId": 1,
+        "DestName": "Pagoda Avalokitesvara",
+        "imgUrl": "https://indonesiakaya.com/wp-content/uploads/2020/10/Patung_Dewi_Kwan_lm_yang_ada_di_pelataran_depan_pagoda_ini.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 76,
+        "HotelId": 1,
+        "DestName": "Pagoda Avalokitesvara",
+        "imgUrl": "http://phinemo.com/wp-content/uploads/2015/04/semarang.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 77,
+        "HotelId": 1,
+        "DestName": "Museum Ranggawarsita",
+        "imgUrl": "http://i2.wp.com/exploresemarang.com/wp-content/uploads/2015/09/Tampak-Depan-Museum-Ronggowarsito.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 77,
+        "HotelId": 1,
+        "DestName": "Museum Ranggawarsita",
+        "imgUrl": "https://asset.kompas.com/crops/Yn6sg-3bgfbJlCV3bRxsbP9zSCc=/0x0:0x0/750x500/data/photo/2022/03/08/622714792631a.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 78,
+        "HotelId": 1,
+        "DestName": "Brown Canyon Semarang",
+        "imgUrl": "https://wisato.id/wp-content/uploads/2020/02/84427244_132425968261174_8076191180490838275_n.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 78,
+        "HotelId": 1,
+        "DestName": "Brown Canyon Semarang",
+        "imgUrl": "https://bosniatravel.net/wp-content/uploads/2019/07/Eksotisme-brown-canyon-semarang.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 79,
+        "HotelId": 1,
+        "DestName": "Umbul Sidomukti",
+        "imgUrl": "https://www.pengindolan.com/wp-content/uploads/2020/04/pondok-kopi-umbul-sidomukti-semarang-jawa-tengah.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 79,
+        "HotelId": 1,
+        "DestName": "Umbul Sidomukti",
+        "imgUrl": "https://cdn.nativeindonesia.com/foto/2018/11/Umbul-Sidomukuti-Drone-View.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 80,
+        "HotelId": 1,
+        "DestName": "Ayanaz Gedong Songo",
+        "imgUrl": "https://joss.co.id/data/uploads/2021/06/tiket-masuk-ayana-gedongsongo-678x381.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 80,
+        "HotelId": 1,
+        "DestName": "Ayanaz Gedong Songo",
+        "imgUrl": "https://cdn.nativeindonesia.com/foto/2018/11/Umbul-Sidomukuti-Drone-View.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 81,
+        "HotelId": 1,
+        "DestName": "Taman Bunga Celosia",
+        "imgUrl": "https://tamanbungacelosia.gtc9.com/wp-content/uploads/sites/48/2020/08/img-9253333-1200x675.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 81,
+        "HotelId": 1,
+        "DestName": "Taman Bunga Celosia",
+        "imgUrl": "https://asset.kompas.com/crops/GsXpeg6LS1b-ruZlEZHoAzUnbCw=/0x17:1134x584/780x390/data/photo/2021/02/05/601d0b6cabee2.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 82,
+        "HotelId": 1,
+        "DestName": "The Great Asia Africa",
+        "imgUrl": "https://anekatempatwisata.com/wp-content/uploads/2021/01/The-Great-Asia-Afrika-Bandung-1200x600.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 82,
+        "HotelId": 1,
+        "DestName": "The Great Asia Africa",
+        "imgUrl": "https://www.trivindo.com/data/upload/2020/08/the-great-asia-africa.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 83,
+        "HotelId": 1,
+        "DestName": "Dago Dream Park",
+        "imgUrl": "https://cdn.nativeindonesia.com/foto/2018/01/wara-wiri-di-Dago-Dream-Park-1.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 83,
+        "HotelId": 1,
+        "DestName": "Dago Dream Park",
+        "imgUrl": "https://travelspromo.com/wp-content/uploads/2018/07/Bike-Arena-Dago-Dream-Park-1024x683.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 84,
+        "HotelId": 1,
+        "DestName": "Orchid Forest Cikole",
+        "imgUrl": "https://foto.kontan.co.id/44_q7ZjW7sDvR8REuH9AQqRd2bc=/smart/2022/02/07/1451039173p.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 84,
+        "HotelId": 1,
+        "DestName": "Orchid Forest Cikole",
+        "imgUrl": "https://promoliburan.com/userfiles/uploads/keindahan-orchid-forest-lembang-bandung.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 85,
+        "HotelId": 1,
+        "DestName": "Kawah Putih Ciwidey",
+        "imgUrl": "https://www.rentvilladilembang.com/wp-content/uploads/2019/10/IMG-20191010-WA0005.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 85,
+        "HotelId": 1,
+        "DestName": "Kawah Putih Ciwidey",
+        "imgUrl": "https://1.bp.blogspot.com/-AT8ScX7_sK8/XQ4KLVFSKsI/AAAAAAAAAlg/amWZPdjDhs0rHvChiRfnEV48v13LT9rkQCLcBGAs/s1600/Kawah-Putih-Bandung.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 86,
+        "HotelId": 1,
+        "DestName": "Lembang Park & Zoo",
+        "imgUrl": "https://www.javatravel.net/wp-content/uploads/2021/10/Lembang-Park-Zoo-Bandung.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 86,
+        "HotelId": 1,
+        "DestName": "Lembang Park & Zoo",
+        "imgUrl": "https://cdn-2.tstatic.net/travel/foto/bank/images/lembang-park-zoo-tempat-wisata-di-bandung.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 87,
+        "HotelId": 1,
+        "DestName": "Jendela Alam",
+        "imgUrl": "https://travelspromo.com/wp-content/uploads/2019/08/wahana-flying-fox-di-jendela-alam-Ilham-Prasetiyo.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 87,
+        "HotelId": 1,
+        "DestName": "Jendela Alam",
+        "imgUrl": "https://cdn.pergidulu.com/wp-content/uploads/2016/11/Jendela-Alam-Lembang.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 88,
+        "HotelId": 1,
+        "DestName": "Taman Wisata Bougenville",
+        "imgUrl": "https://asset.kompas.com/crops/I7GG5fuq4hPkwOLMwN_ElmB2p4k=/0x0:1279x853/750x500/data/photo/2020/07/15/5f0ea02de23fc.jpeg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 88,
+        "HotelId": 1,
+        "DestName": "Taman Wisata Bougenville",
+        "imgUrl": "https://t-2.tstatic.net/tribunnewswiki/foto/bank/images/1-Taman-Wisata-Bougenville.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 89,
+        "HotelId": 1,
+        "DestName": "Saung Angklung Udjo",
+        "imgUrl": "https://sky-adventure.com/wp-content/uploads/2016/05/Menyaksikan-Keindahan-Pertunjukan-Angklung-di-Saung-Angklung-Udjo-Bandung.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 89,
+        "HotelId": 1,
+        "DestName": "Saung Angklung Udjo",
+        "imgUrl": "https://anekatempatwisata.com/wp-content/uploads/2014/07/Saung-Angklung-Udjo-4.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 90,
+        "HotelId": 1,
+        "DestName": "Tangkuban Perahu",
+        "imgUrl": "https://travelspromo.com/wp-content/uploads/2020/02/1-barisan-kios-Dony-Haryadi.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 90,
+        "HotelId": 1,
+        "DestName": "Tangkuban Perahu",
+        "imgUrl": "https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1592273366/shx3ufbgf7jc4foss8wf.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 91,
+        "HotelId": 1,
+        "DestName": "Kebun Bunga Begonia Lembang",
+        "imgUrl": "https://2.bp.blogspot.com/-fvyaww2pk_8/W5Dkg-hzFHI/AAAAAAAAY5g/Vlay0Nu0FGAdux_mkFFLd1VTixFWSgMPACLcBGAs/s1600/Taman%2BBegonia.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 91,
+        "HotelId": 1,
+        "DestName": "Kebun Bunga Begonia Lembang",
+        "imgUrl": "http://wisatakaka.com/wp-content/uploads/2018/04/Kebun-Bunga-Begonia-Lembang.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 1,
+        "HotelId": 5,
+        "HotelName": "Hotel Ciputra Semarang",
+        "imgUrl": "http://dimg04.c-ctrip.com/images/0202j120008xg1xkb9AE4.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 1,
+        "HotelId": 5,
+        "HotelName": "Hotel Ciputra Semarang",
+        "imgUrl": "http://dimg04.c-ctrip.com/images/020011200082r3gzs6A10.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 1,
+        "HotelId": 6,
+        "HotelName": "Ibis Budget Semarang Hotel",
+        "imgUrl": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/t_htl-mble/tix-hotel/images-web/2022/07/02/e6ef6219-9cb0-44ab-b2c1-4e92bcfe8f57-1656732392178-9e649286b3dec3a30a5f778462ae4d72.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 1,
+        "HotelId": 6,
+        "HotelName": "Ibis Budget Semarang Hotel",
+        "imgUrl": "https://ibis-budget-semarang-tendean-id-50132.booked.net/data/Photos/r1366x400/12862/1286213/1286213158/Ibis-Budget-Semarang-Tendean-Hotel-Exterior.JPEG"
+    },
+    {
+        "id": 3,
+        "DestinationId": 1,
+        "HotelId": 7,
+        "HotelName": "Sahid Raya Hotel & Convention",
+        "imgUrl": "https://sahidhotels.com/sahid-raya-hotel-convention-yogyakarta/wp-content/uploads/sites/7/2019/12/pic-Business-Suite.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 1,
+        "HotelId": 7,
+        "HotelName": "Sahid Raya Hotel & Convention",
+        "imgUrl": "http://dimg04.c-ctrip.com/images/02069120008452ldi54EC.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 1,
+        "HotelId": 17,
+        "HotelName": "Horison Ultima Bandung",
+        "imgUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/13/f7/7e/1a/family-room.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 1,
+        "HotelId": 17,
+        "HotelName": "Horison Ultima Bandung",
+        "imgUrl": "https://startup.haloindonesia.co.id/wp-content/uploads/2017/12/Super-Deluxe.jpg"
+    },
+    {
+        "id": 3,
+        "DestinationId": 1,
+        "HotelId": 18,
+        "HotelName": "éL Hotel Royale Bandung",
+        "imgUrl": "https://bandung.el-hotels.com/sites/default/files/Condotel-Studio-2.jpg"
+    },
+    {
+        "id": 4,
+        "DestinationId": 1,
+        "HotelId": 18,
+        "HotelName": "éL Hotel Royale Bandung",
+        "imgUrl": "http://dimg04.c-ctrip.com/images/020651200049yf0wj75CE.jpg"
+    }
+]
