@@ -142,5 +142,23 @@
     "isRecommended": true,
     "price": 514000,
     "CityId": 30
+  },
+  {
+    "name": "Horison Ultima Bandung",
+    "image": "https://www.hotelscombined.co.id/himg/de/13/c4/expediav2-334698-2523388927-273718.jpg",
+    "address": "Jl. Pelajar Pejuang 45 No.121, Turangga, Kec. Lengkong, Kota Bandung, Jawa Barat 40264",
+    "geocoding": "-6.935332340671327, 107.62532456757638",
+    "isRecommended": true,
+    "price": 536000,
+    "CityId": 5
+  },
+  {
+    "name": "éL Hotel Royale Bandung",
+    "image": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/t_htl-dskt/tix-hotel/images-web/2020/10/31/0855d18c-bcc0-436f-a21a-79a0019c2a7f-1604160228970-29db73f5fb7f3b656bf3fca660ed760d.jpg",
+    "address": "Jl. Merdeka No.2, Braga, Kec. Sumur Bandung, Kota Bandung, Jawa Barat 40111",
+    "geocoding": "-6.915944876557048, 107.61058560990529",
+    "isRecommended": true,
+    "price": 666000,
+    "CityId": 5
   }
 ]
