@@ -5,7 +5,8 @@
         "email": "bobby@gmail.com",
         "password": "12345",
         "isPremium": false,
-        "role": "Customer"
+        "role": "Customer",
+        "point": 500
     },
     {
         "fullName": "Abdullah Alam",
@@ -13,7 +14,8 @@
         "email": "alam@gmail.com",
         "password": "12345",
         "isPremium": false,
-        "role": "Customer"
+        "role": "Customer",
+        "point": 100
     },
     {
         "fullName": "Nur Qomarudin",
@@ -21,7 +23,8 @@
         "email": "qomar@gmail.com",
         "password": "12345",
         "isPremium": false,
-        "role": "Admin"
+        "role": "Admin",
+        "point": 5000
     },
     {
         "fullName": "Joshua Nathanael",
@@ -29,7 +32,8 @@
         "email": "joshua@gmail.com",
         "password": "12345",
         "isPremium": false,
-        "role": "Customer"
+        "role": "Customer",
+        "point": 2000
     },
     {
         "fullName": "Ezar Setiawan",
@@ -37,7 +41,8 @@
         "email": "ezar@gmail.com",
         "password": "12345",
         "isPremium": false,
-        "role": "Customer"
+        "role": "Customer",
+        "point": 1000
     },
     {
         "fullName": "Setya Raka",
@@ -45,6 +50,7 @@
         "email": "raka@gmail.com",
         "password": "12345",
         "isPremium": false,
-        "role": "Customer"
+        "role": "Customer",
+        "point": 2500
     }
 ]
