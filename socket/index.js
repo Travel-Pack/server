@@ -44,7 +44,7 @@ const socketListener = () => {
 
 const socketIoInit = (app) => {
     const { Server } = require('socket.io')
-    const client = `http://localhost:5173`
+    const client = `https://travelpack-v1.web.app`
 
     io = new Server(app, {
         cors: {
